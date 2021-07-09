@@ -17,8 +17,4 @@ export const fetchingCitiesFailed = compose(
   getCitiesState
 );
 
-export const getCities = compose(
-  defaultTo(null),
-  prop("cities"),
-  getCitiesState
-);
+export const getCities = compose(defaultTo([]), prop("cities"), getCitiesState);
