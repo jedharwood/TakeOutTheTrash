@@ -14,12 +14,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingCities: false,
+        fetchingCitiesSucceeded: true,
         cities: action.cities,
       };
     case actionTypes.FETCH_CITIES_FAILED:
       return {
         ...state,
         fetchingCities: false,
+        fetchingCitiesFailed: true,
       };
     default:
       return state;
