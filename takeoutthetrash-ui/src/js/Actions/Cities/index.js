@@ -1,4 +1,4 @@
-import * as actionTypes from "../../../Constants/ActionType";
+import * as actionTypes from "../../Constants/ActionType";
 import * as fetch from "../../Api/Fetch";
 import { getCitiesApiUrl } from "../../Utilities/ResourceUtilities";
 
