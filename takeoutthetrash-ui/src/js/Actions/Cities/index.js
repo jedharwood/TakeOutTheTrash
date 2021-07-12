@@ -15,12 +15,11 @@ export const fetchCitiesList = () => async (dispatch) => {
 
     const url = getCitiesApiUrl();
 
-    const result = await fetch.get(url);
-
-    if (result.ok) {
+    const response = await fetch.getJson(url);
+    if (response.ok) {
       dispatch({
         type: actionTypes.FETCH_CITIES_SUCCEEDED, //spinner off
-        cities: result.jsonData,
+        cities: response.jsonData,
       });
       return;
     }
