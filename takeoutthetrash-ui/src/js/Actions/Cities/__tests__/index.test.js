@@ -17,7 +17,9 @@ describe("cities action", () => {
         ok: false,
       };
 
-      fetch.get = jest.fn(() => new Promise((resolve) => resolve(response)));
+      fetch.getJson = jest.fn(
+        () => new Promise((resolve) => resolve(response))
+      );
 
       const dispatch = jest.fn();
 
@@ -48,7 +50,7 @@ describe("cities action", () => {
         .fn()
         .mockReturnValue(citiesApiUrl);
 
-      fetch.get = jest.fn(
+      fetch.getJson = jest.fn(
         () =>
           new Promise(() => {
             throw new Error("bang");
@@ -117,7 +119,9 @@ describe("cities action", () => {
         ],
       };
 
-      fetch.get = jest.fn(() => new Promise((resolve) => resolve(response)));
+      fetch.getJson = jest.fn(
+        () => new Promise((resolve) => resolve(response))
+      );
 
       const dispatch = jest.fn();
 
