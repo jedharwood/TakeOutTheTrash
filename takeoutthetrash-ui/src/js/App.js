@@ -1,6 +1,6 @@
-import "../css/App.css";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import "../css/App.css";
 import Header from "./Components/Common/Header";
 import LandingPage from "./Components/LandingPage";
 import SelectCityPage from "./Components/SelectCityPage";

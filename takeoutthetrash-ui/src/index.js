@@ -1,13 +1,13 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { render } from "react-dom";
-import App from "./js/App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "../src/js/ConfigureStore";
-import { fetchCitiesList } from "../src/js/Actions/Cities/index";
+import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./js/App";
+import store from "./js/ConfigureStore";
+import { fetchPrefecturesList } from "./js/Actions/Prefectures/index";
 
-store.dispatch(fetchCitiesList());
+store.dispatch(fetchPrefecturesList());
 
 render(
   <Provider store={store}>

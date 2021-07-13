@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import cities from "./Cities/index";
+import prefectures from "./Prefectures/index";
 
 export default combineReducers({
-  cities,
+  prefectures,
 });

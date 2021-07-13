@@ -4,3 +4,4 @@ const buildUrl = (key) => {
 };
 
 export const getCitiesApiUrl = () => buildUrl("/cities");
+export const getPrefecturesApiUrl = () => buildUrl("/prefectures");
