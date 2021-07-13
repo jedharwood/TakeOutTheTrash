@@ -22,3 +22,8 @@ export const getPrefectures = compose(
   prop("prefectures"),
   getPrefecturesState
 );
+
+export const getSelectedPrefectureId = compose(
+  prop("selectedPrefectureId"),
+  getPrefecturesState
+);

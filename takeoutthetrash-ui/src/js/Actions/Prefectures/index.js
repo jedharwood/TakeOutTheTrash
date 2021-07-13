@@ -29,3 +29,8 @@ export const fetchPrefecturesList = () => async (dispatch) => {
     dispatchFetchPrefecturesFailedAction(dispatch);
   }
 };
+
+export const selectPrefecture = (selectedPrefectureId) => ({
+  type: actionTypes.PREFECTURE_SELECTED,
+  selectedPrefectureId,
+});

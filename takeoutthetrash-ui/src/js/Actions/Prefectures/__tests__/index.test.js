@@ -149,4 +149,20 @@ describe("prefectures action", () => {
       ]);
     });
   });
+
+  describe("selectPrefecture", () => {
+    test("should dispatch a PREFECTURE_SELECTED action", () => {
+      // Arrange
+      const selectedPrefectureId = 1;
+
+      // Act
+      const result = sut.selectPrefecture(selectedPrefectureId);
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.PREFECTURE_SELECTED,
+        selectedPrefectureId,
+      });
+    });
+  });
 });

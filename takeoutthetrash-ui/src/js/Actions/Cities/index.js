@@ -29,3 +29,5 @@ export const fetchCitiesList = () => async (dispatch) => {
     dispatchFetchCitiesFailedAction(dispatch);
   }
 };
+
+export const selectCity = () => async (dispatch) => {};

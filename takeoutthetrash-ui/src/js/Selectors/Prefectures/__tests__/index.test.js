@@ -182,4 +182,21 @@ describe("prefectures selectors", () => {
       ]);
     });
   });
+
+  describe("getSelectedPrefectureId", () => {
+    test("should return selectedPrefectureId", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          selectedPrefectureId: 1,
+        },
+      };
+
+      // Act
+      const result = sut.getSelectedPrefectureId(state);
+
+      // Assert
+      expect(result).toEqual(1);
+    });
+  });
 });

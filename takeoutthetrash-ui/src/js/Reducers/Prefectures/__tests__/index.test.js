@@ -117,4 +117,29 @@ describe("prefectures reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a PREFECTURE_SELECTED action should set selectedPrefectureId", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.PREFECTURE_SELECTED,
+      selectedPrefectureId: 1,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      selectedPrefectureId: 1,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });
