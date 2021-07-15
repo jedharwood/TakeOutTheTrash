@@ -143,17 +143,28 @@ describe("prefectures selectors", () => {
             {
               id: 1,
               name: "Aichi",
-              hasCities: false,
+              cities: [],
             },
             {
               id: 2,
               name: "Akita",
-              hasCities: false,
+              cities: [],
             },
             {
               id: 3,
               name: "Aomori",
-              hasCities: false,
+              cities: [
+                {
+                  id: 1,
+                  name: "City One",
+                  hasRules: true,
+                },
+                {
+                  id: 2,
+                  name: "City Two",
+                  hasRules: true,
+                },
+              ],
             },
           ],
         },
@@ -167,17 +178,28 @@ describe("prefectures selectors", () => {
         {
           id: 1,
           name: "Aichi",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 2,
           name: "Akita",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 3,
           name: "Aomori",
-          hasCities: false,
+          cities: [
+            {
+              id: 1,
+              name: "City One",
+              hasRules: true,
+            },
+            {
+              id: 2,
+              name: "City Two",
+              hasRules: true,
+            },
+          ],
         },
       ]);
     });

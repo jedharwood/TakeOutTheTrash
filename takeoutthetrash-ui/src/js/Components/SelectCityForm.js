@@ -3,14 +3,7 @@ import PropTypes from "prop-types";
 import * as prefecturesSelectors from "../Selectors/Prefectures/index";
 import * as prefecturesActions from "../Actions/Prefectures/index";
 import { connect } from "react-redux";
-//import * as R from "ramda";
 import { mapOptions } from "../Utilities/RamdaUtilities";
-
-// const mapOptions = R.map((item) => (
-//   <option key={item.id} value={item.id}>
-//     {item.name}
-//   </option>
-// ));
 
 const SelectPrefecture = ({ prefecturesList, selectPrefecture }) => {
   return (
