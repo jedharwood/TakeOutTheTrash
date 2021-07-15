@@ -12,10 +12,10 @@ describe("cities reducer", () => {
     expect(result).toEqual({});
   });
 
-  test("when handling a FETCH_CITIES_REQUESTED action should set fetchingCities to true", () => {
+  test("when handling a FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED action should set fetchingCities to true", () => {
     // Arrange
     const action = {
-      type: actionTypes.FETCH_CITIES_REQUESTED,
+      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED,
     };
 
     const state = {
@@ -36,10 +36,10 @@ describe("cities reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a FETCH_CITIES_SUCCEEDED action should set fetchingCities to false, fetchingCitiesSucceeded to true and return an array of cities", () => {
+  test("when handling a FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED action should set fetchingCities to false, fetchingCitiesSucceeded to true and return an array of cities", () => {
     // Arrange
     const action = {
-      type: actionTypes.FETCH_CITIES_SUCCEEDED,
+      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED,
       cities: [
         {
           id: 1,
@@ -94,10 +94,10 @@ describe("cities reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a FETCH_CITIES_FALED action should set fetchingCities to false and fetchingCitiesFailed to true", () => {
+  test("when handling a FETCH_CITIES_BY_PREFECTURE_ID_FAILED action should set fetchingCities to false and fetchingCitiesFailed to true", () => {
     // Arrange
     const action = {
-      type: actionTypes.FETCH_CITIES_FAILED,
+      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_FAILED,
     };
 
     const state = {
@@ -109,6 +109,31 @@ describe("cities reducer", () => {
     const expectedState = {
       fetchingCities: false,
       fetchingCitiesFailed: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a CITY_SELECTED action should set selectedCityId", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.CITY_SELECTED,
+      selectedCityId: 1,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      selectedCityId: 1,
     };
 
     // Act

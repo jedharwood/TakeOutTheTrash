@@ -18,3 +18,8 @@ export const fetchingCitiesFailed = compose(
 );
 
 export const getCities = compose(defaultTo([]), prop("cities"), getCitiesState);
+
+export const getSelectedCityId = compose(
+  prop("selectedCityId"),
+  getCitiesState
+);

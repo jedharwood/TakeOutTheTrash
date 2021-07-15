@@ -1,68 +1,108 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as prefecturesSelectors from "../Selectors/Prefectures/index";
+import * as citiesSelectors from "../Selectors/Cities/index";
 import * as prefecturesActions from "../Actions/Prefectures/index";
 import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
-import { mapOptions, isNotNil } from "../Utilities/RamdaUtilities";
+import { mapOptions } from "../Utilities/RamdaUtilities";
 
-const SelectPrefecture = ({ prefecturesList, selectPrefecture }) => {
+const SelectPrefecture = ({
+  prefectures,
+  selectPrefecture,
+  getCitiesByPrefectureId,
+}) => {
   return (
     <div>
       <select
         id="prefecture_select_input"
-        onChange={(e) =>
-          selectPrefecture(e.target.value, e.target.selectedOptions[0].text)
-        }
+        onChange={(e) => {
+          selectPrefecture(e.target.value);
+          getCitiesByPrefectureId();
+        }}
       >
         <option value="">Please select...</option>
-        {mapOptions(prefecturesList)}
+        {mapOptions(prefectures)}
       </select>
     </div>
   );
 };
 
-const SelectCity = ({ selectedPrefectureId }) => {
-  return <div></div>;
+const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity }) => {
+  if (!fetchingCitiesSucceeded) {
+    return null;
+  }
+
+  return (
+    <div>
+      <select
+        id="city_select_input"
+        onChange={(e) => {
+          selectCity(e.target.value);
+        }}
+      >
+        <option value="">Please select...</option>
+        {mapOptions(cities)}
+      </select>
+    </div>
+  );
 };
 
 const SelectCityForm = ({
-  prefecturesList,
+  prefectures,
   selectPrefecture,
-  selectedPrefectureId,
+  getCitiesByPrefectureId,
+  fetchingCitiesSucceeded,
+  cities,
+  selectCity,
 }) => {
   return (
     <Fragment>
       <SelectPrefecture
-        prefecturesList={prefecturesList}
+        prefectures={prefectures}
         selectPrefecture={selectPrefecture}
+        getCitiesByPrefectureId={getCitiesByPrefectureId}
       />
-      <SelectCity selectedPrefectureId={selectedPrefectureId} />
+      <SelectCity
+        fetchingCitiesSucceeded={fetchingCitiesSucceeded}
+        cities={cities}
+        selectCity={selectCity}
+      />
     </Fragment>
   );
 };
 
 SelectCityForm.propTypes = {
-  prefecturesList: PropTypes.arrayOf(
+  prefectures: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      hasCities: PropTypes.bool.isRequired,
-    })
+      hasCities: PropTypes.bool,
+    }).isRequired
   ),
   selectPrefecture: PropTypes.func.isRequired,
-  selectedPrefectureId: PropTypes.number,
   getCitiesByPrefectureId: PropTypes.func.isRequired,
+  fetchingCitiesSucceeded: PropTypes.bool,
+  cities: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      hasRules: PropTypes.bool.isRequired,
+    })
+  ),
+  selectCity: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  prefecturesList: prefecturesSelectors.getPrefectures(state),
-  selectedPrefectureId: prefecturesSelectors.getSelectedPrefectureId(state),
+  prefectures: prefecturesSelectors.getPrefectures(state),
+  fetchingCitiesSucceeded: citiesSelectors.fetchingCitiesSucceeded(state),
+  cities: citiesSelectors.getCities(state),
 });
 
 const mapDispatchToProps = {
   selectPrefecture: prefecturesActions.selectPrefecture,
-  getCitiesByPrefectureId: citiesActions.fetchCitiesListByPrefectureId,
+  getCitiesByPrefectureId: citiesActions.fetchCitiesByPrefectureId,
+  selectCity: citiesActions.selectCity,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectCityForm);

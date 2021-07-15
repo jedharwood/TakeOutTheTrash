@@ -3,7 +3,8 @@ const buildUrl = (key) => {
   return baseUrl + key;
 };
 
-export const getCitiesApiUrl = () => buildUrl("/cities");
 export const getPrefecturesApiUrl = () => buildUrl("/prefectures");
 export const getCitiesByPrefectureIdApiUrl = (selectedPrefectureId) =>
-  buildUrl("/prefectures/" + { selectedPrefectureId });
+  buildUrl("/prefectures/" + selectedPrefectureId);
+export const getCityByIdApiUrl = (selectedCityId) =>
+  buildUrl("/cities/" + selectedCityId);

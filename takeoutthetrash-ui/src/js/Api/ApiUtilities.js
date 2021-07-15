@@ -16,17 +16,20 @@ export function handleError(error) {
   throw error;
 }
 
-function mapToNewArray(data) {
-  const newArray = data.cities.map((city) => ({ ...city }));
+// function mapToNewArray(data) {
+//   debugger;
+//   const newArray = data.cities.map((city) => ({ ...city }));
 
-  return newArray;
-}
+//   return newArray;
+// }
 
+// This function is solely for use in development with a mock api
+// Once the real api is built this function will be handled there and returned on a response object
 export async function handleResponseCitiesByPrefectureId(response) {
   if (response.ok)
     return response
       .json()
-      .then((data) => ({ ok: response.ok, jsonData: mapToNewArray(data) }));
+      .then((data) => ({ ok: response.ok, jsonData: data.cities }));
   if (response.status === 400) {
     const error = await response.text();
     throw new Error(error);
