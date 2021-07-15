@@ -5,3 +5,5 @@ export const mapOptions = R.map((item) => (
     {item.name}
   </option>
 ));
+
+export const isNotNil = R.compose(R.not, R.isNil);
