@@ -92,17 +92,28 @@ describe("prefectures action", () => {
           {
             id: 1,
             name: "Aichi",
-            hasCities: false,
+            cities: [],
           },
           {
             id: 2,
             name: "Akita",
-            hasCities: false,
+            cities: [],
           },
           {
             id: 3,
             name: "Aomori",
-            hasCities: false,
+            cities: [
+              {
+                id: 1,
+                name: "City One",
+                hasRules: true,
+              },
+              {
+                id: 2,
+                name: "City Two",
+                hasRules: true,
+              },
+            ],
           },
         ],
       };
@@ -132,21 +143,48 @@ describe("prefectures action", () => {
             {
               id: 1,
               name: "Aichi",
-              hasCities: false,
+              cities: [],
             },
             {
               id: 2,
               name: "Akita",
-              hasCities: false,
+              cities: [],
             },
             {
               id: 3,
               name: "Aomori",
-              hasCities: false,
+              cities: [
+                {
+                  id: 1,
+                  name: "City One",
+                  hasRules: true,
+                },
+                {
+                  id: 2,
+                  name: "City Two",
+                  hasRules: true,
+                },
+              ],
             },
           ],
         },
       ]);
+    });
+  });
+
+  describe("selectPrefecture", () => {
+    test("should dispatch a PREFECTURE_SELECTED action", () => {
+      // Arrange
+      const selectedPrefectureId = 1;
+
+      // Act
+      const result = sut.selectPrefecture(selectedPrefectureId);
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.PREFECTURE_SELECTED,
+        selectedPrefectureId,
+      });
     });
   });
 });

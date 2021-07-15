@@ -29,3 +29,7 @@ export const fetchCitiesList = () => async (dispatch) => {
     dispatchFetchCitiesFailedAction(dispatch);
   }
 };
+
+export const fetchCitiesListByPrefectureId = () => async (dispatch) => {};
+
+export const selectCity = () => async (dispatch) => {};

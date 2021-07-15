@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SelectCityForm from "../Components/SelectCityForm";
 
 function LandingPage() {
   return (
@@ -8,6 +9,7 @@ function LandingPage() {
       <Link to="/selectCity" className="btn btn-primary">
         Enter
       </Link>
+      <SelectCityForm />
     </div>
   );
 }

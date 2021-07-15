@@ -44,17 +44,28 @@ describe("prefectures reducer", () => {
         {
           id: 1,
           name: "Aichi",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 2,
           name: "Akita",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 3,
           name: "Aomori",
-          hasCities: false,
+          cities: [
+            {
+              id: 1,
+              name: "City One",
+              hasRules: true,
+            },
+            {
+              id: 2,
+              name: "City Two",
+              hasRules: true,
+            },
+          ],
         },
       ],
     };
@@ -72,17 +83,28 @@ describe("prefectures reducer", () => {
         {
           id: 1,
           name: "Aichi",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 2,
           name: "Akita",
-          hasCities: false,
+          cities: [],
         },
         {
           id: 3,
           name: "Aomori",
-          hasCities: false,
+          cities: [
+            {
+              id: 1,
+              name: "City One",
+              hasRules: true,
+            },
+            {
+              id: 2,
+              name: "City Two",
+              hasRules: true,
+            },
+          ],
         },
       ],
     };
@@ -109,6 +131,31 @@ describe("prefectures reducer", () => {
     const expectedState = {
       fetchingPrefectures: false,
       fetchingPrefecturesFailed: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a PREFECTURE_SELECTED action should set selectedPrefectureId", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.PREFECTURE_SELECTED,
+      selectedPrefectureId: 1,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      selectedPrefectureId: 1,
     };
 
     // Act
