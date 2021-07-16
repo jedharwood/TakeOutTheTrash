@@ -1,35 +1,76 @@
 import * as actionTypes from "../../Constants/ActionType";
 import * as fetch from "../../Api/Fetch";
-import { getCitiesApiUrl } from "../../Utilities/ResourceUtilities";
+import * as resourceUtilities from "../../Utilities/ResourceUtilities";
+import * as prefecturesSelectors from "../../Selectors/Prefectures";
+import * as citiesSelectors from "../../Selectors/Cities";
 
-const dispatchFetchCitiesFailedAction = (dispatch) =>
+const dispatchFetchCitiesByPrefectureIdFailedAction = (dispatch) =>
   dispatch({
-    type: actionTypes.FETCH_CITIES_FAILED, //spinner off
+    type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_FAILED, //spinner off
   });
 
-export const fetchCitiesList = () => async (dispatch) => {
+const dispatchFetchCityByIdFailedAction = (dispatch) =>
+  dispatch({
+    type: actionTypes.FETCH_CITY_BY_ID_FAILED, //spinner off
+  });
+
+export const fetchCitiesByPrefectureId = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: actionTypes.FETCH_CITIES_REQUESTED, //spinner on
+      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED, //spinner on
     });
 
-    const url = getCitiesApiUrl();
+    const state = getState();
 
-    const response = await fetch.getJson(url);
+    const selectedPrefectureId =
+      prefecturesSelectors.getSelectedPrefectureId(state);
+
+    const url =
+      resourceUtilities.getCitiesByPrefectureIdApiUrl(selectedPrefectureId);
+
+    const response = await fetch.getCitiesJsonByIdMock(url);
     if (response.ok) {
       dispatch({
-        type: actionTypes.FETCH_CITIES_SUCCEEDED, //spinner off
+        type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED, //spinner off
         cities: response.jsonData,
       });
       return;
     }
 
-    dispatchFetchCitiesFailedAction(dispatch);
+    dispatchFetchCitiesByPrefectureIdFailedAction(dispatch);
   } catch (exception) {
-    dispatchFetchCitiesFailedAction(dispatch);
+    dispatchFetchCitiesByPrefectureIdFailedAction(dispatch);
   }
 };
 
-export const fetchCitiesListByPrefectureId = () => async (dispatch) => {};
+export const selectCity = (selectedCityId) => ({
+  type: actionTypes.CITY_SELECTED,
+  selectedCityId,
+});
 
-export const selectCity = () => async (dispatch) => {};
+export const fetchCityById = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: actionTypes.FETCH_CITY_BY_ID_REQUESTED, //spinner on
+    });
+
+    const state = getState();
+
+    const selectedCityId = citiesSelectors.getSelectedCityId(state);
+
+    const url = resourceUtilities.getCityByIdApiUrl(selectedCityId);
+
+    const response = await fetch.getJson(url);
+    if (response.ok) {
+      dispatch({
+        type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED, //spinner off
+        city: response.jsonData,
+      });
+      return;
+    }
+
+    dispatchFetchCityByIdFailedAction(dispatch);
+  } catch (exception) {
+    dispatchFetchCityByIdFailedAction(dispatch);
+  }
+};

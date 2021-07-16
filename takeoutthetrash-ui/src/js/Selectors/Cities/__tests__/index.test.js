@@ -181,5 +181,22 @@ describe("cities selectors", () => {
         },
       ]);
     });
+
+    describe("getSelectedCityId", () => {
+      test("should return selectedCityId", () => {
+        // Arrange
+        const state = {
+          cities: {
+            selectedCityId: 1,
+          },
+        };
+
+        // Act
+        const result = sut.getSelectedCityId(state);
+
+        // Assert
+        expect(result).toEqual(1);
+      });
+    });
   });
 });
