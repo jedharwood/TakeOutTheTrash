@@ -44,17 +44,17 @@ describe("cities reducer", () => {
         {
           id: 1,
           name: "Yokohama",
-          hasRules: true,
+          rules: [],
         },
         {
           id: 2,
           name: "Fujisawa",
-          hasRules: false,
+          rules: [],
         },
         {
           id: 3,
           name: "Zushi",
-          hasRules: true,
+          rules: [],
         },
       ],
     };
@@ -72,17 +72,17 @@ describe("cities reducer", () => {
         {
           id: 1,
           name: "Yokohama",
-          hasRules: true,
+          rules: [],
         },
         {
           id: 2,
           name: "Fujisawa",
-          hasRules: false,
+          rules: [],
         },
         {
           id: 3,
           name: "Zushi",
-          hasRules: true,
+          rules: [],
         },
       ],
     };
@@ -134,6 +134,88 @@ describe("cities reducer", () => {
     const expectedState = {
       foo: "bar",
       selectedCityId: 1,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a FETCH_CITY_BY_ID_REQUESTED action should set fetchingCity to true", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.FETCH_CITY_BY_ID_REQUESTED,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      fetchingCity: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a FETCH_CITY_BY_ID_SUCCEEDED action should set fetchingCity to false, fetchingCitySucceeded to true and return the selected city", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
+      city: {
+        id: 1,
+        name: "Yokohama",
+        rules: [],
+      },
+    };
+
+    const state = {
+      fetchingCity: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      fetchingCity: false,
+      fetchingCitySucceeded: true,
+      city: {
+        id: 1,
+        name: "Yokohama",
+        rules: [],
+      },
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a FETCH_CITY_BY_ID_FAILED action should set fetchingCity to false and fetchingCityFailed to true", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.FETCH_CITY_BY_ID_FAILED,
+    };
+
+    const state = {
+      fetchingCity: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      fetchingCity: false,
+      fetchingCityFailed: true,
     };
 
     // Act

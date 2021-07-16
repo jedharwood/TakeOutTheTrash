@@ -95,7 +95,7 @@ SelectCityForm.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      hasRules: PropTypes.bool.isRequired,
+      rules: PropTypes.arrayOf(PropTypes.object),
     })
   ),
   selectCity: PropTypes.func.isRequired,

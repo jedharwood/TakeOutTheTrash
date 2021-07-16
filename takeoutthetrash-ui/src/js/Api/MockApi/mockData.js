@@ -2,32 +2,43 @@ const cities = [
   {
     id: 1,
     name: "Yokohama",
-    hasRules: true,
+    rules: [
+      {
+        PETBottles: {
+          collectionDay: 1,
+          instructions: "Wash, remove label and cap.",
+        },
+        aluminiumCans: {
+          collectionDay: 2,
+          instructions: "Wash.",
+        },
+      },
+    ],
   },
   {
     id: 2,
     name: "Fujisawa",
-    hasRules: false,
+    rules: [],
   },
   {
     id: 3,
     name: "Zushi",
-    hasRules: true,
+    rules: [],
   },
   {
     id: 4,
     name: "Koenji",
-    hasRules: true,
+    rules: [],
   },
   {
     id: 5,
     name: "Shinjuku",
-    hasRules: true,
+    rules: [],
   },
   {
     id: 6,
     name: "Sapporo",
-    hasRules: true,
+    rules: [],
   },
 ];
 
@@ -94,7 +105,7 @@ const prefectures = [
       {
         id: 6,
         name: "Sapporo",
-        hasRules: true,
+        rules: [],
       },
     ],
   },
@@ -135,17 +146,28 @@ const prefectures = [
       {
         id: 1,
         name: "Yokohama",
-        hasRules: true,
+        rules: [
+          {
+            PETBottles: {
+              collectionDay: 1,
+              instructions: "Wash, remove label and cap.",
+            },
+            aluminiumCans: {
+              collectionDay: 2,
+              instructions: "Wash.",
+            },
+          },
+        ],
       },
       {
         id: 2,
         name: "Fujisawa",
-        hasRules: false,
+        rules: [],
       },
       {
         id: 3,
         name: "Zushi",
-        hasRules: true,
+        rules: [],
       },
     ],
   },
@@ -261,12 +283,12 @@ const prefectures = [
       {
         id: 4,
         name: "Koenji",
-        hasRules: true,
+        rules: [],
       },
       {
         id: 5,
         name: "Shinjuku",
-        hasRules: true,
+        rules: [],
       },
     ],
   },

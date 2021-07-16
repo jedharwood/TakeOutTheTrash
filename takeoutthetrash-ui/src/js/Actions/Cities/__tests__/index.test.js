@@ -114,17 +114,17 @@ describe("cities action", () => {
           {
             id: 1,
             name: "Yokohama",
-            hasRules: true,
+            rules: [],
           },
           {
             id: 2,
             name: "Fujisawa",
-            hasRules: false,
+            rules: [],
           },
           {
             id: 3,
             name: "Zushi",
-            hasRules: true,
+            rules: [],
           },
         ],
       };
@@ -155,17 +155,17 @@ describe("cities action", () => {
             {
               id: 1,
               name: "Yokohama",
-              hasRules: true,
+              rules: [],
             },
             {
               id: 2,
               name: "Fujisawa",
-              hasRules: false,
+              rules: [],
             },
             {
               id: 3,
               name: "Zushi",
-              hasRules: true,
+              rules: [],
             },
           ],
         },
@@ -296,7 +296,7 @@ describe("cities action", () => {
         jsonData: {
           id: 1,
           name: "Yokohama",
-          hasRules: true,
+          rules: [],
         },
       };
 
@@ -325,7 +325,7 @@ describe("cities action", () => {
           city: {
             id: 1,
             name: "Yokohama",
-            hasRules: true,
+            rules: [],
           },
         },
       ]);

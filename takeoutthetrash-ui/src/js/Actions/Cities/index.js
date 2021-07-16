@@ -62,7 +62,6 @@ export const fetchCityById = () => async (dispatch, getState) => {
 
     const response = await fetch.getJson(url);
     if (response.ok) {
-      debugger;
       dispatch({
         type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED, //spinner off
         city: response.jsonData,

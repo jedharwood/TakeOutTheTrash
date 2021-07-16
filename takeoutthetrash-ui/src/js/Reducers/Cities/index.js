@@ -28,6 +28,24 @@ export default (state = initialState, action) => {
         ...state,
         selectedCityId: action.selectedCityId,
       };
+    case actionTypes.FETCH_CITY_BY_ID_REQUESTED:
+      return {
+        ...state,
+        fetchingCity: true,
+      };
+    case actionTypes.FETCH_CITY_BY_ID_SUCCEEDED:
+      return {
+        ...state,
+        fetchingCity: false,
+        fetchingCitySucceeded: true,
+        city: action.city,
+      };
+    case actionTypes.FETCH_CITY_BY_ID_FAILED:
+      return {
+        ...state,
+        fetchingCity: false,
+        fetchingCityFailed: true,
+      };
     default:
       return state;
   }
