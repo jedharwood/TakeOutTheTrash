@@ -23,3 +23,20 @@ export const getSelectedCityId = compose(
   prop("selectedCityId"),
   getCitiesState
 );
+
+export const isFetchingCity = compose(
+  propEq("fetchingCity", true),
+  getCitiesState
+);
+
+export const fetchingCitySucceeded = compose(
+  propEq("fetchingCitySucceeded", true),
+  getCitiesState
+);
+
+export const fetchingCityFailed = compose(
+  propEq("fetchingCityFailed", true),
+  getCitiesState
+);
+
+export const getCity = compose(defaultTo({}), prop("city"), getCitiesState);

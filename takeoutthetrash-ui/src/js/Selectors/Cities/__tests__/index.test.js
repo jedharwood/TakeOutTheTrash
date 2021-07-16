@@ -106,7 +106,7 @@ describe("cities selectors", () => {
     });
   });
 
-  describe("get cities", () => {
+  describe("getCities", () => {
     test("when cities is not set selector should default to an empty array", () => {
       // Arrange
       const state = {
@@ -181,21 +181,164 @@ describe("cities selectors", () => {
         },
       ]);
     });
+  });
 
-    describe("getSelectedCityId", () => {
-      test("should return selectedCityId", () => {
+  describe("getSelectedCityId", () => {
+    test("should return selectedCityId", () => {
+      // Arrange
+      const state = {
+        cities: {
+          selectedCityId: 1,
+        },
+      };
+
+      // Act
+      const result = sut.getSelectedCityId(state);
+
+      // Assert
+      expect(result).toEqual(1);
+    });
+  });
+
+  describe("isFetchingCity", () => {
+    test.each([[null], [undefined], [false], ["Not a boolean"]])(
+      "when fetchingCity is false or otherwise invalid should return false",
+      (value) => {
         // Arrange
         const state = {
           cities: {
-            selectedCityId: 1,
+            fetchingCity: value,
           },
         };
 
         // Act
-        const result = sut.getSelectedCityId(state);
+        const result = sut.isFetchingCities(state);
 
         // Assert
-        expect(result).toEqual(1);
+        expect(result).toEqual(false);
+      }
+    );
+
+    test("when fetchingCity is true should return true", () => {
+      // Arrange
+      const state = {
+        cities: {
+          fetchingCity: true,
+        },
+      };
+
+      // Act
+      const result = sut.isFetchingCity(state);
+
+      // Assert
+      expect(result).toEqual(true);
+    });
+  });
+
+  describe("fetchingCitySucceeded", () => {
+    test.each([[null], [undefined], [false], ["Not a boolean"]])(
+      "when fetchingCitySucceeded is false or otherwise invalid should return false",
+      (value) => {
+        // Arrange
+        const state = {
+          cities: {
+            fetchingCitySucceeded: value,
+          },
+        };
+
+        // Act
+        const result = sut.fetchingCitySucceeded(state);
+
+        // Assert
+        expect(result).toEqual(false);
+      }
+    );
+
+    test("when fetchingCitySucceeded is true should return true", () => {
+      // Arrange
+      const state = {
+        cities: {
+          fetchingCitySucceeded: true,
+        },
+      };
+
+      // Act
+      const result = sut.fetchingCitySucceeded(state);
+
+      // Assert
+      expect(result).toEqual(true);
+    });
+  });
+
+  describe("fetchingCityFailed", () => {
+    test.each([[null], [undefined], [false], ["Not a boolean"]])(
+      "when fetchingCityFailed is false or otherwise invalid should return false",
+      (value) => {
+        // Arrange
+        const state = {
+          cities: {
+            fetchingCityFailed: value,
+          },
+        };
+
+        // Act
+        const result = sut.fetchingCityFailed(state);
+
+        // Assert
+        expect(result).toEqual(false);
+      }
+    );
+
+    test("when fetchingCityFailed is true should return true", () => {
+      // Arrange
+      const state = {
+        cities: {
+          fetchingCityFailed: true,
+        },
+      };
+
+      // Act
+      const result = sut.fetchingCityFailed(state);
+
+      // Assert
+      expect(result).toEqual(true);
+    });
+  });
+
+  describe("getCity", () => {
+    test("when city is not set selector should default to an empty object", () => {
+      // Arrange
+      const state = {
+        citiy: {},
+      };
+
+      // Act
+      const result = sut.getCity(state);
+
+      // Assert
+      expect(result).toEqual({});
+    });
+
+    test("when city is set selector should return selected city", () => {
+      // Arrange
+      const state = {
+        cities: {
+          city: {
+            id: 1,
+            name: "Yokohama",
+            rules: [],
+          },
+        },
+      };
+
+      // Act
+      const result = sut.getCity(state);
+
+      // Assert
+      expect(result).toEqual({
+        id: 1,
+        name: "Yokohama",
+        rules: [],
       });
     });
   });
