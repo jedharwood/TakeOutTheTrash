@@ -3,9 +3,10 @@ import * as fetch from "../../../Api/Fetch";
 import * as resourceUtilities from "../../../Utilities/ResourceUtilities";
 import * as actionTypes from "../../../Constants/ActionType";
 import * as prefecturesSelectors from "../../../Selectors/Prefectures/index";
+import * as citiesSelectors from "../../../Selectors/Cities/index";
 
 describe("cities action", () => {
-  describe("fetchCitiesListByPrefectureId", () => {
+  describe("fetchCitiesByPrefectureId", () => {
     test("when result is not ok should dispatch a FETCH_CITIES_BY_PREFECTURE_ID_FAILED action", async () => {
       // Arrange
       const citiesByPrefectureIdApiUrl = "citiesByPrefectureIdApiUrl";
@@ -24,7 +25,7 @@ describe("cities action", () => {
         ok: false,
       };
 
-      fetch.getJsonByIdMock = jest.fn(
+      fetch.getCitiesJsonByIdMock = jest.fn(
         () => new Promise((resolve) => resolve(response))
       );
 
@@ -64,7 +65,7 @@ describe("cities action", () => {
         .fn()
         .mockReturnValue(citiesByPrefectureIdApiUrl);
 
-      fetch.getJsonByIdMock = jest.fn(
+      fetch.getCitiesJsonByIdMock = jest.fn(
         () =>
           new Promise(() => {
             throw new Error("bang");
@@ -128,7 +129,7 @@ describe("cities action", () => {
         ],
       };
 
-      fetch.getJsonByIdMock = jest.fn(
+      fetch.getCitiesJsonByIdMock = jest.fn(
         () => new Promise((resolve) => resolve(response))
       );
 
@@ -185,6 +186,149 @@ describe("cities action", () => {
         type: actionTypes.CITY_SELECTED,
         selectedCityId,
       });
+    });
+  });
+
+  describe("fetchCityById", () => {
+    test("when result is not ok should dispatch a FETCH_CITY_BY_ID_FAILED action", async () => {
+      // Arrange
+      const cityByIdApiUrl = "cityByIdApiUrl";
+
+      const selectedCityId = 1;
+
+      citiesSelectors.getSelectedCityId = jest
+        .fn()
+        .mockReturnValue(selectedCityId);
+
+      resourceUtilities.getCityByIdApiUrl = jest
+        .fn()
+        .mockReturnValue(cityByIdApiUrl);
+
+      const response = {
+        ok: false,
+      };
+
+      fetch.getJson = jest.fn(
+        () => new Promise((resolve) => resolve(response))
+      );
+
+      const dispatch = jest.fn();
+      const getState = jest.fn();
+
+      // Act
+      await sut.fetchCityById()(dispatch, getState);
+
+      // Assert
+      expect(dispatch.mock.calls.length).toEqual(2);
+
+      expect(dispatch.mock.calls[0]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_REQUESTED,
+        },
+      ]);
+
+      expect(dispatch.mock.calls[1]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_FAILED,
+        },
+      ]);
+    });
+
+    test("when fetch throws an error should dispatch a FETCH_CITY_BY_ID_FAILED action", async () => {
+      // Arrange
+      const cityByIdApiUrl = "cityByIdApiUrl";
+
+      const selectedCityId = 1;
+
+      citiesSelectors.getSelectedCityId = jest
+        .fn()
+        .mockReturnValue(selectedCityId);
+
+      resourceUtilities.getCityByIdApiUrl = jest
+        .fn()
+        .mockReturnValue(cityByIdApiUrl);
+
+      fetch.getJson = jest.fn(
+        () =>
+          new Promise(() => {
+            throw new Error("bang");
+          })
+      );
+
+      const dispatch = jest.fn();
+      const getState = jest.fn();
+
+      // Act
+      await sut.fetchCityById()(dispatch, getState);
+
+      // Assert
+      expect(dispatch.mock.calls.length).toEqual(2);
+
+      expect(dispatch.mock.calls[0]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_REQUESTED,
+        },
+      ]);
+
+      expect(dispatch.mock.calls[1]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_FAILED,
+        },
+      ]);
+    });
+
+    test("when result is ok should dispatch a FETCH_CITY_BY_ID_SUCCEEDED action and the selected city", async () => {
+      // Arrange
+      const cityByIdApiUrl = "cityByIdApiUrl";
+
+      const selectedCityId = 1;
+
+      citiesSelectors.getSelectedCityId = jest
+        .fn()
+        .mockReturnValue(selectedCityId);
+
+      resourceUtilities.getCityByIdApiUrl = jest
+        .fn()
+        .mockReturnValue(cityByIdApiUrl);
+
+      const response = {
+        ok: true,
+        jsonData: {
+          id: 1,
+          name: "Yokohama",
+          hasRules: true,
+        },
+      };
+
+      fetch.getJson = jest.fn(
+        () => new Promise((resolve) => resolve(response))
+      );
+
+      const dispatch = jest.fn();
+      const getState = jest.fn();
+
+      // Act
+      await sut.fetchCityById()(dispatch, getState);
+
+      // Assert
+      expect(dispatch.mock.calls.length).toEqual(2);
+
+      expect(dispatch.mock.calls[0]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_REQUESTED,
+        },
+      ]);
+
+      expect(dispatch.mock.calls[1]).toEqual([
+        {
+          type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
+          city: {
+            id: 1,
+            name: "Yokohama",
+            hasRules: true,
+          },
+        },
+      ]);
     });
   });
 });

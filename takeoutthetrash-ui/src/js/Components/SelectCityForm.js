@@ -28,7 +28,12 @@ const SelectPrefecture = ({
   );
 };
 
-const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity }) => {
+const SelectCity = ({
+  fetchingCitiesSucceeded,
+  cities,
+  selectCity,
+  getCityById,
+}) => {
   if (!fetchingCitiesSucceeded) {
     return null;
   }
@@ -39,6 +44,7 @@ const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity }) => {
         id="city_select_input"
         onChange={(e) => {
           selectCity(e.target.value);
+          getCityById();
         }}
       >
         <option value="">Please select...</option>
@@ -55,6 +61,7 @@ const SelectCityForm = ({
   fetchingCitiesSucceeded,
   cities,
   selectCity,
+  getCityById,
 }) => {
   return (
     <Fragment>
@@ -67,6 +74,7 @@ const SelectCityForm = ({
         fetchingCitiesSucceeded={fetchingCitiesSucceeded}
         cities={cities}
         selectCity={selectCity}
+        getCityById={getCityById}
       />
     </Fragment>
   );
@@ -91,6 +99,7 @@ SelectCityForm.propTypes = {
     })
   ),
   selectCity: PropTypes.func.isRequired,
+  getCityById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -103,6 +112,7 @@ const mapDispatchToProps = {
   selectPrefecture: prefecturesActions.selectPrefecture,
   getCitiesByPrefectureId: citiesActions.fetchCitiesByPrefectureId,
   selectCity: citiesActions.selectCity,
+  getCityById: citiesActions.fetchCityById,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectCityForm);

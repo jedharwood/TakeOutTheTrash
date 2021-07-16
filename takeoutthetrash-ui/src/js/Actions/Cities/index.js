@@ -2,6 +2,7 @@ import * as actionTypes from "../../Constants/ActionType";
 import * as fetch from "../../Api/Fetch";
 import * as resourceUtilities from "../../Utilities/ResourceUtilities";
 import * as prefecturesSelectors from "../../Selectors/Prefectures";
+import * as citiesSelectors from "../../Selectors/Cities";
 
 const dispatchFetchCitiesByPrefectureIdFailedAction = (dispatch) =>
   dispatch({
@@ -27,7 +28,7 @@ export const fetchCitiesByPrefectureId = () => async (dispatch, getState) => {
     const url =
       resourceUtilities.getCitiesByPrefectureIdApiUrl(selectedPrefectureId);
 
-    const response = await fetch.getJsonByIdMock(url);
+    const response = await fetch.getCitiesJsonByIdMock(url);
     if (response.ok) {
       dispatch({
         type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED, //spinner off
@@ -49,6 +50,26 @@ export const selectCity = (selectedCityId) => ({
 
 export const fetchCityById = () => async (dispatch, getState) => {
   try {
+    dispatch({
+      type: actionTypes.FETCH_CITY_BY_ID_REQUESTED, //spinner on
+    });
+
+    const state = getState();
+
+    const selectedCityId = citiesSelectors.getSelectedCityId(state);
+
+    const url = resourceUtilities.getCityByIdApiUrl(selectedCityId);
+
+    const response = await fetch.getJson(url);
+    if (response.ok) {
+      debugger;
+      dispatch({
+        type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED, //spinner off
+        city: response.jsonData,
+      });
+      return;
+    }
+
     dispatchFetchCityByIdFailedAction(dispatch);
   } catch (exception) {
     dispatchFetchCityByIdFailedAction(dispatch);

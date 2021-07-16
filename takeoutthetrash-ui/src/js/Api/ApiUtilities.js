@@ -16,13 +16,6 @@ export function handleError(error) {
   throw error;
 }
 
-// function mapToNewArray(data) {
-//   debugger;
-//   const newArray = data.cities.map((city) => ({ ...city }));
-
-//   return newArray;
-// }
-
 // This function is solely for use in development with a mock api
 // Once the real api is built this function will be handled there and returned on a response object
 export async function handleResponseCitiesByPrefectureId(response) {
