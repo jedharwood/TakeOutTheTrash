@@ -7,6 +7,14 @@ import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
 import { mapOptions } from "../Utilities/RamdaUtilities";
 
+export const CitiesArrayIsEmpty = (prefecture) => {
+  if (prefecture.cities.length > 0) {
+    return false;
+  }
+
+  return true;
+};
+
 const SelectPrefecture = ({
   prefectures,
   selectPrefecture,
@@ -22,7 +30,15 @@ const SelectPrefecture = ({
         }}
       >
         <option value="">Please select...</option>
-        {mapOptions(prefectures)}
+        {prefectures.map((prefecture) => (
+          <option
+            key={prefecture.id}
+            value={prefecture.id}
+            disabled={CitiesArrayIsEmpty(prefecture)}
+          >
+            {prefecture.name}
+          </option>
+        ))}
       </select>
     </div>
   );
