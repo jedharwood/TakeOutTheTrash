@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./js/App";
-import store from "./js/ConfigureStore";
+import store from "./js/configureStore";
 import { fetchPrefecturesList } from "./js/Actions/Prefectures/index";
 
 store.dispatch(fetchPrefecturesList());
