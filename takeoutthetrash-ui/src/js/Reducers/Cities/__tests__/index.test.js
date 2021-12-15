@@ -140,7 +140,7 @@ describe("cities reducer", () => {
     // Arrange
     const action = {
       type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
-      city: testData.aCity,
+      city: testData.cityWithRules,
     };
 
     const state = {
@@ -152,7 +152,7 @@ describe("cities reducer", () => {
     const expectedState = {
       fetchingCity: false,
       fetchingCitySucceeded: true,
-      city: testData.aCity,
+      city: testData.cityWithRules,
     };
 
     // Act

@@ -1,17 +1,14 @@
 import { ArrayIsEmpty } from "../SelectCityForm";
+import * as testData from "../../CommonTestData/TestData";
 
 describe("Select city form", () => {
   [
     {
-      prefecture: { id: 45, name: "Yamagata", cities: [] },
+      prefecture: testData.prefectureWithNoCities,
       expectedResult: true,
     },
     {
-      prefecture: {
-        id: 41,
-        name: "Tokyo",
-        cities: [{ id: 4, name: "Koenji", rules: [] }],
-      },
+      prefecture: testData.prefectureWithCities,
       expectedResult: false,
     },
   ].forEach((params) => {
@@ -26,15 +23,11 @@ describe("Select city form", () => {
 
   [
     {
-      city: { id: 2, name: "Fujisawa", rules: [] },
+      city: testData.cityWithNoRules,
       expectedResult: true,
     },
     {
-      city: {
-        id: 1,
-        name: "Yokohama",
-        rules: [{ PETBottles: { collectionDay: 1 } }],
-      },
+      city: testData.cityWithRules,
       expectedResult: false,
     },
   ].forEach((params) => {
