@@ -12,13 +12,14 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // update tests to use chai.assert
 // display city 'rules'
 // set up star-rating system (fetch post, redux update state) to rate the accuracy of information displayed
-// feedback form
-// improve router and break feedback form and calendar onto separate pages
+// calendar component
+// feedback form component
 // reorgaize redux folders
 // tidy up imports
 // import a test coverage report tool
 // upgrade to ts
 // mobile first
 // accessibility
+// Fix bug in prefectures redux
 
 
