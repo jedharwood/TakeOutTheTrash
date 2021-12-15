@@ -185,4 +185,27 @@ describe("cities reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a PREFECTURE_SELECTED action should set fetchingCitySucceeded to false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.PREFECTURE_SELECTED,
+    };
+
+    const state = {
+      fetchingCitySucceeded: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      fetchingCitySucceeded: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });
