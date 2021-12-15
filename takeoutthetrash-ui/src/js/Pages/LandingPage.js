@@ -1,6 +1,6 @@
 import React from "react";
 import SelectCityForm from "../Components/SelectCityForm";
-import RulesDisplay from "./RulesDisplay";
+import RulesDisplay from "../Components/RulesDisplay";
 
 function LandingPage() {
   return (
