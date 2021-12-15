@@ -292,7 +292,7 @@ describe("cities selectors", () => {
       // Arrange
       const state = {
         cities: {
-          city: testData.aCity,
+          city: testData.cityWithRules,
         },
       };
 
@@ -300,7 +300,7 @@ describe("cities selectors", () => {
       const result = sut.getCity(state);
 
       // Assert
-      expect(result).toEqual(testData.aCity);
+      expect(result).toEqual(testData.cityWithRules);
     });
   });
 });

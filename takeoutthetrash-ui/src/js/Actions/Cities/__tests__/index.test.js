@@ -262,7 +262,7 @@ describe("cities action", () => {
 
       const response = {
         ok: true,
-        jsonData: testData.aCity,
+        jsonData: testData.cityWithRules,
       };
 
       fetch.getJson = jest.fn(
@@ -287,7 +287,7 @@ describe("cities action", () => {
       expect(dispatch.mock.calls[1]).toEqual([
         {
           type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
-          city: testData.aCity,
+          city: testData.cityWithRules,
         },
       ]);
     });
