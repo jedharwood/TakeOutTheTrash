@@ -4,7 +4,9 @@ My intention for this project is to provide a user with a set of rules for how a
 I'm using a mock DB in the UI project while I figure out what shape I want the data to be. Once that's set I'll initially be writing an ASP.NET REST Api to handle requests and creatng a DB project with EntityFramework as I am most familiar with these technologies. Eventually I'd like to use the UI as a test bed to develop back end services against using other technologies as I learn them.
 
 // To do //
+
 // UI //
+
 // add spinner component
 // styling with Less/Sass
 // update tests to use chai.assert
@@ -18,3 +20,5 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // upgrade to ts
 // mobile first
 // accessibility
+
+
