@@ -4,6 +4,7 @@ import * as resourceUtilities from "../../../Utilities/ResourceUtilities";
 import * as actionTypes from "../../../Constants/ActionType";
 import * as prefecturesSelectors from "../../../Selectors/Prefectures/index";
 import * as citiesSelectors from "../../../Selectors/Cities/index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("cities action", () => {
   describe("fetchCitiesByPrefectureId", () => {
@@ -110,23 +111,7 @@ describe("cities action", () => {
 
       const response = {
         ok: true,
-        jsonData: [
-          {
-            id: 1,
-            name: "Yokohama",
-            rules: [],
-          },
-          {
-            id: 2,
-            name: "Fujisawa",
-            rules: [],
-          },
-          {
-            id: 3,
-            name: "Zushi",
-            rules: [],
-          },
-        ],
+        jsonData: testData.arrayOfCities,
       };
 
       fetch.getCitiesJsonByIdMock = jest.fn(
@@ -151,23 +136,7 @@ describe("cities action", () => {
       expect(dispatch.mock.calls[1]).toEqual([
         {
           type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED,
-          cities: [
-            {
-              id: 1,
-              name: "Yokohama",
-              rules: [],
-            },
-            {
-              id: 2,
-              name: "Fujisawa",
-              rules: [],
-            },
-            {
-              id: 3,
-              name: "Zushi",
-              rules: [],
-            },
-          ],
+          cities: testData.arrayOfCities,
         },
       ]);
     });
@@ -293,11 +262,7 @@ describe("cities action", () => {
 
       const response = {
         ok: true,
-        jsonData: {
-          id: 1,
-          name: "Yokohama",
-          rules: [],
-        },
+        jsonData: testData.aCity,
       };
 
       fetch.getJson = jest.fn(
@@ -322,11 +287,7 @@ describe("cities action", () => {
       expect(dispatch.mock.calls[1]).toEqual([
         {
           type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
-          city: {
-            id: 1,
-            name: "Yokohama",
-            rules: [],
-          },
+          city: testData.aCity,
         },
       ]);
     });

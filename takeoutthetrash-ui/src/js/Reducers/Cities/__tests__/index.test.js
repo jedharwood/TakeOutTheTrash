@@ -1,6 +1,7 @@
 import deepFreeze from "deep-freeze";
 import * as actionTypes from "../../../Constants/ActionType";
 import sut from "../index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("cities reducer", () => {
   test("should return initial state", () => {
@@ -40,23 +41,7 @@ describe("cities reducer", () => {
     // Arrange
     const action = {
       type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED,
-      cities: [
-        {
-          id: 1,
-          name: "Yokohama",
-          rules: [],
-        },
-        {
-          id: 2,
-          name: "Fujisawa",
-          rules: [],
-        },
-        {
-          id: 3,
-          name: "Zushi",
-          rules: [],
-        },
-      ],
+      cities: testData.arrayOfCities,
     };
 
     const state = {
@@ -68,23 +53,7 @@ describe("cities reducer", () => {
     const expectedState = {
       fetchingCities: false,
       fetchingCitiesSucceeded: true,
-      cities: [
-        {
-          id: 1,
-          name: "Yokohama",
-          rules: [],
-        },
-        {
-          id: 2,
-          name: "Fujisawa",
-          rules: [],
-        },
-        {
-          id: 3,
-          name: "Zushi",
-          rules: [],
-        },
-      ],
+      cities: testData.arrayOfCities,
     };
 
     // Act
@@ -171,11 +140,7 @@ describe("cities reducer", () => {
     // Arrange
     const action = {
       type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
-      city: {
-        id: 1,
-        name: "Yokohama",
-        rules: [],
-      },
+      city: testData.aCity,
     };
 
     const state = {
@@ -187,11 +152,7 @@ describe("cities reducer", () => {
     const expectedState = {
       fetchingCity: false,
       fetchingCitySucceeded: true,
-      city: {
-        id: 1,
-        name: "Yokohama",
-        rules: [],
-      },
+      city: testData.aCity,
     };
 
     // Act
