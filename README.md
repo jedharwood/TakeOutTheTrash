@@ -20,6 +20,5 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // upgrade to ts
 // mobile first
 // accessibility
-// Fix bug in prefectures redux
 
 
