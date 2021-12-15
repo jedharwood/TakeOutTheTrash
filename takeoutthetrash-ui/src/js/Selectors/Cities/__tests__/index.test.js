@@ -1,4 +1,5 @@
 import * as sut from "../index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("cities selectors", () => {
   describe("isFetchingCities", () => {
@@ -139,23 +140,7 @@ describe("cities selectors", () => {
       // Arrange
       const state = {
         cities: {
-          cities: [
-            {
-              id: 1,
-              name: "Yokohama",
-              hasRules: true,
-            },
-            {
-              id: 2,
-              name: "Fujisawa",
-              hasRules: false,
-            },
-            {
-              id: 3,
-              name: "Zushi",
-              hasRules: true,
-            },
-          ],
+          cities: testData.arrayOfCities,
         },
       };
 
@@ -163,23 +148,7 @@ describe("cities selectors", () => {
       const result = sut.getCities(state);
 
       // Assert
-      expect(result).toEqual([
-        {
-          id: 1,
-          name: "Yokohama",
-          hasRules: true,
-        },
-        {
-          id: 2,
-          name: "Fujisawa",
-          hasRules: false,
-        },
-        {
-          id: 3,
-          name: "Zushi",
-          hasRules: true,
-        },
-      ]);
+      expect(result).toEqual(testData.arrayOfCities);
     });
   });
 
@@ -323,11 +292,7 @@ describe("cities selectors", () => {
       // Arrange
       const state = {
         cities: {
-          city: {
-            id: 1,
-            name: "Yokohama",
-            rules: [],
-          },
+          city: testData.aCity,
         },
       };
 
@@ -335,11 +300,7 @@ describe("cities selectors", () => {
       const result = sut.getCity(state);
 
       // Assert
-      expect(result).toEqual({
-        id: 1,
-        name: "Yokohama",
-        rules: [],
-      });
+      expect(result).toEqual(testData.aCity);
     });
   });
 });

@@ -2,6 +2,7 @@ import * as sut from "../index";
 import * as fetch from "../../../Api/Fetch";
 import * as resourceUtilities from "../../../Utilities/ResourceUtilities";
 import * as actionTypes from "../../../Constants/ActionType";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("prefectures action", () => {
   describe("fetchPrefecturesList", () => {
@@ -88,34 +89,7 @@ describe("prefectures action", () => {
 
       const response = {
         ok: true,
-        jsonData: [
-          {
-            id: 1,
-            name: "Aichi",
-            cities: [],
-          },
-          {
-            id: 2,
-            name: "Akita",
-            cities: [],
-          },
-          {
-            id: 3,
-            name: "Aomori",
-            cities: [
-              {
-                id: 1,
-                name: "City One",
-                hasRules: true,
-              },
-              {
-                id: 2,
-                name: "City Two",
-                hasRules: true,
-              },
-            ],
-          },
-        ],
+        jsonData: testData.arrayOfPrefectures,
       };
 
       fetch.getJson = jest.fn(
@@ -139,34 +113,7 @@ describe("prefectures action", () => {
       expect(dispatch.mock.calls[1]).toEqual([
         {
           type: actionTypes.FETCH_PREFECTURES_SUCCEEDED,
-          prefectures: [
-            {
-              id: 1,
-              name: "Aichi",
-              cities: [],
-            },
-            {
-              id: 2,
-              name: "Akita",
-              cities: [],
-            },
-            {
-              id: 3,
-              name: "Aomori",
-              cities: [
-                {
-                  id: 1,
-                  name: "City One",
-                  hasRules: true,
-                },
-                {
-                  id: 2,
-                  name: "City Two",
-                  hasRules: true,
-                },
-              ],
-            },
-          ],
+          prefectures: testData.arrayOfPrefectures,
         },
       ]);
     });

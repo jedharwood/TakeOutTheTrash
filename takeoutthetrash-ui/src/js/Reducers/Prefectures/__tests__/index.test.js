@@ -1,6 +1,7 @@
 import deepFreeze from "deep-freeze";
 import * as actionTypes from "../../../Constants/ActionType";
 import sut from "../index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("prefectures reducer", () => {
   test("should return initial state", () => {
@@ -40,34 +41,7 @@ describe("prefectures reducer", () => {
     // Arrange
     const action = {
       type: actionTypes.FETCH_PREFECTURES_SUCCEEDED,
-      prefectures: [
-        {
-          id: 1,
-          name: "Aichi",
-          cities: [],
-        },
-        {
-          id: 2,
-          name: "Akita",
-          cities: [],
-        },
-        {
-          id: 3,
-          name: "Aomori",
-          cities: [
-            {
-              id: 1,
-              name: "City One",
-              hasRules: true,
-            },
-            {
-              id: 2,
-              name: "City Two",
-              hasRules: true,
-            },
-          ],
-        },
-      ],
+      prefectures: testData.arrayOfPrefectures,
     };
 
     const state = {
@@ -79,34 +53,7 @@ describe("prefectures reducer", () => {
     const expectedState = {
       fetchingPrefectures: false,
       fetchingPrefecturesSucceeded: true,
-      prefectures: [
-        {
-          id: 1,
-          name: "Aichi",
-          cities: [],
-        },
-        {
-          id: 2,
-          name: "Akita",
-          cities: [],
-        },
-        {
-          id: 3,
-          name: "Aomori",
-          cities: [
-            {
-              id: 1,
-              name: "City One",
-              hasRules: true,
-            },
-            {
-              id: 2,
-              name: "City Two",
-              hasRules: true,
-            },
-          ],
-        },
-      ],
+      prefectures: testData.arrayOfPrefectures,
     };
 
     // Act

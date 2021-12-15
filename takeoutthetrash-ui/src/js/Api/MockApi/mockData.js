@@ -2,6 +2,11 @@ const cities = [
   {
     id: 1,
     name: "Yokohama",
+    prefecture: {
+      id: 19,
+      name: "Kanagawa",
+    },
+    rating: 0,
     rules: [
       {
         PETBottles: {
@@ -18,26 +23,51 @@ const cities = [
   {
     id: 2,
     name: "Fujisawa",
+    prefecture: {
+      id: 19,
+      name: "Kanagawa",
+    },
+    rating: 0,
     rules: [],
   },
   {
     id: 3,
     name: "Zushi",
+    prefecture: {
+      id: 19,
+      name: "Kanagawa",
+    },
+    rating: 0,
     rules: [],
   },
   {
     id: 4,
     name: "Koenji",
+    prefecture: {
+      id: 41,
+      name: "Tokyo",
+    },
+    rating: 0,
     rules: [],
   },
   {
     id: 5,
     name: "Shinjuku",
+    prefecture: {
+      id: 41,
+      name: "Tokyo",
+    },
+    rating: 0,
     rules: [],
   },
   {
     id: 6,
     name: "Sapporo",
+    prefecture: {
+      id: 12,
+      name: "Hokkaido",
+    },
+    rating: 0,
     rules: [],
   },
 ];
@@ -105,6 +135,11 @@ const prefectures = [
       {
         id: 6,
         name: "Sapporo",
+        prefecture: {
+          id: 12,
+          name: "Hokkaido",
+        },
+        rating: 0,
         rules: [],
       },
     ],
@@ -146,6 +181,11 @@ const prefectures = [
       {
         id: 1,
         name: "Yokohama",
+        prefecture: {
+          id: 19,
+          name: "Kanagawa",
+        },
+        rating: 0,
         rules: [
           {
             PETBottles: {
@@ -162,11 +202,21 @@ const prefectures = [
       {
         id: 2,
         name: "Fujisawa",
+        prefecture: {
+          id: 19,
+          name: "Kanagawa",
+        },
+        rating: 0,
         rules: [],
       },
       {
         id: 3,
         name: "Zushi",
+        prefecture: {
+          id: 19,
+          name: "Kanagawa",
+        },
+        rating: 0,
         rules: [],
       },
     ],
@@ -283,11 +333,21 @@ const prefectures = [
       {
         id: 4,
         name: "Koenji",
+        prefecture: {
+          id: 41,
+          name: "Tokyo",
+        },
+        rating: 0,
         rules: [],
       },
       {
         id: 5,
         name: "Shinjuku",
+        prefecture: {
+          id: 41,
+          name: "Tokyo",
+        },
+        rating: 0,
         rules: [],
       },
     ],

@@ -1,4 +1,5 @@
 import * as sut from "../index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("prefectures selectors", () => {
   describe("isFetchingPrefectures", () => {
@@ -139,34 +140,7 @@ describe("prefectures selectors", () => {
       // Arrange
       const state = {
         prefectures: {
-          prefectures: [
-            {
-              id: 1,
-              name: "Aichi",
-              cities: [],
-            },
-            {
-              id: 2,
-              name: "Akita",
-              cities: [],
-            },
-            {
-              id: 3,
-              name: "Aomori",
-              cities: [
-                {
-                  id: 1,
-                  name: "City One",
-                  hasRules: true,
-                },
-                {
-                  id: 2,
-                  name: "City Two",
-                  hasRules: true,
-                },
-              ],
-            },
-          ],
+          prefectures: testData.arrayOfPrefectures,
         },
       };
 
@@ -174,34 +148,7 @@ describe("prefectures selectors", () => {
       const result = sut.getPrefectures(state);
 
       // Assert
-      expect(result).toEqual([
-        {
-          id: 1,
-          name: "Aichi",
-          cities: [],
-        },
-        {
-          id: 2,
-          name: "Akita",
-          cities: [],
-        },
-        {
-          id: 3,
-          name: "Aomori",
-          cities: [
-            {
-              id: 1,
-              name: "City One",
-              hasRules: true,
-            },
-            {
-              id: 2,
-              name: "City Two",
-              hasRules: true,
-            },
-          ],
-        },
-      ]);
+      expect(result).toEqual(testData.arrayOfPrefectures);
     });
   });
 
