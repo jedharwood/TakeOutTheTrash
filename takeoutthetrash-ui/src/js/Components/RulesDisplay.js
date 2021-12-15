@@ -31,6 +31,18 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
           View Calendar
         </Link>
       </div>
+      <div>
+        <p>
+          Please take a moment to rate the accuracy of the information provided
+          here using the star ratings (coming soon...). If you've noticed any
+          glaring inaccuracies please let us know via the...
+        </p>
+      </div>
+      <div>
+        <Link to="/feedback" className="btn btn-primary">
+          Feedback Form
+        </Link>
+      </div>
     </Fragment>
   );
 };
