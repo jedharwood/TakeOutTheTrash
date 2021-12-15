@@ -46,6 +46,11 @@ export default (state = initialState, action) => {
         fetchingCity: false,
         fetchingCityFailed: true,
       };
+    case actionTypes.PREFECTURE_SELECTED:
+      return {
+        ...state,
+        fetchingCitySucceeded: false,
+      };
     default:
       return state;
   }
