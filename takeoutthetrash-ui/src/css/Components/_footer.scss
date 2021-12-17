@@ -1,0 +1,23 @@
+#footer {
+  background-color: $colour-dark-grey;
+  height: 50px;
+  color: $colour-white;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  padding: 15px;
+  display: flex;
+  justify-content: right;
+}
+
+#github-link {
+  font-size: 1.17em;
+  font-weight: bold;
+  text-decoration: none;
+  color: $colour-white;
+
+  &:hover {
+    color: $colour-verde-gris;
+    text-decoration: underline;
+  }
+}
