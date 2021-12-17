@@ -8,17 +8,17 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // UI //
 
 // add spinner component
-// styling with Less/Sass
 // update tests to use chai.assert
 // display city 'rules'
 // set up star-rating system (fetch post, redux update state) to rate the accuracy of information displayed
 // calendar component
 // feedback form component
-// reorgaize redux folders
+// reorganize redux folders
 // tidy up imports
 // import a test coverage report tool
 // upgrade to ts
 // mobile first
 // accessibility
+// improve upon basic styling
 
 
