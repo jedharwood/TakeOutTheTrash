@@ -6,6 +6,7 @@ import * as prefecturesActions from "../Actions/Prefectures/index";
 import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
 import { mapOptions } from "../Utilities/RamdaUtilities";
+import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 
 export const ArrayIsEmpty = (array) => {
   if (array.length > 0) {
@@ -59,7 +60,7 @@ const SelectCity = ({
       <select
         id="city_select_input"
         onChange={(e) => {
-          selectCity(e.target.value);
+          selectCity(e.target.value); //update to map based on rules when rules exist, then remove placeholder
           getCityById();
         }}
       >
@@ -92,6 +93,7 @@ const SelectCityForm = ({
         selectCity={selectCity}
         getCityById={getCityById}
       />
+      <FetchingStateSpinner />
     </Fragment>
   );
 };
