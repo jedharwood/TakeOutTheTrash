@@ -6,18 +6,18 @@ import * as citiesSelectors from "../../Selectors/Cities";
 
 const dispatchFetchCitiesByPrefectureIdFailedAction = (dispatch) =>
   dispatch({
-    type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_FAILED, //spinner off
+    type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_FAILED,
   });
 
 const dispatchFetchCityByIdFailedAction = (dispatch) =>
   dispatch({
-    type: actionTypes.FETCH_CITY_BY_ID_FAILED, //spinner off
+    type: actionTypes.FETCH_CITY_BY_ID_FAILED,
   });
 
 export const fetchCitiesByPrefectureId = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED, //spinner on
+      type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED,
     });
 
     const state = getState();
@@ -31,7 +31,7 @@ export const fetchCitiesByPrefectureId = () => async (dispatch, getState) => {
     const response = await fetch.getCitiesJsonByIdMock(url);
     if (response.ok) {
       dispatch({
-        type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED, //spinner off
+        type: actionTypes.FETCH_CITIES_BY_PREFECTURE_ID_SUCCEEDED,
         cities: response.jsonData,
       });
       return;
@@ -51,7 +51,7 @@ export const selectCity = (selectedCityId) => ({
 export const fetchCityById = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: actionTypes.FETCH_CITY_BY_ID_REQUESTED, //spinner on
+      type: actionTypes.FETCH_CITY_BY_ID_REQUESTED,
     });
 
     const state = getState();
@@ -63,7 +63,7 @@ export const fetchCityById = () => async (dispatch, getState) => {
     const response = await fetch.getJson(url);
     if (response.ok) {
       dispatch({
-        type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED, //spinner off
+        type: actionTypes.FETCH_CITY_BY_ID_SUCCEEDED,
         city: response.jsonData,
       });
       return;

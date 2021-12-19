@@ -4,13 +4,13 @@ import { getPrefecturesApiUrl } from "../../Utilities/ResourceUtilities";
 
 const dispatchFetchPrefecturesFailedAction = (dispatch) =>
   dispatch({
-    type: actionTypes.FETCH_PREFECTURES_FAILED, //spinner off
+    type: actionTypes.FETCH_PREFECTURES_FAILED,
   });
 
 export const fetchPrefecturesList = () => async (dispatch) => {
   try {
     dispatch({
-      type: actionTypes.FETCH_PREFECTURES_REQUESTED, //spinner on
+      type: actionTypes.FETCH_PREFECTURES_REQUESTED,
     });
 
     const url = getPrefecturesApiUrl();
@@ -18,7 +18,7 @@ export const fetchPrefecturesList = () => async (dispatch) => {
     const response = await fetch.getJson(url);
     if (response.ok) {
       dispatch({
-        type: actionTypes.FETCH_PREFECTURES_SUCCEEDED, //spinner off
+        type: actionTypes.FETCH_PREFECTURES_SUCCEEDED,
         prefectures: response.jsonData,
       });
       return;
