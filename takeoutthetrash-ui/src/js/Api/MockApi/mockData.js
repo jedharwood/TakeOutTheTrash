@@ -9,14 +9,115 @@ const cities = [
     rating: 0,
     rules: [
       {
-        PETBottles: {
-          collectionDay: 1,
-          instructions: "Wash, remove label and cap.",
-        },
-        aluminiumCans: {
-          collectionDay: 2,
-          instructions: "Wash.",
-        },
+        id: 1,
+        name: "Monday",
+        types: [
+          {
+            name: "Burnable waste",
+            description:
+              "Food waste, fabric (shoes & clothes), used paper (kitchen paper, tissues & envolopes), small plastic items.",
+            instructions: "Place outside before 8am in a translucent 45L bag.",
+            irregularFrequency: "",
+          },
+          {
+            name: "Non-burnable waste",
+            description:
+              "Ceramics, metal cookwares, umbrellas, broken glass, neon lights, light bulbs, small appliances, CDs, cassetts tapes, aerosols.",
+            instructions: "",
+            irregularFrequency: "",
+          },
+          {
+            name: "Batteries",
+            description: "Batteries.",
+            instructions: "",
+            irregularFrequency: "",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Tuesday",
+        types: [
+          {
+            name: "Steel cans",
+            description:
+              "Food & drink cans made from steel (check with a magnet if unsure).",
+            instructions: "Washed with labels removed.",
+            irregularFrequency: "",
+          },
+          {
+            name: "Glass bottles",
+            description: "Glass bottles and jars.",
+            instructions: "Washed with labels & lids removed.",
+            irregularFrequency: "",
+          },
+          {
+            name: "PET bottles",
+            description: "Bottles and other containers made from PET.",
+            instructions: "Washed with labels & lids removed.",
+            irregularFrequency: "",
+          },
+          {
+            name: "Sharp objects",
+            description: "Knives, scissors & other bladed tools.",
+            instructions: "Wrapped and carefully labelled.",
+            irregularFrequency: "",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "wednesday",
+        types: [],
+      },
+      {
+        id: 4,
+        name: "thursday",
+        types: [
+          {
+            name: "Cardboard & paper",
+            description: "Cardboard and paper.",
+            instructions: "Clean cardboard and paper bundled with string.",
+            irregularFrequency: "1st and 3rd Thursday of the month.",
+          },
+          {
+            name: "Aluminium cans",
+            description: "Food & drink cans made from Aluminium.",
+            instructions: "Washed with labels removed.",
+            irregularFrequency: "1st and 3rd Thursday of the month.",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "friday",
+        types: [
+          {
+            name: "Burnable waste",
+            description:
+              "Food waste, fabric (shoes & clothes), used paper (kitchen paper, tissues & envolopes), small plastic items.",
+            instructions: "Place outside before 8am in a translucent 45L bag.",
+            irregularFrequency: "",
+          },
+        ],
+      },
+      {
+        id: 6,
+        name: "saturday",
+        types: [
+          {
+            name: "Plastic",
+            description:
+              "Food containers, cups, shampoo bottles, bags, trays, tofu containers, lunch boxes, polystyrene, egg boxes & plastic wrappers.",
+            instructions: "Washed with any paper labels removed.",
+            irregularFrequency: "",
+          },
+        ],
+      },
+      {
+        id: 7,
+        name: "sunday",
+        types: [],
       },
     ],
   },

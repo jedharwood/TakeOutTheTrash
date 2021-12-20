@@ -5,6 +5,24 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
 
+const buildRubbishTypes = (types) => {
+  if (types.length < 1) {
+    return null;
+  }
+
+  return types.map((type) => <li>{type.name}</li>);
+};
+
+const buildTableRows = (city) => {
+  console.log("city", city);
+  return city.rules.map((day) => (
+    <tr key={day.id}>
+      <td>{day.name}</td>
+      <td>{buildRubbishTypes(day.types)}</td>
+    </tr>
+  ));
+};
+
 const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
   if (!fetchingCitySucceeded) {
     return null;
@@ -21,10 +39,9 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
           Good news - we have rules on how to dispose of refuse and recycling
           for {city.name} in our database.
         </h1>
-        <p>
-          I'll write them up in a neat table and put them here where you're
-          seeing this fancy-looking placeholder.
-        </p>
+        <table className="table">
+          <tbody>{buildTableRows(city)}</tbody>
+        </table>
       </div>
       <div>
         <Link to="/calendarDisplay" className="btn btn-primary">
@@ -52,7 +69,25 @@ RulesDisplay.propTypes = {
   city: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    rules: PropTypes.arrayOf(PropTypes.object),
+    prefecture: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    rating: PropTypes.number.isRequired,
+    rules: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        types: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            description: PropTypes.string,
+            instructions: PropTypes.string,
+            irregularFrequency: PropTypes.string,
+          })
+        ),
+      })
+    ),
   }),
 };
 

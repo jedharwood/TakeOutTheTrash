@@ -103,7 +103,20 @@ SelectCityForm.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      hasCities: PropTypes.bool,
+      cities: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+          rules: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string.isRequired,
+              description: PropTypes.string,
+              instructions: PropTypes.string,
+              irregularFrequency: PropTypes.string,
+            })
+          ),
+        })
+      ),
     }).isRequired
   ),
   selectPrefecture: PropTypes.func.isRequired,
@@ -113,7 +126,14 @@ SelectCityForm.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      rules: PropTypes.arrayOf(PropTypes.object),
+      rules: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          description: PropTypes.string,
+          instructions: PropTypes.string,
+          irregularFrequency: PropTypes.string,
+        })
+      ),
     })
   ),
   selectCity: PropTypes.func.isRequired,
