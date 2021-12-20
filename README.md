@@ -7,9 +7,7 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 
 // UI //
 
-// add spinner component
 // update tests to use chai.assert
-// display city 'rules'
 // set up star-rating system (fetch post, redux update state) to rate the accuracy of information displayed
 // calendar component
 // feedback form component
@@ -20,5 +18,6 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // mobile first
 // accessibility
 // improve upon basic styling
+// open rules display in modal
 
 
