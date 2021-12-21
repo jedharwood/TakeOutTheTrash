@@ -10,7 +10,7 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // update tests to use chai.assert
 // set up star-rating system (fetch post, redux update state) to rate the accuracy of information displayed
 // calendar component
-// feedback form component
+// feedback form component + redux + update mock api to handle post
 // reorganize redux folders
 // tidy up imports
 // import a test coverage report tool
@@ -18,6 +18,8 @@ I'm using a mock DB in the UI project while I figure out what shape I want the d
 // mobile first
 // accessibility
 // improve upon basic styling
-// open rules display in modal
+// fix broken ctt transition in modal appear
+// set up redux functionality for modal open/close
+
 
 
