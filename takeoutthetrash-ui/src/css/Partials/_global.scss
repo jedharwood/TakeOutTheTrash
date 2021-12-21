@@ -5,11 +5,10 @@ body {
   width: 100%;
   background-color: $colour-white;
   font-size: 14px;
+}
 
-  padding: 0px;
-
-  select {
-    font-family: "Segoe UI";
-    color: $colour-main;
-  }
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
