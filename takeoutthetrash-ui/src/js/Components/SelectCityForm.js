@@ -109,7 +109,7 @@ SelectCityForm.propTypes = {
           name: PropTypes.string.isRequired,
           rules: PropTypes.arrayOf(
             PropTypes.shape({
-              name: PropTypes.string.isRequired,
+              name: PropTypes.string,
               description: PropTypes.string,
               instructions: PropTypes.string,
               irregularFrequency: PropTypes.string,
@@ -128,7 +128,7 @@ SelectCityForm.propTypes = {
       name: PropTypes.string.isRequired,
       rules: PropTypes.arrayOf(
         PropTypes.shape({
-          name: PropTypes.string.isRequired,
+          name: PropTypes.string,
           description: PropTypes.string,
           instructions: PropTypes.string,
           irregularFrequency: PropTypes.string,
