@@ -1,32 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
-import { RulesModal } from "./RulesModal";
+import RulesModal from "./RulesModal";
+import * as rulesModalActions from "../Actions/RulesModal/index";
 
-const buildRubbishTypes = (types) => {
-  if (types.length < 1) {
-    return null;
-  }
-
-  return types.map((type) => <li>{type.name}</li>);
-};
-
-const buildTableRows = (city) => {
-  console.log("city", city);
-  return city.rules.map((day) => (
-    <tr key={day.id}>
-      <td>{day.name}</td>
-      <td>{buildRubbishTypes(day.types)}</td>
-    </tr>
-  ));
-};
-
-const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
-  const [show, setShow] = useState(false); //replace with redux action
-
+const RulesDisplay = ({ fetchingCitySucceeded, city, openRulesModal }) => {
   if (!fetchingCitySucceeded) {
     return null;
   }
@@ -43,24 +24,8 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
   return (
     <Fragment>
       <div>
-        {/* <h2>
-          Good news - we have rules on how to dispose of refuse and recycling
-          for {city.name} in our database.
-        </h2> */}
-        <button onClick={() => setShow(true)}>Show Rules Modal</button>
-        <RulesModal
-          onClose={() => setShow(false)}
-          show={show}
-          title="Modal Title"
-        >
-          {/* <p>some text for the modal body</p> */}
-          <table className="table">
-            <tbody>{buildTableRows(city)}</tbody>
-          </table>
-        </RulesModal>
-        {/* <table className="table">
-          <tbody>{buildTableRows(city)}</tbody>
-        </table> */}
+        <button onClick={() => openRulesModal()}>Show Rules Modal</button>
+        <RulesModal />
       </div>
       <div>
         <Link to="/calendarDisplay" className="btn btn-primary">
@@ -84,22 +49,23 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
 };
 
 RulesDisplay.propTypes = {
+  openRulesModal: PropTypes.func.isRequired,
   fetchingCitySucceeded: PropTypes.bool.isRequired,
   city: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
     prefecture: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    rating: PropTypes.number.isRequired,
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    rating: PropTypes.number,
     rules: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
+        id: PropTypes.number,
+        name: PropTypes.string,
         types: PropTypes.arrayOf(
           PropTypes.shape({
-            name: PropTypes.string.isRequired,
+            name: PropTypes.string,
             description: PropTypes.string,
             instructions: PropTypes.string,
             irregularFrequency: PropTypes.string,
@@ -115,4 +81,8 @@ const mapStateToProps = (state) => ({
   city: citiesSelectors.getCity(state),
 });
 
-export default connect(mapStateToProps)(RulesDisplay);
+const mapDispatchToProps = {
+  openRulesModal: rulesModalActions.openRulesModalButtonClicked,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RulesDisplay);
