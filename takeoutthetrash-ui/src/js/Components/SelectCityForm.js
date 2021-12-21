@@ -30,7 +30,7 @@ const SelectPrefecture = ({
           getCitiesByPrefectureId();
         }}
       >
-        <option value="">Please select...</option>
+        <option value="default">Select Prefecture</option>
         {prefectures.map((prefecture) => (
           <option
             key={prefecture.id}
@@ -64,7 +64,7 @@ const SelectCity = ({
           getCityById();
         }}
       >
-        <option value="">Please select...</option>
+        <option value="default">Select City</option>
         {mapOptions(cities)}
       </select>
     </div>
@@ -81,7 +81,7 @@ const SelectCityForm = ({
   getCityById,
 }) => {
   return (
-    <Fragment>
+    <div className="select-city-form">
       <SelectPrefecture
         prefectures={prefectures}
         selectPrefecture={selectPrefecture}
@@ -94,7 +94,7 @@ const SelectCityForm = ({
         getCityById={getCityById}
       />
       <FetchingStateSpinner />
-    </Fragment>
+    </div>
   );
 };
 

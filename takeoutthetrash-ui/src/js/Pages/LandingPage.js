@@ -4,13 +4,16 @@ import RulesDisplay from "../Components/RulesDisplay";
 
 function LandingPage() {
   return (
-    <div className="jumbotron">
-      <p>Did you put paper in the card recycling, again?</p>
-      <p>Did you bin a PET bottle with the cap still on?</p>
-      <p>Buddy...</p>
-      <h1>It's time to take out the trash!</h1>
-      <SelectCityForm />
-      <RulesDisplay />
+    <div className="container">
+      <div className="landing-page">
+        <p>
+          Do you know if that bottle goes out on PET bottle day or plastic day?
+        </p>
+        <p>Do you know which bag t put your aluminium cans in?</p>
+        <h2>Do you know where you live?</h2>
+        <SelectCityForm />
+        <RulesDisplay />
+      </div>
     </div>
   );
 }

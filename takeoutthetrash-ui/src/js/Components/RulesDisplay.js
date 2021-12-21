@@ -29,16 +29,21 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
   }
 
   if (R.isEmpty(city.rules)) {
-    return <div>Rules? There are no rules!</div>;
+    return (
+      <div>
+        Sorry - looks like we've not added the rules for your city, yet. Maybe
+        try moving to Yokohama, I'm pretty sure they have rules there...
+      </div>
+    );
   }
 
   return (
     <Fragment>
       <div>
-        <h1>
+        <h2>
           Good news - we have rules on how to dispose of refuse and recycling
           for {city.name} in our database.
-        </h1>
+        </h2>
         <table className="table">
           <tbody>{buildTableRows(city)}</tbody>
         </table>
