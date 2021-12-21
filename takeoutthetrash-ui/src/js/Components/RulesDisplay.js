@@ -1,9 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
+import { RulesModal } from "./RulesModal";
 
 const buildRubbishTypes = (types) => {
   if (types.length < 1) {
@@ -24,6 +25,8 @@ const buildTableRows = (city) => {
 };
 
 const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
+  const [show, setShow] = useState(false); //replace with redux action
+
   if (!fetchingCitySucceeded) {
     return null;
   }
@@ -40,13 +43,24 @@ const RulesDisplay = ({ fetchingCitySucceeded, city }) => {
   return (
     <Fragment>
       <div>
-        <h2>
+        {/* <h2>
           Good news - we have rules on how to dispose of refuse and recycling
           for {city.name} in our database.
-        </h2>
-        <table className="table">
+        </h2> */}
+        <button onClick={() => setShow(true)}>Show Rules Modal</button>
+        <RulesModal
+          onClose={() => setShow(false)}
+          show={show}
+          title="Modal Title"
+        >
+          {/* <p>some text for the modal body</p> */}
+          <table className="table">
+            <tbody>{buildTableRows(city)}</tbody>
+          </table>
+        </RulesModal>
+        {/* <table className="table">
           <tbody>{buildTableRows(city)}</tbody>
-        </table>
+        </table> */}
       </div>
       <div>
         <Link to="/calendarDisplay" className="btn btn-primary">

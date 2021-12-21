@@ -67,12 +67,12 @@ const cities = [
       },
       {
         id: 3,
-        name: "wednesday",
+        name: "Wednesday",
         types: [],
       },
       {
         id: 4,
-        name: "thursday",
+        name: "Thursday",
         types: [
           {
             name: "Cardboard & paper",
@@ -90,7 +90,7 @@ const cities = [
       },
       {
         id: 5,
-        name: "friday",
+        name: "Friday",
         types: [
           {
             name: "Burnable waste",
@@ -103,7 +103,7 @@ const cities = [
       },
       {
         id: 6,
-        name: "saturday",
+        name: "Saturday",
         types: [
           {
             name: "Plastic",
@@ -116,7 +116,7 @@ const cities = [
       },
       {
         id: 7,
-        name: "sunday",
+        name: "Sunday",
         types: [],
       },
     ],
