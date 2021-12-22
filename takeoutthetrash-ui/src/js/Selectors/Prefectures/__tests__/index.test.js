@@ -168,4 +168,85 @@ describe("prefectures selectors", () => {
       expect(result).toEqual(1);
     });
   });
+
+  describe("getPrefecture", () => {
+    test("when prefectures is empty should default to an empty object", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefectures: [],
+          selectedPrefectureId: 19,
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual({});
+    });
+
+    test("when selectedPrefectureId is not set should default to an empty object", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefectures: [],
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual({});
+    });
+
+    test("when prefectures is populated but selectedPrefectureId is out of range should default to an empty object", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefectures: testData.arrayOfPrefectures,
+          selectedPrefectureId: 156,
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual({});
+    });
+
+    test("when prefectures is populated but selectedPrefectureId is undefined should default to an empty object", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefectures: testData.arrayOfPrefectures,
+          selectedPrefectureId: undefined,
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual({});
+    });
+
+    test("should return prefecture", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefectures: testData.arrayOfPrefectures,
+          selectedPrefectureId: 19,
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual(testData.arrayOfPrefectures[2]);
+    });
+  });
 });
