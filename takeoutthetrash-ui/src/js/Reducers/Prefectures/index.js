@@ -2,6 +2,16 @@ import * as actionTypes from "../../Constants/ActionType";
 
 const initialState = {};
 
+export const getPrefecture = (state, selectedPrefectureId) => {
+  if (!selectedPrefectureId || !state.prefectures) {
+    return;
+  }
+
+  return state.prefectures.find(
+    (pref) => pref.id === parseInt(selectedPrefectureId)
+  );
+};
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -27,6 +37,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedPrefectureId: action.selectedPrefectureId,
+        prefecture: getPrefecture(state, action.selectedPrefectureId),
       };
     default:
       return state;

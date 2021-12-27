@@ -278,7 +278,7 @@ describe("cities selectors", () => {
     test("when city is not set selector should default to an empty object", () => {
       // Arrange
       const state = {
-        citiy: {},
+        cities: {},
       };
 
       // Act

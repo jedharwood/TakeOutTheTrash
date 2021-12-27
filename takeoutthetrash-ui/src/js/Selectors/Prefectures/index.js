@@ -27,3 +27,9 @@ export const getSelectedPrefectureId = compose(
   prop("selectedPrefectureId"),
   getPrefecturesState
 );
+
+export const getPrefecture = compose(
+  defaultTo({}),
+  prop("prefecture"),
+  getPrefecturesState
+);

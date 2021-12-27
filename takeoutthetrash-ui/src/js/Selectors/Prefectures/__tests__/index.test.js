@@ -168,4 +168,39 @@ describe("prefectures selectors", () => {
       expect(result).toEqual(1);
     });
   });
+
+  describe("getPrefecture", () => {
+    test.each([[null], [undefined], [{}]])(
+      "when prefecture is not set should return empty object",
+      (value) => {
+        // Arrange
+        const state = {
+          prefectures: {
+            prefecture: value,
+          },
+        };
+
+        // Act
+        const result = sut.getPrefecture(state);
+
+        // Assert
+        expect(result).toEqual({});
+      }
+    );
+
+    test("when prefecture is set should return prefecture", () => {
+      // Arrange
+      const state = {
+        prefectures: {
+          prefecture: testData.arrayOfPrefectures[0],
+        },
+      };
+
+      // Act
+      const result = sut.getPrefecture(state);
+
+      // Assert
+      expect(result).toEqual(testData.arrayOfPrefectures[0]);
+    });
+  });
 });
