@@ -15,9 +15,17 @@ const Spinner = () => (
   </div>
 );
 
-const getSpinnerLegend = (isFetchingCities, prefecture) => {
+const getPrefectureName = (prefecture) => {
+  if (prefecture.name === undefined) {
+    return "selected prefecture";
+  }
+
+  return prefecture.name;
+};
+
+export const getSpinnerLegend = (isFetchingCities, prefecture) => {
   if (isFetchingCities && prefecture) {
-    return `Retrieving cities for ${prefecture.name}`;
+    return `Retrieving cities for ${getPrefectureName(prefecture)}`;
   }
 
   return null;

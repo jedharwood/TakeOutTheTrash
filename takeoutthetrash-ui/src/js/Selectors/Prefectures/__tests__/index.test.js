@@ -170,12 +170,29 @@ describe("prefectures selectors", () => {
   });
 
   describe("getPrefecture", () => {
-    test("when prefectures is empty should default to an empty object", () => {
+    test.each([[null], [undefined], [{}]])(
+      "when prefecture is not set should return empty object",
+      (value) => {
+        // Arrange
+        const state = {
+          prefectures: {
+            prefecture: value,
+          },
+        };
+
+        // Act
+        const result = sut.getPrefecture(state);
+
+        // Assert
+        expect(result).toEqual({});
+      }
+    );
+
+    test("when prefecture is set should return prefecture", () => {
       // Arrange
       const state = {
         prefectures: {
-          prefectures: [],
-          selectedPrefectureId: 19,
+          prefecture: testData.arrayOfPrefectures[0],
         },
       };
 
@@ -183,70 +200,7 @@ describe("prefectures selectors", () => {
       const result = sut.getPrefecture(state);
 
       // Assert
-      expect(result).toEqual({});
-    });
-
-    test("when selectedPrefectureId is not set should default to an empty object", () => {
-      // Arrange
-      const state = {
-        prefectures: {
-          prefectures: [],
-        },
-      };
-
-      // Act
-      const result = sut.getPrefecture(state);
-
-      // Assert
-      expect(result).toEqual({});
-    });
-
-    test("when prefectures is populated but selectedPrefectureId is out of range should default to an empty object", () => {
-      // Arrange
-      const state = {
-        prefectures: {
-          prefectures: testData.arrayOfPrefectures,
-          selectedPrefectureId: 156,
-        },
-      };
-
-      // Act
-      const result = sut.getPrefecture(state);
-
-      // Assert
-      expect(result).toEqual({});
-    });
-
-    test("when prefectures is populated but selectedPrefectureId is undefined should default to an empty object", () => {
-      // Arrange
-      const state = {
-        prefectures: {
-          prefectures: testData.arrayOfPrefectures,
-          selectedPrefectureId: undefined,
-        },
-      };
-
-      // Act
-      const result = sut.getPrefecture(state);
-
-      // Assert
-      expect(result).toEqual({});
-    });
-
-    test("should return prefecture", () => {
-      // Arrange
-      const state = {
-        prefectures: {
-          prefectures: testData.arrayOfPrefectures,
-          selectedPrefectureId: 19,
-        },
-      };
-
-      // Act
-      const result = sut.getPrefecture(state);
-
-      // Assert
-      expect(result).toEqual(testData.arrayOfPrefectures[2]);
+      expect(result).toEqual(testData.arrayOfPrefectures[0]);
     });
   });
 });

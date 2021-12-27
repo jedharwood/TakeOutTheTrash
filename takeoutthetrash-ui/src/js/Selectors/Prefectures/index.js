@@ -1,4 +1,4 @@
-import { prop, propEq, compose, defaultTo, find } from "ramda";
+import { prop, propEq, compose, defaultTo } from "ramda";
 
 const getPrefecturesState = prop("prefectures");
 
@@ -28,17 +28,8 @@ export const getSelectedPrefectureId = compose(
   getPrefecturesState
 );
 
-export const getPrefecture = (state) => {
-  const selectedPrefectureId = getSelectedPrefectureId(state);
-
-  if (selectedPrefectureId === undefined) {
-    return;
-  }
-
-  return compose(
-    defaultTo({}),
-    find(propEq("id", selectedPrefectureId)),
-    prop("prefectures"),
-    getPrefecturesState
-  )(state);
-};
+export const getPrefecture = compose(
+  defaultTo({}),
+  prop("prefecture"),
+  getPrefecturesState
+);
