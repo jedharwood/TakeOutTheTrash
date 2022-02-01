@@ -13,3 +13,13 @@ export function getCitiesJsonByIdMock(url) {
     .then(apiUtilities.handleResponseCitiesByPrefectureId)
     .catch(apiUtilities.handleError);
 }
+
+export function postJson(url, request) {
+  return fetch(url)({
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(request),
+  })
+    .then(apiUtilities.handleResponse)
+    .catch(apiUtilities.handleError);
+}

@@ -8,4 +8,5 @@ export const getCitiesByPrefectureIdApiUrl = (selectedPrefectureId) =>
   buildUrl("/prefectures/" + selectedPrefectureId);
 export const getCityByIdApiUrl = (selectedCityId) =>
   buildUrl("/cities/" + selectedCityId);
+export const getFeedbackFormApiUrl = () => buildUrl("/feedback/");
 export const gitHubUrl = "http://www.github.com/jedharwood";
