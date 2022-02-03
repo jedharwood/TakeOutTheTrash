@@ -6,6 +6,25 @@ import * as citiesSelectors from "../../../Selectors/Cities/index";
 import * as testData from "../../../CommonTestData/TestData";
 
 describe("feedback action", () => {
+  describe("feedbackFormValuesUpdated", () => {
+    test("should dispatch FEEDBACK_FORM_VALUES_UPDATED action", () => {
+      // Arrange
+      const feedbackFormValues = {
+        comment: "A comment",
+        email: "user@domain.com",
+      };
+
+      // Act
+      const result = sut.feedbackFormValuesUpdated(feedbackFormValues);
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.FEEDBACK_FORM_VALUES_UPDATED,
+        feedbackFormValues,
+      });
+    });
+  });
+
   describe("postFeedbackForm", () => {
     test("when result is not ok should dispatch a POST_FEEDBACK_FORM_FAILED action", async () => {
       // Arrange
