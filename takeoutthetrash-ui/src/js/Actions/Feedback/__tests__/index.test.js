@@ -9,10 +9,7 @@ describe("feedback action", () => {
   describe("feedbackFormValuesUpdated", () => {
     test("should dispatch FEEDBACK_FORM_VALUES_UPDATED action", () => {
       // Arrange
-      const feedbackFormValues = {
-        comment: "A comment",
-        email: "user@domain.com",
-      };
+      const feedbackFormValues = testData.feedbackFormValues;
 
       // Act
       const result = sut.feedbackFormValuesUpdated(feedbackFormValues);

@@ -135,3 +135,13 @@ export const cityWithNoRules = {
   rating: 0,
   rules: [],
 };
+
+export const feedbackFormValues = {
+  comment: "It's all in the reflexes.",
+  email: "jackburton@porkchopexpress.com",
+};
+
+export const emptyFeedbackFormValues = {
+  comment: "",
+  email: "",
+};

@@ -1,6 +1,7 @@
 import deepFreeze from "deep-freeze";
 import * as actionTypes from "../../../Constants/ActionType";
 import sut from "../index";
+import * as testData from "../../../CommonTestData/TestData";
 
 describe("feedback reducer", () => {
   test("should return initial state", () => {
@@ -14,7 +15,7 @@ describe("feedback reducer", () => {
 
   test("when handling a FEEDBACK_FORM_VALUES_UPDATED action should update feedbackFormValues", () => {
     // Arrange
-    const payload = { comment: "A comment", email: "user@domain.com" };
+    const payload = testData.feedbackFormValues;
     const action = {
       type: actionTypes.FEEDBACK_FORM_VALUES_UPDATED,
       payload,
@@ -48,14 +49,14 @@ describe("feedback reducer", () => {
 
     const state = {
       foo: "bar",
-      feedbackFormValues: { comment: "A comment", email: "user@domain.com" },
+      feedbackFormValues: testData.feedbackFormValues,
     };
 
     deepFreeze(state);
 
     const expectedState = {
       foo: "bar",
-      feedbackFormValues: { comment: "", email: "" },
+      feedbackFormValues: testData.emptyFeedbackFormValues,
     };
 
     // Act
