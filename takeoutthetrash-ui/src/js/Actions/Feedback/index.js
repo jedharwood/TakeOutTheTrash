@@ -8,6 +8,11 @@ const dispatchPostFeedbackFormFailedAction = (dispatch) =>
     type: actionTypes.POST_FEEDBACK_FORM_FAILED,
   });
 
+export const feedbackFormValuesUpdated = (feedbackFormValues) => ({
+  type: actionTypes.FEEDBACK_FORM_VALUES_UPDATED,
+  feedbackFormValues,
+});
+
 export const postFeedbackForm = () => async (dispatch) => {
   try {
     dispatch({
