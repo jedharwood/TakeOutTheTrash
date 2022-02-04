@@ -17,10 +17,7 @@ const path = require("path");
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
-const middlewares = jsonServer.defaults({
-  // Display json-server's built in homepage when json-server starts.
-  static: "node_modules/json-server/dist",
-});
+const middlewares = jsonServer.defaults({});
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares);
@@ -29,19 +26,28 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // Simulate delay on all requests
-server.use(function (req, res, next) {
-  setTimeout(next, 0);
+server.use(function (request, response, next) {
+  setTimeout(next, 2000);
 });
 
 // Declaring custom routes below. Add custom routes before JSON Server router
 
 // Add createdAt to all POSTS
-server.use((req, res, next) => {
-  if (req.method === "POST") {
-    req.body.createdAt = Date.now();
+server.use((request, response, next) => {
+  if (request.method === "POST") {
+    request.body.createdAt = Date.now();
   }
   // Continue to JSON Server router
   next();
+});
+
+server.post("/feedback/", function (request, response, next) {
+  const error = validateForm(request.body);
+  if (error) {
+    response.status(400).send(error);
+  } else {
+    next();
+  }
 });
 
 // Use default router
@@ -52,3 +58,9 @@ const port = 3001;
 server.listen(port, () => {
   console.log(`JSON Server is running on port ${port}`);
 });
+
+function validateForm(requestBody) {
+  if (!requestBody.feedbackFormValues.comment) return "Comment is required.";
+  //some regex to assert email format?
+  return "";
+}

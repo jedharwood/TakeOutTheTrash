@@ -485,7 +485,20 @@ const prefectures = [
   },
 ];
 
+const feedback = [
+  {
+    id: 1,
+    cityId: 1,
+    feedbackFormValues: {
+      comment: "A comment.",
+      email: "user@domain.com",
+    },
+    createdAt: 1643979302823,
+  },
+];
+
 module.exports = {
   cities,
   prefectures,
+  feedback,
 };

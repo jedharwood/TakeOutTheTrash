@@ -15,7 +15,7 @@ export function getCitiesJsonByIdMock(url) {
 }
 
 export function postJson(url, request) {
-  return fetch(url)({
+  return fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(request),
