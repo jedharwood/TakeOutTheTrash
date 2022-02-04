@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case actionTypes.FEEDBACK_FORM_VALUES_UPDATED:
       return {
         ...state,
-        feedbackFormValues: action.payload,
+        feedbackFormValues: action.feedbackFormValues,
       };
     default:
       return state;

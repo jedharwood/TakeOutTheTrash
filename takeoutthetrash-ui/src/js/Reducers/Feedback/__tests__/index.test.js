@@ -15,10 +15,10 @@ describe("feedback reducer", () => {
 
   test("when handling a FEEDBACK_FORM_VALUES_UPDATED action should update feedbackFormValues", () => {
     // Arrange
-    const payload = testData.feedbackFormValues;
+    const feedbackFormValues = testData.feedbackFormValues;
     const action = {
       type: actionTypes.FEEDBACK_FORM_VALUES_UPDATED,
-      payload,
+      feedbackFormValues,
     };
 
     const state = {
@@ -29,7 +29,7 @@ describe("feedback reducer", () => {
 
     const expectedState = {
       foo: "bar",
-      feedbackFormValues: payload,
+      feedbackFormValues: testData.feedbackFormValues,
     };
 
     // Act
@@ -41,10 +41,10 @@ describe("feedback reducer", () => {
 
   test("when handling a FEEDBACK_FORM_VALUES_UPDATED action with empty payload should update feedbackFormValues", () => {
     // Arrange
-    const payload = { comment: "", email: "" };
+    const feedbackFormValues = testData.emptyFeedbackFormValues;
     const action = {
       type: actionTypes.FEEDBACK_FORM_VALUES_UPDATED,
-      payload,
+      feedbackFormValues,
     };
 
     const state = {
