@@ -40,3 +40,8 @@ export const fetchingCityFailed = compose(
 );
 
 export const getCity = compose(defaultTo({}), prop("city"), getCitiesState);
+
+export const getCityId = (state) => {
+  const city = getCity(state);
+  return city.id;
+};
