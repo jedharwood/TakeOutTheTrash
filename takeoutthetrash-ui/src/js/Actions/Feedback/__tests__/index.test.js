@@ -3,6 +3,7 @@ import * as fetch from "../../../Api/Fetch";
 import * as resourceUtilities from "../../../Utilities/ResourceUtilities";
 import * as actionTypes from "../../../Constants/ActionType";
 import * as citiesSelectors from "../../../Selectors/Cities/index";
+import * as feedbackSelectors from "../../../Selectors/Feedback/index";
 import * as testData from "../../../CommonTestData/TestData";
 
 describe("feedback action", () => {
@@ -27,9 +28,13 @@ describe("feedback action", () => {
       // Arrange
       const feedbackFormApiUrl = "feedbackFormApiUrl";
 
-      citiesSelectors.getCity = jest
+      citiesSelectors.getCityId = jest
         .fn()
-        .mockReturnValue(testData.cityWithRules);
+        .mockReturnValue(testData.cityWithRules.id);
+
+      feedbackSelectors.getFeedbackFormValues = jest
+        .fn()
+        .mockReturnValue(testData.feedbackFormValues);
 
       resourceUtilities.getFeedbackFormApiUrl = jest
         .fn()
@@ -69,9 +74,13 @@ describe("feedback action", () => {
       // Arrange
       const feedbackFormApiUrl = "feedbackFormApiUrl";
 
-      citiesSelectors.getCity = jest
+      citiesSelectors.getCityId = jest
         .fn()
-        .mockReturnValue(testData.cityWithRules);
+        .mockReturnValue(testData.cityWithRules.id);
+
+      feedbackSelectors.getFeedbackFormValues = jest
+        .fn()
+        .mockReturnValue(testData.feedbackFormValues);
 
       resourceUtilities.getFeedbackFormApiUrl = jest
         .fn()
@@ -110,9 +119,13 @@ describe("feedback action", () => {
       // Arrange
       const feedbackFormApiUrl = "feedbackFormApiUrl";
 
-      citiesSelectors.getCity = jest
+      citiesSelectors.getCityId = jest
         .fn()
-        .mockReturnValue(testData.cityWithRules);
+        .mockReturnValue(testData.cityWithRules.id);
+
+      feedbackSelectors.getFeedbackFormValues = jest
+        .fn()
+        .mockReturnValue(testData.feedbackFormValues);
 
       resourceUtilities.getFeedbackFormApiUrl = jest
         .fn()
