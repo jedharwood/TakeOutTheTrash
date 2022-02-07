@@ -12,6 +12,26 @@ export default (state = initialState, action) => {
         ...state,
         feedbackFormValues: action.feedbackFormValues,
       };
+    case actionTypes.POST_FEEDBACK_FORM_REQUESTED:
+      return {
+        ...state,
+        isPostingFeedbackForm: true,
+        postingFeedbackFormSucceeded: false,
+        postingFeedbackFormFailed: false,
+      };
+    case actionTypes.POST_FEEDBACK_FORM_SUCCEEDED:
+      return {
+        ...state,
+        isPostingFeedbackForm: false,
+        postingFeedbackFormSucceeded: true,
+      };
+    case actionTypes.POST_FEEDBACK_FORM_FAILED:
+      return {
+        ...state,
+        isPostingFeedbackForm: false,
+        postingFeedbackFormFailed: true,
+        // implement counter here
+      };
     default:
       return state;
   }
