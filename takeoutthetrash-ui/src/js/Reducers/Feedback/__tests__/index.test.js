@@ -65,4 +65,139 @@ describe("feedback reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a POST_FEEDBACK_FORM_REQUESTED action should set isPostingFeedbackForm: true and postingFeedbackFormSucceeded: false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_REQUESTED,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormSucceeded: false,
+      postingFeedbackFormFailed: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a POST_FEEDBACK_FORM_REQUESTED action should update postingFeedbackFormSucceeded from true to false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_REQUESTED,
+    };
+
+    const state = {
+      foo: "bar",
+      postingFeedbackFormSucceeded: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormSucceeded: false,
+      postingFeedbackFormFailed: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a POST_FEEDBACK_FORM_REQUESTED action should update postingFeedbackFormFailed from true to false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_REQUESTED,
+    };
+
+    const state = {
+      foo: "bar",
+      postingFeedbackFormSucceeded: false,
+      postingFeedbackFormFailed: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormSucceeded: false,
+      postingFeedbackFormFailed: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a POST_FEEDBACK_FORM_SUCCEEDED action should set isPostingFeedbackForm: false and postingFeedbackFormSucceeded: true", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_SUCCEEDED,
+    };
+
+    const state = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormSucceeded: false,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: false,
+      postingFeedbackFormSucceeded: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a POST_FEEDBACK_FORM_FAILED action should set isPostingFeedbackForm: false and postingFeedbackFormFailed: true", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_FAILED,
+    };
+
+    const state = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormFailed: false,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: false,
+      postingFeedbackFormFailed: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });
