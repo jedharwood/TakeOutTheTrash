@@ -161,4 +161,16 @@ describe("feedback action", () => {
       ]);
     });
   });
+
+  describe("openFeedbackFormButtonClicked", () => {
+    test("should dispatch an OPEN_FEEDBACK_FORM_BUTTON_CLICKED action", async () => {
+      // Act
+      const result = sut.openFeedbackFormButtonClicked();
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
+      });
+    });
+  });
 });

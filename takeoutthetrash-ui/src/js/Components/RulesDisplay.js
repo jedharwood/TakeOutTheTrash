@@ -42,6 +42,7 @@ const RulesDisplay = ({ fetchingCitySucceeded, city, openRulesModal }) => {
       <div>
         <Link to="/feedback" className="btn btn-primary">
           Feedback Form
+          {/* ad click handler to feedback button to dispatch openFeedbackFormButtonClicked action */}
         </Link>
       </div>
     </Fragment>

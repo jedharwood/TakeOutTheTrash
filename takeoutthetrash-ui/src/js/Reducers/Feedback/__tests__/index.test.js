@@ -200,4 +200,53 @@ describe("feedback reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
+    };
+
+    const state = {
+      foo: "bar",
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      postingFeedbackFormSucceeded: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
+    };
+
+    const state = {
+      foo: "bar",
+      postingFeedbackFormSucceeded: true,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      postingFeedbackFormSucceeded: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });
