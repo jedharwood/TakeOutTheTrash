@@ -42,3 +42,7 @@ export const postFeedbackForm = () => async (dispatch, getState) => {
     dispatchPostFeedbackFormFailedAction(dispatch);
   }
 };
+
+export const openFeedbackFormButtonClicked = () => ({
+  type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
+});

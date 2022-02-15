@@ -24,6 +24,7 @@ function Header() {
           activeClassName="active-nav-link"
         >
           Feedback
+          {/* ad click handler to feedback button to dispatch openFeedbackFormButtonClicked action */}
         </NavLink>
       </nav>
     </div>

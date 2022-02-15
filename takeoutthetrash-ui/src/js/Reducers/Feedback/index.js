@@ -32,6 +32,11 @@ export default (state = initialState, action) => {
         postingFeedbackFormFailed: true,
         // implement counter here
       };
+    case actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED:
+      return {
+        ...state,
+        postingFeedbackFormSucceeded: false,
+      };
     default:
       return state;
   }
