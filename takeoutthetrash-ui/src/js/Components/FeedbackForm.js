@@ -25,12 +25,9 @@ const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <input
-            //type="comment"
             name="comment"
-            //id="comment"
             value={formValues.comment}
             onChange={(e) => handleInputChange(e.target)}
-            //title="Comment"
             required={true}
             placeholder="Comment"
           />
@@ -41,12 +38,9 @@ const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
         {/* handle server side errors */}
         <div className="input-group">
           <input
-            //type="email"
             name="email"
-            //id="email"
             value={formValues.email}
             onChange={(e) => handleInputChange(e.target)}
-            //title="Email"
             required={false}
             placeholder="Email"
           />
@@ -62,11 +56,9 @@ FeedbackForm.propTypes = {
   postFeedbackForm: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({});
-
 const mapDispatchToProps = {
   feedbackFormValuesUpdated: feedbackActions.feedbackFormValuesUpdated,
   postFeedbackForm: feedbackActions.postFeedbackForm,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm);
+export default connect(null, mapDispatchToProps)(FeedbackForm);
