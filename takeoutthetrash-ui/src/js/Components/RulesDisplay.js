@@ -6,8 +6,14 @@ import { Link } from "react-router-dom";
 import * as R from "ramda";
 import RulesModal from "./RulesModal";
 import * as rulesModalActions from "../Actions/RulesModal/index";
+import * as feedbackActions from "../Actions/Feedback/index";
 
-const RulesDisplay = ({ fetchingCitySucceeded, city, openRulesModal }) => {
+const RulesDisplay = ({
+  fetchingCitySucceeded,
+  city,
+  openRulesModal,
+  openFeedbackFormButtonClicked,
+}) => {
   if (!fetchingCitySucceeded) {
     return null;
   }
@@ -40,9 +46,12 @@ const RulesDisplay = ({ fetchingCitySucceeded, city, openRulesModal }) => {
         </p>
       </div>
       <div>
-        <Link to="/feedback" className="btn btn-primary">
+        <Link
+          to="/feedback"
+          className="btn btn-primary"
+          onClick={openFeedbackFormButtonClicked}
+        >
           Feedback Form
-          {/* ad click handler to feedback button to dispatch openFeedbackFormButtonClicked action */}
         </Link>
       </div>
     </Fragment>
@@ -51,6 +60,7 @@ const RulesDisplay = ({ fetchingCitySucceeded, city, openRulesModal }) => {
 
 RulesDisplay.propTypes = {
   openRulesModal: PropTypes.func.isRequired,
+  openFeedbackFormButtonClicked: PropTypes.isRequired,
   fetchingCitySucceeded: PropTypes.bool.isRequired,
   city: PropTypes.shape({
     id: PropTypes.number,
@@ -84,6 +94,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   openRulesModal: rulesModalActions.openRulesModalButtonClicked,
+  openFeedbackFormButtonClicked: feedbackActions.openFeedbackFormButtonClicked,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RulesDisplay);

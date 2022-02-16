@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { Link } from "react-router-dom";
 
-function Feedback(postingFeedbackFormSucceeded) {
-  if (postingFeedbackFormSucceeded) {
+function Feedback({ postingFeedbackFormSucceeded }) {
+  if (postingFeedbackFormSucceeded === true) {
     return (
       <div className="container">
         <div className="landing-page">
@@ -36,7 +36,6 @@ function Feedback(postingFeedbackFormSucceeded) {
         <SelectCityForm />
         <FeedbackForm />
         <FetchingStateSpinner />
-        {/* maybe in both instances I need to move the spinner from the component out into the page? */}
       </div>
     </div>
   );

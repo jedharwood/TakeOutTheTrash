@@ -1,6 +1,7 @@
 import React from "react";
 import SelectCityForm from "../Components/SelectCityForm";
 import RulesDisplay from "../Components/RulesDisplay";
+import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 
 function LandingPage() {
   return (
@@ -13,6 +14,7 @@ function LandingPage() {
         <h2>Do you know where you live???</h2>
         <SelectCityForm />
         <RulesDisplay />
+        <FetchingStateSpinner />
       </div>
     </div>
   );
