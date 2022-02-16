@@ -6,7 +6,6 @@ import * as prefecturesActions from "../Actions/Prefectures/index";
 import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
 import { mapOptions } from "../Utilities/RamdaUtilities";
-// import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 
 export const ArrayIsEmpty = (array) => {
   if (array.length > 0) {
@@ -93,7 +92,6 @@ const SelectCityForm = ({
         selectCity={selectCity}
         getCityById={getCityById}
       />
-      {/* <FetchingStateSpinner /> */}
     </div>
   );
 };
