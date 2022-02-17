@@ -2,8 +2,11 @@ import React from "react";
 import SelectCityForm from "../Components/SelectCityForm";
 import RulesDisplay from "../Components/RulesDisplay";
 import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import * as citiesSelectors from "../Selectors/Cities";
 
-function LandingPage() {
+const LandingPage = ({ isFetchingCities }) => {
   return (
     <div className="container">
       <div className="landing-page">
@@ -14,10 +17,18 @@ function LandingPage() {
         <h2>Do you know where you live???</h2>
         <SelectCityForm />
         <RulesDisplay />
-        <FetchingStateSpinner />
+        <FetchingStateSpinner isVisible={isFetchingCities} />
       </div>
     </div>
   );
-}
+};
 
-export default LandingPage;
+LandingPage.propTypes = {
+  isFetchingCities: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isFetchingCities: citiesSelectors.isFetchingCities(state),
+});
+
+export default connect(mapStateToProps)(LandingPage);

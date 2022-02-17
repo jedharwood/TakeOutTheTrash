@@ -8,7 +8,7 @@ import CalendarDisplay from "./Pages/CalendarDisplay";
 import Feedback from "./Pages/Feedback";
 import NotFoundPage from "./Pages/NotFoundPage";
 
-function App() {
+const App = () => {
   return (
     <div className="container-fluid">
       <Header />
@@ -21,6 +21,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
