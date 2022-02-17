@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as citiesSelectors from "../../Selectors/Cities";
-import * as prefecturesSelectors from "../../Selectors/Prefectures";
 import * as feedbackSelectors from "../../Selectors/Feedback";
+import SpinnerLegend from "./SpinnerLegend";
 
 const Spinner = () => (
   <div className="spinner">
@@ -16,36 +16,9 @@ const Spinner = () => (
   </div>
 );
 
-const getPrefectureName = (prefecture) => {
-  //show spinner when fetching rules for city
-  if (prefecture.name === undefined) {
-    return "selected prefecture";
-  }
-
-  return prefecture.name;
-};
-
-export const getSpinnerLegend = (
-  isFetchingCities,
-  prefecture,
-  isPostingFeedbackForm
-) => {
-  if (isFetchingCities && prefecture) {
-    return `Retrieving cities for ${getPrefectureName(prefecture)}`;
-  }
-  if (isPostingFeedbackForm) {
-    return "Posting feedback";
-  }
-
-  return null;
-};
-
-const FetchingStateSpinner = ({
-  isFetchingCities,
-  prefecture,
-  isPostingFeedbackForm,
-}) => {
+const FetchingStateSpinner = ({ isFetchingCities, isPostingFeedbackForm }) => {
   if (!(isFetchingCities || isPostingFeedbackForm)) {
+    // introduce an isVisible prop
     return null;
   }
 
@@ -56,11 +29,7 @@ const FetchingStateSpinner = ({
         <div className-="modal-content">
           <div className="modal-header">
             <span>
-              {getSpinnerLegend(
-                isFetchingCities,
-                prefecture,
-                isPostingFeedbackForm
-              )}
+              <SpinnerLegend />
             </span>
           </div>
           <div className="modal-body">
@@ -74,17 +43,14 @@ const FetchingStateSpinner = ({
 
 FetchingStateSpinner.propTypes = {
   isFetchingCities: PropTypes.bool,
-  prefecture: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-  }),
   isPostingFeedbackForm: PropTypes.bool,
+  postFailureCount: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   isFetchingCities: citiesSelectors.isFetchingCities(state),
-  prefecture: prefecturesSelectors.getPrefecture(state),
   isPostingFeedbackForm: feedbackSelectors.isPostingFeedbackForm(state),
+  postFailureCount: feedbackSelectors.getPostFailureCount(state),
 });
 
 export default connect(mapStateToProps)(FetchingStateSpinner);
