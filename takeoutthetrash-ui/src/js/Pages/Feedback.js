@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { Link } from "react-router-dom";
 
-function Feedback({ postingFeedbackFormSucceeded }) {
+const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm }) => {
   if (postingFeedbackFormSucceeded === true) {
     return (
       <div className="container">
@@ -35,19 +35,21 @@ function Feedback({ postingFeedbackFormSucceeded }) {
         <h2>Feedback Form</h2>
         <SelectCityForm />
         <FeedbackForm />
-        <FetchingStateSpinner />
+        <FetchingStateSpinner isVisible={isPostingFeedbackForm} />
       </div>
     </div>
   );
-}
+};
 
 Feedback.propTypes = {
   postingFeedbackFormSucceeded: PropTypes.bool,
+  isPostingFeedbackForm: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   postingFeedbackFormSucceeded:
     feedbackSelectors.postingFeedbackFormSucceeded(state),
+  isPostingFeedbackForm: feedbackSelectors.isPostingFeedbackForm(state),
 });
 
 export default connect(mapStateToProps)(Feedback);

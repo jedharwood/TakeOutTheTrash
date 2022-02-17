@@ -1,7 +1,7 @@
 import React from "react";
 import { gitHubUrl } from "../../Utilities/ResourceUtilities";
 
-function Footer() {
+const Footer = () => {
   return (
     <div id="footer">
       <a href={gitHubUrl} id="github-link">
@@ -9,6 +9,6 @@ function Footer() {
       </a>
     </div>
   );
-}
+};
 
 export default Footer;
