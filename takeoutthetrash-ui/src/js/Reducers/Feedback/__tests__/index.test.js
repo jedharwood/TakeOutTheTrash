@@ -10,7 +10,7 @@ describe("feedback reducer", () => {
     const result = sut(undefined, {});
 
     // Assert
-    expect(result).toEqual({ feedbackFormValues: {} });
+    expect(result).toEqual({});
   });
 
   test("when handling a FEEDBACK_FORM_VALUES_UPDATED action should update feedbackFormValues", () => {
@@ -201,7 +201,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false and feedbackFormValues: {}", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -216,6 +216,7 @@ describe("feedback reducer", () => {
     const expectedState = {
       foo: "bar",
       postingFeedbackFormSucceeded: false,
+      feedbackFormValues: {},
     };
 
     // Act
@@ -225,7 +226,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false and reset feedbackFormValues: {}", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -234,6 +235,7 @@ describe("feedback reducer", () => {
     const state = {
       foo: "bar",
       postingFeedbackFormSucceeded: true,
+      feedbackFormValues: { comment: "foo", email: "bar" },
     };
 
     deepFreeze(state);
@@ -241,6 +243,7 @@ describe("feedback reducer", () => {
     const expectedState = {
       foo: "bar",
       postingFeedbackFormSucceeded: false,
+      feedbackFormValues: {},
     };
 
     // Act

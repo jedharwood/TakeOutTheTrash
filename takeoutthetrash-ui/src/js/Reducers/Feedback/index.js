@@ -1,8 +1,6 @@
 import * as actionTypes from "../../Constants/ActionType";
 
-const initialState = {
-  feedbackFormValues: {},
-};
+const initialState = {};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
@@ -36,6 +34,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         postingFeedbackFormSucceeded: false,
+        feedbackFormValues: {},
       };
     default:
       return state;
