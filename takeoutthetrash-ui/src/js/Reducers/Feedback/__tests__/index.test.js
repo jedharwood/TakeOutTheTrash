@@ -147,7 +147,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a POST_FEEDBACK_FORM_SUCCEEDED action should set isPostingFeedbackForm: false and postingFeedbackFormSucceeded: true", () => {
+  test("when handling a POST_FEEDBACK_FORM_SUCCEEDED action should set isPostingFeedbackForm: false, postingFeedbackFormSucceeded: trueand postFailureCount: 0,", () => {
     // Arrange
     const action = {
       type: actionTypes.POST_FEEDBACK_FORM_SUCCEEDED,
@@ -157,6 +157,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       isPostingFeedbackForm: true,
       postingFeedbackFormSucceeded: false,
+      postFailureCount: 3,
     };
 
     deepFreeze(state);
@@ -165,6 +166,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       isPostingFeedbackForm: false,
       postingFeedbackFormSucceeded: true,
+      postFailureCount: 0,
     };
 
     // Act
@@ -174,7 +176,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a POST_FEEDBACK_FORM_FAILED action should set isPostingFeedbackForm: false and postingFeedbackFormFailed: true", () => {
+  test("when handling a POST_FEEDBACK_FORM_FAILED action should set isPostingFeedbackForm: false, postingFeedbackFormFailed: true and postFailureCount: 1", () => {
     // Arrange
     const action = {
       type: actionTypes.POST_FEEDBACK_FORM_FAILED,
@@ -192,6 +194,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       isPostingFeedbackForm: false,
       postingFeedbackFormFailed: true,
+      postFailureCount: 1,
     };
 
     // Act
@@ -201,7 +204,36 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false and feedbackFormValues: {}", () => {
+  test("when handling a POST_FEEDBACK_FORM_FAILED action should increment postFailureCount", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.POST_FEEDBACK_FORM_FAILED,
+    };
+
+    const state = {
+      foo: "bar",
+      isPostingFeedbackForm: true,
+      postingFeedbackFormFailed: false,
+      postFailureCount: 1,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      isPostingFeedbackForm: false,
+      postingFeedbackFormFailed: true,
+      postFailureCount: 2,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false, feedbackFormValues: {} and postFailureCount: 0,", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -217,6 +249,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       postingFeedbackFormSucceeded: false,
       feedbackFormValues: {},
+      postFailureCount: 0,
     };
 
     // Act
@@ -226,7 +259,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false and reset feedbackFormValues: {}", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false, reset feedbackFormValues: {} and postFailureCount: 0,", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -236,6 +269,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       postingFeedbackFormSucceeded: true,
       feedbackFormValues: { comment: "foo", email: "bar" },
+      postFailureCount: 3,
     };
 
     deepFreeze(state);
@@ -244,6 +278,7 @@ describe("feedback reducer", () => {
       foo: "bar",
       postingFeedbackFormSucceeded: false,
       feedbackFormValues: {},
+      postFailureCount: 0,
     };
 
     // Act

@@ -22,3 +22,9 @@ export const postingFeedbackFormFailed = compose(
   propEq("postingFeedbackFormFailed", true),
   getFeedbackState
 );
+
+export const getPostFailureCount = compose(
+  defaultTo(0),
+  prop("postFailureCount"),
+  getFeedbackState
+);

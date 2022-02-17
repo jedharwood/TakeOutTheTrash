@@ -151,4 +151,34 @@ describe("feedback selectors", () => {
       expect(result).toEqual(true);
     });
   });
+
+  describe("getPostFailureCount", () => {
+    test("should default to zero", () => {
+      // Arrange
+      const state = {
+        feedback: {},
+      };
+
+      // Act
+      const result = sut.getPostFailureCount(state);
+
+      // Assert
+      expect(result).toEqual(0);
+    });
+
+    test("should return postFailureCount", () => {
+      // Arrange
+      const state = {
+        feedback: {
+          postFailureCount: 3,
+        },
+      };
+
+      // Act
+      const result = sut.getPostFailureCount(state);
+
+      // Assert
+      expect(result).toEqual(3);
+    });
+  });
 });

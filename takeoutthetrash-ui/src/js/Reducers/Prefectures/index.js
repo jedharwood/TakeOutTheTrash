@@ -1,19 +1,16 @@
 import * as actionTypes from "../../Constants/ActionType";
 
-const initialState = {};
-
 export const getPrefecture = (state, selectedPrefectureId) => {
   if (!selectedPrefectureId || !state.prefectures) {
     return;
   }
-
   return state.prefectures.find(
     (pref) => pref.id === parseInt(selectedPrefectureId)
   );
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PREFECTURES_REQUESTED:
       return {
