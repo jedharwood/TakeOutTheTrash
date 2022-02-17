@@ -1,9 +1,14 @@
 import * as actionTypes from "../../Constants/ActionType";
+import { compose, defaultTo, prop, add } from "ramda";
 
-const initialState = {};
+const incrementPostFailureCount = compose(
+  add(1),
+  defaultTo(0),
+  prop("postFailureCount")
+);
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case actionTypes.FEEDBACK_FORM_VALUES_UPDATED:
       return {
@@ -22,19 +27,21 @@ export default (state = initialState, action) => {
         ...state,
         isPostingFeedbackForm: false,
         postingFeedbackFormSucceeded: true,
+        postFailureCount: 0,
       };
     case actionTypes.POST_FEEDBACK_FORM_FAILED:
       return {
         ...state,
         isPostingFeedbackForm: false,
         postingFeedbackFormFailed: true,
-        // implement counter here
+        postFailureCount: incrementPostFailureCount(state),
       };
     case actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED:
       return {
         ...state,
         postingFeedbackFormSucceeded: false,
         feedbackFormValues: {},
+        postFailureCount: 0,
       };
     default:
       return state;

@@ -14,7 +14,7 @@ export const ArrayIsEmpty = (array) => {
 
   return true;
 };
-
+// Note to self; It would be neat on the feedback page to have these fields pre-populated from state
 const SelectPrefecture = ({
   prefectures,
   selectPrefecture,
