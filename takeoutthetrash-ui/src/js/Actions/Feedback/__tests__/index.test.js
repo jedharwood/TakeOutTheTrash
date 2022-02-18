@@ -119,7 +119,7 @@ describe("feedback action", () => {
       // Arrange
       const feedbackFormApiUrl = "feedbackFormApiUrl";
 
-      citiesSelectors.getCityId = jest
+      citiesSelectors.getSelectedCityId = jest
         .fn()
         .mockReturnValue(testData.cityWithRules.id);
 

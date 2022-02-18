@@ -5,20 +5,33 @@ import * as prefecturesSelectors from "../../Selectors/Prefectures";
 import * as feedbackSelectors from "../../Selectors/Feedback";
 
 const getPrefectureName = (prefecture) => {
-  //show spinner when fetching rules for city
   if (prefecture.name === undefined) {
     return "selected prefecture";
   }
   return prefecture.name;
 };
 
+const getCityName = (prefecture, selectedCityId) => {
+  // selectedCityId should be a number, not a string. Think of a way to fix..
+  const city = prefecture.cities.find((x) => x.id === parseInt(selectedCityId));
+  if (city === undefined) {
+    return "selected city";
+  }
+  return city.name;
+};
+
 export const getSpinnerLegend = (
   isFetchingCities,
   prefecture,
-  isPostingFeedbackForm
+  isPostingFeedbackForm,
+  isFetchingCity,
+  selectedCityId
 ) => {
   if (isFetchingCities && prefecture) {
     return `Retrieving cities for ${getPrefectureName(prefecture)}`;
+  }
+  if (isFetchingCity) {
+    return `Retrieving rules for ${getCityName(prefecture, selectedCityId)}`;
   }
   if (isPostingFeedbackForm) {
     return "Posting feedback";
@@ -30,8 +43,16 @@ const SpinnerLegend = ({
   isFetchingCities,
   prefecture,
   isPostingFeedbackForm,
+  isFetchingCity,
+  selectedCityId,
 }) => {
-  return getSpinnerLegend(isFetchingCities, prefecture, isPostingFeedbackForm);
+  return getSpinnerLegend(
+    isFetchingCities,
+    prefecture,
+    isPostingFeedbackForm,
+    isFetchingCity,
+    selectedCityId
+  );
 };
 
 SpinnerLegend.propTypes = {
@@ -39,14 +60,32 @@ SpinnerLegend.propTypes = {
   prefecture: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    cities: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        rules: PropTypes.arrayOf(
+          PropTypes.shape({
+            name: PropTypes.string,
+            description: PropTypes.string,
+            instructions: PropTypes.string,
+            irregularFrequency: PropTypes.string,
+          })
+        ),
+      })
+    ),
   }),
   isPostingFeedbackForm: PropTypes.bool,
+  isFetchingCity: PropTypes.bool,
+  selectedCityId: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   isFetchingCities: citiesSelectors.isFetchingCities(state),
   prefecture: prefecturesSelectors.getPrefecture(state),
   isPostingFeedbackForm: feedbackSelectors.isPostingFeedbackForm(state),
+  isFetchingCity: citiesSelectors.isFetchingCity(state),
+  selectedCityId: citiesSelectors.getSelectedCityId(state),
 });
 
 export default connect(mapStateToProps)(SpinnerLegend);
