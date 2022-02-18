@@ -35,7 +35,7 @@ const Header = ({ openFeedbackFormButtonClicked }) => {
 };
 
 Header.propTypes = {
-  openFeedbackFormButtonClicked: PropTypes.isRequired,
+  openFeedbackFormButtonClicked: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {

@@ -60,7 +60,7 @@ const RulesDisplay = ({
 
 RulesDisplay.propTypes = {
   openRulesModal: PropTypes.func.isRequired,
-  openFeedbackFormButtonClicked: PropTypes.isRequired,
+  openFeedbackFormButtonClicked: PropTypes.func.isRequired,
   fetchingCitySucceeded: PropTypes.bool.isRequired,
   city: PropTypes.shape({
     id: PropTypes.number,

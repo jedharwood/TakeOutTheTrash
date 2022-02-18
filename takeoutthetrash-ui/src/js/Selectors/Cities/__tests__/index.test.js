@@ -303,21 +303,4 @@ describe("cities selectors", () => {
       expect(result).toEqual(testData.cityWithRules);
     });
   });
-
-  describe("getCityId", () => {
-    test("when city is set selector should return id of selected city", () => {
-      // Arrange
-      const state = {
-        cities: {
-          city: testData.cityWithRules,
-        },
-      };
-
-      // Act
-      const result = sut.getCityId(state);
-
-      // Assert
-      expect(result).toEqual(testData.cityWithRules.id);
-    });
-  });
 });

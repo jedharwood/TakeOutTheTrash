@@ -24,10 +24,10 @@ export const postFeedbackForm = () => async (dispatch, getState) => {
 
     const state = getState();
 
-    const cityId = citySelectors.getCityId(state);
+    const selectedCityId = citySelectors.getSelectedCityId(state).id;
     const feedbackFormValues = feedbackSelectors.getFeedbackFormValues(state);
 
-    const request = { cityId, feedbackFormValues };
+    const request = { selectedCityId, feedbackFormValues };
 
     const response = await fetch.postJson(url, request);
     if (response.ok) {
