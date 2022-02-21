@@ -42,6 +42,15 @@ export default (state = {}, action) => {
         postingFeedbackFormSucceeded: false,
         feedbackFormValues: {},
         postFailureCount: 0,
+        displayRetryFailureMessage: false,
+      };
+    case actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED:
+      return {
+        ...state,
+        postingFeedbackFormFailed: false,
+        feedbackFormValues: {},
+        postFailureCount: 0,
+        displayRetryFailureMessage: true,
       };
     default:
       return state;

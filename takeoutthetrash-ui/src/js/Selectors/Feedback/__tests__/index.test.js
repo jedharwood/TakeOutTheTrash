@@ -181,4 +181,39 @@ describe("feedback selectors", () => {
       expect(result).toEqual(3);
     });
   });
+
+  describe("displayRetryFailureMessage", () => {
+    test.each([[null], [undefined], [false], ["Not a boolean"]])(
+      "when displayRetryFailureMessage is false or otherwise invalid should return false",
+      (value) => {
+        // Arrange
+        const state = {
+          feedback: {
+            displayRetryFailureMessage: value,
+          },
+        };
+
+        // Act
+        const result = sut.displayRetryFailureMessage(state);
+
+        // Assert
+        expect(result).toEqual(false);
+      }
+    );
+
+    test("when displayRetryFailureMessage is true should return true", () => {
+      // Arrange
+      const state = {
+        feedback: {
+          displayRetryFailureMessage: true,
+        },
+      };
+
+      // Act
+      const result = sut.displayRetryFailureMessage(state);
+
+      // Assert
+      expect(result).toEqual(true);
+    });
+  });
 });

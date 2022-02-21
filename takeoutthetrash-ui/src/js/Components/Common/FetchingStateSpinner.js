@@ -20,7 +20,6 @@ const FetchingStateSpinner = ({ isVisible }) => {
             </span>
           </div>
           <div className="modal-body">
-            {/* <Spinner /> */}
             <SpinnerContent />
           </div>
         </div>

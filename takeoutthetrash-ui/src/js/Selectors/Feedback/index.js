@@ -28,3 +28,8 @@ export const getPostFailureCount = compose(
   prop("postFailureCount"),
   getFeedbackState
 );
+
+export const displayRetryFailureMessage = compose(
+  propEq("displayRetryFailureMessage", true),
+  getFeedbackState
+);

@@ -173,4 +173,16 @@ describe("feedback action", () => {
       });
     });
   });
+
+  describe("cancelRetryPostButtonClicked", () => {
+    test("should dispatch an CANCEL_RETRY_POST_BUTTON_CLICKED action", async () => {
+      // Act
+      const result = sut.cancelRetryPostButtonClicked();
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED,
+      });
+    });
+  });
 });
