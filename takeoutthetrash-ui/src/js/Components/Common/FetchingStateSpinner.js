@@ -1,17 +1,7 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import SpinnerLegend from "./SpinnerLegend";
-
-const Spinner = () => (
-  <div className="spinner">
-    {[...Array(12)].map((_, idx) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <div key={idx}>
-        <div />
-      </div>
-    ))}
-  </div>
-);
+import SpinnerContent from "./SpinnerContent";
 
 const FetchingStateSpinner = ({ isVisible }) => {
   if (!isVisible) {
@@ -21,6 +11,7 @@ const FetchingStateSpinner = ({ isVisible }) => {
   return (
     <Fragment>
       <div className="overlay" />
+      {/* have temporarily commented out this overlay css rule as it is interfering with buttons on the modal. Will reinstate after sorting out z-index issue */}
       <div className="modal">
         <div className-="modal-content">
           <div className="modal-header">
@@ -29,7 +20,8 @@ const FetchingStateSpinner = ({ isVisible }) => {
             </span>
           </div>
           <div className="modal-body">
-            <Spinner />
+            {/* <Spinner /> */}
+            <SpinnerContent />
           </div>
         </div>
       </div>
