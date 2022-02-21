@@ -29,3 +29,7 @@ export async function handleResponseCitiesByPrefectureId(response) {
   }
   throw new Error("Network response was not ok.");
 }
+
+export async function simulateError(response) {
+  throw new Error("Network response was not ok.");
+}

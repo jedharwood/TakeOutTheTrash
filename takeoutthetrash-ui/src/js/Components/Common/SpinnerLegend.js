@@ -28,6 +28,7 @@ export const getSpinnerLegend = (
   selectedCityId
 ) => {
   if (isFetchingCities && prefecture) {
+    //maybe make this a switch case?
     return `Retrieving cities for ${getPrefectureName(prefecture)}`;
   }
   if (isFetchingCity) {
