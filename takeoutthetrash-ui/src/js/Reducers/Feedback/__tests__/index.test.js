@@ -233,7 +233,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false, feedbackFormValues: {} and postFailureCount: 0,", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false, feedbackFormValues: {}, postFailureCount: 0 and displayRetryFailureMessage: false", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -250,6 +250,7 @@ describe("feedback reducer", () => {
       postingFeedbackFormSucceeded: false,
       feedbackFormValues: {},
       postFailureCount: 0,
+      displayRetryFailureMessage: false,
     };
 
     // Act
@@ -259,7 +260,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false, reset feedbackFormValues: {} and postFailureCount: 0,", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false, reset feedbackFormValues: {}, postFailureCount: 0 and displayRetryFailureMessage: false", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -270,6 +271,7 @@ describe("feedback reducer", () => {
       postingFeedbackFormSucceeded: true,
       feedbackFormValues: { comment: "foo", email: "bar" },
       postFailureCount: 3,
+      displayRetryFailureMessage: true,
     };
 
     deepFreeze(state);
@@ -279,6 +281,37 @@ describe("feedback reducer", () => {
       postingFeedbackFormSucceeded: false,
       feedbackFormValues: {},
       postFailureCount: 0,
+      displayRetryFailureMessage: false,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling a CANCEL_RETRY_POST_BUTTON_CLICKED action should toggle postingFeedbackFormFailed from true to false, reset feedbackFormValues: {}, postFailureCount: 0 and displayRetryFailureMessage: true", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED,
+    };
+
+    const state = {
+      foo: "bar",
+      postingFeedbackFormFailed: true,
+      feedbackFormValues: { comment: "foo", email: "bar" },
+      postFailureCount: 3,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      postingFeedbackFormFailed: false,
+      feedbackFormValues: {},
+      postFailureCount: 0,
+      displayRetryFailureMessage: true,
     };
 
     // Act

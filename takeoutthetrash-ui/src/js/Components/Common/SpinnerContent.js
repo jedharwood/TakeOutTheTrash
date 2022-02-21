@@ -15,7 +15,11 @@ const Spinner = () => (
   </div>
 );
 
-const SpinnerContent = ({ postingFeedbackFormFailed, postFeedbackForm }) => {
+const SpinnerContent = ({
+  postingFeedbackFormFailed,
+  postFeedbackForm,
+  cancelRetries,
+}) => {
   if (!postingFeedbackFormFailed) {
     return <Spinner />;
   }
@@ -24,7 +28,9 @@ const SpinnerContent = ({ postingFeedbackFormFailed, postFeedbackForm }) => {
       <button type="button" onClick={postFeedbackForm}>
         Retry
       </button>
-      <button type="button">Cancel</button>
+      <button type="button" onClick={cancelRetries}>
+        Cancel
+      </button>
     </div>
   );
 };
@@ -32,6 +38,7 @@ const SpinnerContent = ({ postingFeedbackFormFailed, postFeedbackForm }) => {
 SpinnerContent.propTypes = {
   postingFeedbackFormFailed: PropTypes.bool.isRequired,
   postFeedbackForm: PropTypes.func.isRequired,
+  cancelRetries: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -40,6 +47,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   postFeedbackForm: feedbackActions.postFeedbackForm,
+  cancelRetries: feedbackActions.cancelRetryPostButtonClicked,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpinnerContent);

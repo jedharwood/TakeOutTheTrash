@@ -4,17 +4,21 @@ import * as testData from "../../../CommonTestData/TestData";
 describe("getSpinnerLegend", () => {
   test("should return null if isFetchingCities, isPostingFeedbackForm and isFetchingCity are false", () => {
     // Arrange
-    const isFetchingCities = false;
+    const isFetchingCities = false; // make a default state object here and reset after each
     const isPostingFeedbackForm = false;
     const prefecture = {};
     const isFetchingCity = false;
+    const selectedCityId = undefined;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
       isFetchingCities,
       prefecture,
       isPostingFeedbackForm,
-      isFetchingCity
+      isFetchingCity,
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
@@ -27,13 +31,17 @@ describe("getSpinnerLegend", () => {
     const isPostingFeedbackForm = false;
     const prefecture = {};
     const isFetchingCity = false;
+    const selectedCityId = undefined;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
       isFetchingCities,
       prefecture,
       isPostingFeedbackForm,
-      isFetchingCity
+      isFetchingCity,
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
@@ -46,13 +54,17 @@ describe("getSpinnerLegend", () => {
     const isPostingFeedbackForm = false;
     const prefecture = testData.arrayOfPrefectures[0];
     const isFetchingCity = false;
+    const selectedCityId = undefined;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
       isFetchingCities,
       prefecture,
       isPostingFeedbackForm,
-      isFetchingCity
+      isFetchingCity,
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
@@ -66,6 +78,7 @@ describe("getSpinnerLegend", () => {
     const prefecture = testData.prefectureWithCities;
     const isFetchingCity = true;
     const selectedCityId = 4;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
@@ -73,7 +86,8 @@ describe("getSpinnerLegend", () => {
       prefecture,
       isPostingFeedbackForm,
       isFetchingCity,
-      selectedCityId
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
@@ -87,6 +101,7 @@ describe("getSpinnerLegend", () => {
     const prefecture = testData.prefectureWithCities;
     const isFetchingCity = true;
     const selectedCityId = 1;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
@@ -94,7 +109,8 @@ describe("getSpinnerLegend", () => {
       prefecture,
       isPostingFeedbackForm,
       isFetchingCity,
-      selectedCityId
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
@@ -107,16 +123,43 @@ describe("getSpinnerLegend", () => {
     const isPostingFeedbackForm = true;
     const prefecture = {};
     const isFetchingCity = false;
+    const selectedCityId = undefined;
+    const postingFeedbackFormFailed = false;
 
     // Act
     const result = sut.getSpinnerLegend(
       isFetchingCities,
       prefecture,
       isPostingFeedbackForm,
-      isFetchingCity
+      isFetchingCity,
+      selectedCityId,
+      postingFeedbackFormFailed
     );
 
     //Assert
     expect(result).toEqual("Posting feedback");
+  });
+
+  test("should return 'Oops! Something went wrong...' if postingFeedbackFormFailed: true", () => {
+    // Arrange
+    const isFetchingCities = false;
+    const isPostingFeedbackForm = false;
+    const prefecture = {};
+    const isFetchingCity = false;
+    const selectedCityId = undefined;
+    const postingFeedbackFormFailed = true;
+
+    // Act
+    const result = sut.getSpinnerLegend(
+      isFetchingCities,
+      prefecture,
+      isPostingFeedbackForm,
+      isFetchingCity,
+      selectedCityId,
+      postingFeedbackFormFailed
+    );
+
+    //Assert
+    expect(result).toEqual("Oops! Something went wrong...");
   });
 });

@@ -46,3 +46,7 @@ export const postFeedbackForm = () => async (dispatch, getState) => {
 export const openFeedbackFormButtonClicked = () => ({
   type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
 });
+
+export const cancelRetryPostButtonClicked = () => ({
+  type: actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED,
+});
