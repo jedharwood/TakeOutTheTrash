@@ -21,8 +21,8 @@ export function postJson(url, request) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(request),
     })
-      .then(apiUtilities.handleResponse)
-      //.then(apiUtilities.simulateError)
+      // .then(apiUtilities.handleResponse)
+      .then(apiUtilities.simulateError)
       .catch(apiUtilities.handleError)
   );
 }
