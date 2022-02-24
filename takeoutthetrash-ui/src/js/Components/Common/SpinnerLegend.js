@@ -26,11 +26,10 @@ export const getSpinnerLegend = (
   isPostingFeedbackForm,
   isFetchingCity,
   selectedCityId,
-  postingFeedbackFormFailed
+  postingFeedbackFormFailed,
+  postFailureCount
 ) => {
-  console.log("postingFeedbackFormFailed", postingFeedbackFormFailed);
   if (isFetchingCities && prefecture) {
-    //maybe make this a switch case?
     return `Retrieving cities for ${getPrefectureName(prefecture)}`;
   }
   if (isFetchingCity) {
@@ -38,6 +37,9 @@ export const getSpinnerLegend = (
   }
   if (isPostingFeedbackForm) {
     return "Posting feedback";
+  }
+  if (postingFeedbackFormFailed && postFailureCount > 3) {
+    return "Please try again later.";
   }
   if (postingFeedbackFormFailed) {
     return "Oops! Something went wrong...";
@@ -52,6 +54,7 @@ const SpinnerLegend = ({
   isFetchingCity,
   selectedCityId,
   postingFeedbackFormFailed,
+  postFailureCount,
 }) => {
   return getSpinnerLegend(
     isFetchingCities,
@@ -59,7 +62,8 @@ const SpinnerLegend = ({
     isPostingFeedbackForm,
     isFetchingCity,
     selectedCityId,
-    postingFeedbackFormFailed
+    postingFeedbackFormFailed,
+    postFailureCount
   );
 };
 
@@ -87,6 +91,7 @@ SpinnerLegend.propTypes = {
   isFetchingCity: PropTypes.bool,
   selectedCityId: PropTypes.number,
   postingFeedbackFormFailed: PropTypes.bool,
+  postFailureCount: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
@@ -96,6 +101,7 @@ const mapStateToProps = (state) => ({
   isFetchingCity: citiesSelectors.isFetchingCity(state),
   selectedCityId: citiesSelectors.getSelectedCityId(state),
   postingFeedbackFormFailed: feedbackSelectors.postingFeedbackFormFailed(state),
+  postFailureCount: feedbackSelectors.getPostFailureCount(state),
 });
 
 export default connect(mapStateToProps)(SpinnerLegend);
