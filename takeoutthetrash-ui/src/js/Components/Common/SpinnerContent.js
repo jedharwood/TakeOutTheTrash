@@ -19,9 +19,19 @@ const SpinnerContent = ({
   postingFeedbackFormFailed,
   postFeedbackForm,
   cancelRetries,
+  postFailureCount,
 }) => {
   if (!postingFeedbackFormFailed) {
     return <Spinner />;
+  }
+  if (postFailureCount > 3) {
+    return (
+      <div>
+        <button type="button" onClick={cancelRetries}>
+          Cancel
+        </button>
+      </div>
+    );
   }
   return (
     <div>
@@ -39,10 +49,12 @@ SpinnerContent.propTypes = {
   postingFeedbackFormFailed: PropTypes.bool.isRequired,
   postFeedbackForm: PropTypes.func.isRequired,
   cancelRetries: PropTypes.func.isRequired,
+  postFailureCount: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   postingFeedbackFormFailed: feedbackSelectors.postingFeedbackFormFailed(state),
+  postFailureCount: feedbackSelectors.getPostFailureCount(state),
 });
 
 const mapDispatchToProps = {
