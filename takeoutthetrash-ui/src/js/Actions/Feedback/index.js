@@ -50,3 +50,7 @@ export const openFeedbackFormButtonClicked = () => ({
 export const cancelRetryPostButtonClicked = () => ({
   type: actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED,
 });
+
+export const enableEmailFormFieldToggled = () => ({
+  type: actionTypes.ENABLE_EMAIL_FORM_FIELD_TOGGLED,
+});

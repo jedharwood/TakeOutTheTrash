@@ -33,3 +33,8 @@ export const displayRetryFailureMessage = compose(
   propEq("displayRetryFailureMessage", true),
   getFeedbackState
 );
+
+export const emailFormFieldEnabled = compose(
+  propEq("emailFormFieldEnabled", true),
+  getFeedbackState
+);

@@ -216,4 +216,39 @@ describe("feedback selectors", () => {
       expect(result).toEqual(true);
     });
   });
+
+  describe("emailFormFieldEnabled", () => {
+    test.each([[null], [undefined], [false], ["Not a boolean"]])(
+      "when emailFormFieldEnabled is false or otherwise invalid should return false",
+      (value) => {
+        // Arrange
+        const state = {
+          feedback: {
+            emailFormFieldEnabled: value,
+          },
+        };
+
+        // Act
+        const result = sut.emailFormFieldEnabled(state);
+
+        // Assert
+        expect(result).toEqual(false);
+      }
+    );
+
+    test("when emailFormFieldEnabled is true should return true", () => {
+      // Arrange
+      const state = {
+        feedback: {
+          emailFormFieldEnabled: true,
+        },
+      };
+
+      // Act
+      const result = sut.emailFormFieldEnabled(state);
+
+      // Assert
+      expect(result).toEqual(true);
+    });
+  });
 });
