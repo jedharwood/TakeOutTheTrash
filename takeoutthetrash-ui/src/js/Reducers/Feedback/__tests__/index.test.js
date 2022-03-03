@@ -233,7 +233,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false, feedbackFormValues: {}, postFailureCount: 0 and displayRetryFailureMessage: false", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should set postingFeedbackFormSucceeded: false, feedbackFormValues: {}, postFailureCount: 0, displayRetryFailureMessage: false and emailFormFieldEnabled: false,", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -251,6 +251,7 @@ describe("feedback reducer", () => {
       feedbackFormValues: {},
       postFailureCount: 0,
       displayRetryFailureMessage: false,
+      emailFormFieldEnabled: false,
     };
 
     // Act
@@ -260,7 +261,7 @@ describe("feedback reducer", () => {
     expect(result).toEqual(expectedState);
   });
 
-  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false, reset feedbackFormValues: {}, postFailureCount: 0 and displayRetryFailureMessage: false", () => {
+  test("when handling a OPEN_FEEDBACK_FORM_BUTTON_CLICKED action should toggle postingFeedbackFormSucceeded from true to false, reset feedbackFormValues: {}, postFailureCount: 0, displayRetryFailureMessage: false and emailFormFieldEnabled: false,", () => {
     // Arrange
     const action = {
       type: actionTypes.OPEN_FEEDBACK_FORM_BUTTON_CLICKED,
@@ -272,6 +273,7 @@ describe("feedback reducer", () => {
       feedbackFormValues: { comment: "foo", email: "bar" },
       postFailureCount: 3,
       displayRetryFailureMessage: true,
+      emailFormFieldEnabled: true,
     };
 
     deepFreeze(state);
@@ -282,6 +284,7 @@ describe("feedback reducer", () => {
       feedbackFormValues: {},
       postFailureCount: 0,
       displayRetryFailureMessage: false,
+      emailFormFieldEnabled: false,
     };
 
     // Act
@@ -312,6 +315,31 @@ describe("feedback reducer", () => {
       feedbackFormValues: {},
       postFailureCount: 0,
       displayRetryFailureMessage: true,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
+
+  test("when handling an ENABLE_EMAIL_FORM_FIELD_TOGGLED action should toggle emailFormFieldEnabled", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.ENABLE_EMAIL_FORM_FIELD_TOGGLED,
+    };
+
+    const state = {
+      foo: "bar",
+      emailFormFieldEnabled: false,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      emailFormFieldEnabled: true,
     };
 
     // Act

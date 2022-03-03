@@ -185,4 +185,16 @@ describe("feedback action", () => {
       });
     });
   });
+
+  describe("enableEmailFormFieldToggled", () => {
+    test("should dispatch an ENABLE_EMAIL_FORM_FIELD_TOGGLED action", async () => {
+      // Act
+      const result = sut.enableEmailFormFieldToggled();
+
+      // Assert
+      expect(result).toEqual({
+        type: actionTypes.ENABLE_EMAIL_FORM_FIELD_TOGGLED,
+      });
+    });
+  });
 });

@@ -43,6 +43,7 @@ export default (state = {}, action) => {
         feedbackFormValues: {},
         postFailureCount: 0,
         displayRetryFailureMessage: false,
+        emailFormFieldEnabled: false,
       };
     case actionTypes.CANCEL_RETRY_POST_BUTTON_CLICKED:
       return {
@@ -51,6 +52,11 @@ export default (state = {}, action) => {
         feedbackFormValues: {},
         postFailureCount: 0,
         displayRetryFailureMessage: true,
+      };
+    case actionTypes.ENABLE_EMAIL_FORM_FIELD_TOGGLED:
+      return {
+        ...state,
+        emailFormFieldEnabled: !state.emailFormFieldEnabled,
       };
     default:
       return state;

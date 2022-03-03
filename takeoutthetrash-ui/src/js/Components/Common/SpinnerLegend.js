@@ -28,7 +28,6 @@ export const getSpinnerLegend = (
   selectedCityId,
   postingFeedbackFormFailed
 ) => {
-  console.log("postingFeedbackFormFailed", postingFeedbackFormFailed);
   if (isFetchingCities && prefecture) {
     //maybe make this a switch case?
     return `Retrieving cities for ${getPrefectureName(prefecture)}`;
