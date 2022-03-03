@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as feedbackActions from "../Actions/Feedback";
 import PropTypes from "prop-types";
+import RadioButton from "./Common/RadioButton";
+import * as feedbackSelectors from "../Selectors/Feedback";
 
-const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
+const FeedbackForm = ({
+  postFeedbackForm,
+  feedbackFormValuesUpdated,
+  toggledEnableEmailFormField,
+  emailFormFieldEnabled,
+}) => {
   let [formValues, setFormValues] = useState({ comment: "", email: "" });
 
   const handleInputChange = (target) => {
@@ -20,6 +27,23 @@ const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
     postFeedbackForm();
   };
 
+  const EmailFormField = ({ visible }) => {
+    if (!visible) {
+      return null;
+    }
+    return (
+      <div className="input-group">
+        <input
+          name="email"
+          value={formValues.email}
+          onChange={(e) => handleInputChange(e.target)}
+          required={false}
+          placeholder="Email"
+        />
+      </div>
+    );
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -33,18 +57,13 @@ const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
           />
         </div>
         {/* style input-group */}
-        {/* radio button to toggle hide email */}
         {/* validation client side*/}
         {/* handle server side errors */}
-        <div className="input-group">
-          <input
-            name="email"
-            value={formValues.email}
-            onChange={(e) => handleInputChange(e.target)}
-            required={false}
-            placeholder="Email"
-          />
-        </div>
+        <RadioButton
+          checked={emailFormFieldEnabled}
+          onClick={toggledEnableEmailFormField}
+        />
+        <EmailFormField visible={emailFormFieldEnabled} />
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -54,11 +73,18 @@ const FeedbackForm = ({ postFeedbackForm, feedbackFormValuesUpdated }) => {
 FeedbackForm.propTypes = {
   feedbackFormValuesUpdated: PropTypes.func.isRequired,
   postFeedbackForm: PropTypes.func.isRequired,
+  toggledEnableEmailFormField: PropTypes.func.isRequired,
+  emailFormFieldEnabled: PropTypes.bool,
 };
+
+const mapStateToProps = (state) => ({
+  emailFormFieldEnabled: feedbackSelectors.emailFormFieldEnabled(state),
+});
 
 const mapDispatchToProps = {
   feedbackFormValuesUpdated: feedbackActions.feedbackFormValuesUpdated,
   postFeedbackForm: feedbackActions.postFeedbackForm,
+  toggledEnableEmailFormField: feedbackActions.enableEmailFormFieldToggled,
 };
 
-export default connect(null, mapDispatchToProps)(FeedbackForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm);
