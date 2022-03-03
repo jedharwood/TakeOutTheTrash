@@ -1,0 +1,23 @@
+.radio-button {
+  width: 17px;
+  min-width: 17px;
+  height: 17px;
+  border: 1px solid $colour-main;
+  border-radius: 50%;
+  background-color: $colour-white;
+  position: relative;
+  margin-bottom: 4px;
+  vertical-align: middle;
+  display: inline-block;
+
+  &.checked::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+    left: 2px;
+    top: 2px;
+    background-color: $colour-verde-gris;
+  }
+}
