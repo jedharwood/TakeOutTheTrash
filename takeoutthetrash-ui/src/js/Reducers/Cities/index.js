@@ -49,6 +49,13 @@ export default (state = {}, action) => {
         ...state,
         fetchingCitySucceeded: false,
       };
+    case actionTypes.OPEN_HOME_PAGE_BUTTON_CLICKED:
+      return {
+        ...state,
+        fetchingCitySucceeded: false,
+        city: {},
+        selectedCityId: null,
+      };
     default:
       return state;
   }

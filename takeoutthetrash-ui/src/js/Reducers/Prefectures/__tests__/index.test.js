@@ -236,4 +236,31 @@ describe("prefectures reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a OPEN_HOME_PAGE_BUTTON_CLICKED action should set prefecture: {} and selectedPrefectureId: null", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.OPEN_HOME_PAGE_BUTTON_CLICKED,
+    };
+
+    const state = {
+      foo: "bar",
+      prefecture: testData.prefectureWithCities,
+      selectedPrefectureId: testData.prefectureWithCities.id,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      prefecture: {},
+      selectedPrefectureId: null,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });

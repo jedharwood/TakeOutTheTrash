@@ -1,10 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import * as feedbackActions from "../../Actions/Feedback/index";
+import * as feedbackActions from "../../Actions/Feedback";
+import * as homeActions from "../../Actions/Home";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-const Header = ({ openFeedbackFormButtonClicked }) => {
+const Header = ({
+  openFeedbackFormButtonClicked,
+  openHomePageButtonClicked,
+}) => {
   return (
     <div id="header">
       <div className="title">
@@ -16,6 +20,7 @@ const Header = ({ openFeedbackFormButtonClicked }) => {
           to="/"
           className="nav-link"
           activeClassName="active-nav-link"
+          onClick={openHomePageButtonClicked}
         >
           Home
         </NavLink>
@@ -36,10 +41,12 @@ const Header = ({ openFeedbackFormButtonClicked }) => {
 
 Header.propTypes = {
   openFeedbackFormButtonClicked: PropTypes.func.isRequired,
+  openHomePageButtonClicked: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   openFeedbackFormButtonClicked: feedbackActions.openFeedbackFormButtonClicked,
+  openHomePageButtonClicked: homeActions.openHomePageButtonClicked,
 };
 
 export default connect(null, mapDispatchToProps)(Header);

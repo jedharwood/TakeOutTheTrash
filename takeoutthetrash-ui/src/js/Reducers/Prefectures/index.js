@@ -36,6 +36,12 @@ export default (state = {}, action) => {
         selectedPrefectureId: action.selectedPrefectureId,
         prefecture: getPrefecture(state, action.selectedPrefectureId),
       };
+    case actionTypes.OPEN_HOME_PAGE_BUTTON_CLICKED:
+      return {
+        ...state,
+        prefecture: {},
+        selectedPrefectureId: null,
+      };
     default:
       return state;
   }

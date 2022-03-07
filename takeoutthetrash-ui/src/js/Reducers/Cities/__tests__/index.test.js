@@ -208,4 +208,33 @@ describe("cities reducer", () => {
     // Assert
     expect(result).toEqual(expectedState);
   });
+
+  test("when handling a OPEN_HOME_PAGE_BUTTON_CLICKED action should set fetchingCitySucceeded: false, city: {} and selectedCityId: null", () => {
+    // Arrange
+    const action = {
+      type: actionTypes.OPEN_HOME_PAGE_BUTTON_CLICKED,
+    };
+
+    const state = {
+      foo: "bar",
+      fetchingCitySucceeded: true,
+      city: testData.cityWithRules,
+      selectedCityId: testData.cityWithRules.id,
+    };
+
+    deepFreeze(state);
+
+    const expectedState = {
+      foo: "bar",
+      fetchingCitySucceeded: false,
+      city: {},
+      selectedCityId: null,
+    };
+
+    // Act
+    const result = sut(state, action);
+
+    // Assert
+    expect(result).toEqual(expectedState);
+  });
 });
