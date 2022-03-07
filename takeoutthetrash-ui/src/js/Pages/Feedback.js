@@ -7,12 +7,14 @@ import { connect } from "react-redux";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { Link } from "react-router-dom";
 import FeedbackPageLegend from "../Components/FeedbackPageLegend";
+import * as homeActions from "../Actions/Home";
 
 const Feedback = ({
   postingFeedbackFormSucceeded,
   isPostingFeedbackForm,
   postingFeedbackFormFailed,
   displayRetryFailureMessage,
+  openHomePageButtonClicked,
 }) => {
   if (postingFeedbackFormSucceeded || displayRetryFailureMessage) {
     return (
@@ -22,7 +24,11 @@ const Feedback = ({
           <FeedbackPageLegend />
           <p>Thanks</p>
           <div>
-            <Link to="/" className="btn btn-primary">
+            <Link
+              to="/"
+              className="btn btn-primary"
+              onClick={openHomePageButtonClicked}
+            >
               Home
             </Link>
           </div>
@@ -48,6 +54,11 @@ Feedback.propTypes = {
   postingFeedbackFormSucceeded: PropTypes.bool,
   isPostingFeedbackForm: PropTypes.bool,
   displayRetryFailureMessage: PropTypes.bool,
+  openHomePageButtonClicked: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  openHomePageButtonClicked: homeActions.openHomePageButtonClicked,
 };
 
 const mapStateToProps = (state) => ({
@@ -59,4 +70,4 @@ const mapStateToProps = (state) => ({
     feedbackSelectors.displayRetryFailureMessage(state),
 });
 
-export default connect(mapStateToProps)(Feedback);
+export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
