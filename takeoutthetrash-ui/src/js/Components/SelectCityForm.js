@@ -8,11 +8,7 @@ import { connect } from "react-redux";
 import { mapOptions } from "../Utilities/RamdaUtilities";
 
 export const ArrayIsEmpty = (array) => {
-  if (array.length > 0) {
-    return false;
-  }
-
-  return true;
+  return array.length > 0 ? false : true;
 };
 // Note to self; It would be neat on the feedback page to have these fields pre-populated from state
 const SelectPrefecture = ({

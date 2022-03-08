@@ -5,19 +5,15 @@ import * as prefecturesSelectors from "../../Selectors/Prefectures";
 import * as feedbackSelectors from "../../Selectors/Feedback";
 
 const getPrefectureName = (prefecture) => {
-  if (prefecture.name === undefined) {
-    return "selected prefecture";
-  }
-  return prefecture.name;
+  return prefecture.name === undefined
+    ? "selected prefecture"
+    : prefecture.name;
 };
 
 const getCityName = (prefecture, selectedCityId) => {
   // selectedCityId should be a number, not a string. Think of a way to fix..
   const city = prefecture.cities.find((x) => x.id === parseInt(selectedCityId));
-  if (city === undefined) {
-    return "selected city";
-  }
-  return city.name;
+  return city === undefined ? "selected city" : city.name;
 };
 
 export const getSpinnerLegend = (
