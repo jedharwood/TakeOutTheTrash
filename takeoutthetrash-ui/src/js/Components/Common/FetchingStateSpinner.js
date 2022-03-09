@@ -10,7 +10,7 @@ const FetchingStateSpinner = ({ isVisible }) => {
 
   return (
     <Fragment>
-      <div className="overlay" />
+      {/* <div className="overlay" /> */}
       {/* have temporarily commented out this overlay css rule as it is interfering with buttons on the modal. Will reinstate after sorting out z-index issue */}
       <div className="modal">
         <div className-="modal-content">
