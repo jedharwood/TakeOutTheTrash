@@ -1,0 +1,21 @@
+button {
+  background-color: $colour-verde-gris;
+  color: $colour-white;
+  border: none;
+  border-radius: $radius-s;
+  min-height: 30px;
+  min-width: 65px;
+  padding-left: $spacing-m;
+  padding-right: $spacing-m;
+  margin-left: $spacing-s;
+  margin-right: $spacing-s;
+  font-size: 16px;
+}
+
+.submit-button {
+  min-width: 80px;
+}
+
+.close-button {
+  min-width: 80px;
+}

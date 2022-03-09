@@ -1,7 +1,7 @@
 .table {
   border: none;
   border-spacing: 0;
-  font-size: 14px;
+  font-size: 14px; //fix this
   margin: 0;
   padding: 0;
   text-align: left;
@@ -12,7 +12,7 @@
     tr {
       td {
         border-top: 1px solid $colour-dark-grey;
-        padding: 4px 15px;
+        padding: $spacing-xs $spacing-l;
         vertical-align: middle;
 
         &:first-child {

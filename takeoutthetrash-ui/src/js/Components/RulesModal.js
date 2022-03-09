@@ -56,7 +56,10 @@ const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
             </table>
           </div>
           <div className="modal-footer">
-            <button onClick={() => closeRulesModal()} className="button">
+            <button
+              onClick={() => closeRulesModal()}
+              className="button close-button"
+            >
               Close
             </button>
           </div>

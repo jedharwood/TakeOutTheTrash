@@ -5,6 +5,23 @@ import PropTypes from "prop-types";
 import RadioButton from "./Common/RadioButton";
 import * as feedbackSelectors from "../Selectors/Feedback";
 
+const EmailFormField = ({ visible, formValues, handleInputChange }) => {
+  if (!visible) {
+    return null;
+  }
+  return (
+    <div className="input-group">
+      <input
+        name="email"
+        value={formValues.email}
+        onChange={(e) => handleInputChange(e.target)}
+        required={false}
+        placeholder="Email"
+      />
+    </div>
+  );
+};
+
 const FeedbackForm = ({
   postFeedbackForm,
   feedbackFormValuesUpdated,
@@ -27,28 +44,11 @@ const FeedbackForm = ({
     postFeedbackForm();
   };
 
-  const EmailFormField = ({ visible }) => {
-    if (!visible) {
-      return null;
-    }
-    return (
-      <div className="input-group">
-        <input
-          name="email"
-          value={formValues.email}
-          onChange={(e) => handleInputChange(e.target)}
-          required={false}
-          placeholder="Email"
-        />
-      </div>
-    );
-  };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
-          <input
+          <textarea
             name="comment"
             value={formValues.comment}
             onChange={(e) => handleInputChange(e.target)}
@@ -59,12 +59,23 @@ const FeedbackForm = ({
         {/* style input-group */}
         {/* validation client side*/}
         {/* handle server side errors */}
-        <RadioButton
-          checked={emailFormFieldEnabled}
-          onClick={toggledEnableEmailFormField}
+        <div className="info-minor">
+          <RadioButton
+            checked={emailFormFieldEnabled}
+            onClick={toggledEnableEmailFormField}
+          />
+          Receive email confirmation?
+        </div>
+        <EmailFormField
+          visible={emailFormFieldEnabled}
+          formValues={formValues}
+          handleInputChange={handleInputChange}
         />
-        <EmailFormField visible={emailFormFieldEnabled} />
-        <button type="submit">Submit</button>
+        <div className="feedback-submit-button">
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

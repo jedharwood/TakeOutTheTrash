@@ -27,15 +27,22 @@
   transform: translateY(-200px);
 }
 
+.modal-header {
+  padding: $spacing-s $spacing-m;
+}
+
 .modal-content {
   width: 500px;
   background-color: $colour-white;
   border: 1px solid $colour-verde-gris;
-  border-radius: 10px;
+  border-radius: $radius-m;
 }
 
 .modal-footer {
-  padding: 10px;
+  padding: $spacing-m;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-title {
@@ -43,7 +50,11 @@
 }
 
 .modal-body {
-  padding: 10px;
+  padding: $spacing-m;
   border-top: 1px solid $colour-verde-gris;
   border-bottom: 1px solid $colour-verde-gris;
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
