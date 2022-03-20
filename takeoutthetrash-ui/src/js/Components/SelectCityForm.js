@@ -17,13 +17,13 @@ const SelectPrefecture = ({
   getCitiesByPrefectureId,
 }) => {
   return (
-    <div>
+    <div className="form-field">
       <select
-        id="prefecture_select_input"
         onChange={(e) => {
           selectPrefecture(e.target.value);
           getCitiesByPrefectureId();
         }}
+        className="form-input"
       >
         <option value="default">Select Prefecture</option>
         {prefectures.map((prefecture) => (
@@ -51,13 +51,13 @@ const SelectCity = ({
   }
 
   return (
-    <div>
+    <div className="form-field">
       <select
-        id="city_select_input"
         onChange={(e) => {
           selectCity(e.target.value); //update to map based on rules when rules exist, then remove placeholder
           getCityById();
         }}
+        className="form-input"
       >
         <option value="default">Select City</option>
         {mapOptions(cities)}

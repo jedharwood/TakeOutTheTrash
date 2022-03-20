@@ -1,52 +1,42 @@
-select {
+.form-input {
   color: $colour-main;
-  margin-bottom: $spacing-l;
   min-width: 200px;
-  min-height: 30px;
   font-size: 16px;
   border-radius: $radius-s;
 
   &:focus-visible {
     outline-color: $colour-verde-gris;
   }
+
+  &.has-error {
+    outline-color: $colour-red-alert;
+  }
+}
+
+select {
+  min-height: 30px;
 }
 
 input {
-  color: $colour-main;
-  margin-bottom: $spacing-l;
-  min-width: 200px;
   min-height: 30px;
-  font-size: 16px;
-  border-radius: $radius-s;
-
   border-width: 1px;
   box-sizing: border-box;
   padding-left: $spacing-xs;
   border-color: $colour-border-grey;
   border-style: solid;
-
-  &:focus-visible {
-    outline-color: $colour-verde-gris;
-  }
 }
 
 textarea {
-  color: $colour-main;
-  margin-bottom: $spacing-m;
-  min-width: 200px;
-  font-size: 16px;
-  border-radius: $radius-s;
-
   resize: none;
   box-sizing: border-box;
   min-height: 100px;
   font-family: "Segoe UI", Arial, "Helvetica Neue", Helvetica, sans-serif;
   padding-left: $spacing-xs;
   padding-top: 7px;
+}
 
-  &:focus-visible {
-    outline-color: $colour-verde-gris;
-  }
+.form-field {
+  margin-bottom: $spacing-l;
 }
 
 .feedback-submit-button {
@@ -59,4 +49,8 @@ textarea {
   font-size: 12px;
   color: $colour-main;
   margin-bottom: $spacing-l;
+
+  &.alert {
+    color: $colour-red-alert;
+  }
 }
