@@ -6,4 +6,4 @@ export const mapOptions = R.map((item) => (
   </option>
 ));
 
-export const isNotNil = R.compose(R.not, R.isNil);
+export const isNilOrEmpty = R.anyPass([R.isNil, R.isEmpty]);

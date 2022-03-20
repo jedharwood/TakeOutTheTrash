@@ -10,6 +10,14 @@ button {
   margin-left: $spacing-s;
   margin-right: $spacing-s;
   font-size: 16px;
+
+  &:hover {
+    background-color: $colour-verde-gris-dark;
+  }
+
+  &:disabled {
+    background-color: $colour-verde-gris-light;
+  }
 }
 
 .submit-button {

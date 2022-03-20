@@ -10,7 +10,7 @@ describe("cities reducer", () => {
     const result = sut(undefined, {});
 
     // Assert
-    expect(result).toEqual({});
+    expect(result).toEqual({ city: {} });
   });
 
   test("when handling a FETCH_CITIES_BY_PREFECTURE_ID_REQUESTED action should set fetchingCities to true", () => {
