@@ -5,39 +5,23 @@ import * as citiesSelectors from "../Selectors/Cities/index";
 import * as prefecturesActions from "../Actions/Prefectures/index";
 import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
-import { mapOptions } from "../Utilities/RamdaUtilities";
+import { SelectInput } from "./Common/SelectInput";
 
-export const ArrayIsEmpty = (array) => {
+export const arrayIsEmpty = (array) => {
   return array.length > 0 ? false : true;
 };
-// Note to self; It would be neat on the feedback page to have these fields pre-populated from state
-const SelectPrefecture = ({
-  prefectures,
-  selectPrefecture,
-  getCitiesByPrefectureId,
-}) => {
-  return (
-    <div className="form-field">
-      <select
-        onChange={(e) => {
-          selectPrefecture(e.target.value);
-          getCitiesByPrefectureId();
-        }}
-        className="form-input"
-      >
-        <option value="default">Select Prefecture</option>
-        {prefectures.map((prefecture) => (
-          <option
-            key={prefecture.id}
-            value={prefecture.id}
-            disabled={ArrayIsEmpty(prefecture.cities)}
-          >
-            {prefecture.name}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+
+const getChildren = (values, disableOptionIfEmpty) => {
+  const children = values.map((child) => (
+    <option
+      key={child.id}
+      value={child.id}
+      disabled={arrayIsEmpty(child[disableOptionIfEmpty])}
+    >
+      {child.name}
+    </option>
+  ));
+  return children;
 };
 
 const SelectCity = ({
@@ -51,18 +35,15 @@ const SelectCity = ({
   }
 
   return (
-    <div className="form-field">
-      <select
-        onChange={(e) => {
-          selectCity(e.target.value); //update to map based on rules when rules exist, then remove placeholder
-          getCityById();
-        }}
-        className="form-input"
-      >
-        <option value="default">Select City</option>
-        {mapOptions(cities)}
-      </select>
-    </div>
+    <SelectInput
+      onChange={(e) => {
+        selectCity(e.target.value);
+        getCityById();
+      }}
+      required={true}
+      placeholder="Select City"
+      children={getChildren(cities, "rules")}
+    />
   );
 };
 
@@ -77,10 +58,14 @@ const SelectCityForm = ({
 }) => {
   return (
     <div className="select-city-form">
-      <SelectPrefecture
-        prefectures={prefectures}
-        selectPrefecture={selectPrefecture}
-        getCitiesByPrefectureId={getCitiesByPrefectureId}
+      <SelectInput
+        onChange={(e) => {
+          selectPrefecture(e.target.value);
+          getCitiesByPrefectureId();
+        }}
+        required={true}
+        placeholder="Select Prefecture"
+        children={getChildren(prefectures, "cities")}
       />
       <SelectCity
         fetchingCitiesSucceeded={fetchingCitiesSucceeded}
