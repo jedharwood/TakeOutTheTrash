@@ -1,4 +1,4 @@
-import { ArrayIsEmpty } from "../SelectCityForm";
+import { arrayIsEmpty } from "../SelectCityForm";
 import * as testData from "../../CommonTestData/TestData";
 
 describe("Select city form", () => {
@@ -12,9 +12,9 @@ describe("Select city form", () => {
       expectedResult: false,
     },
   ].forEach((params) => {
-    test(`ArrayIsEmpty should return ${params.expectedResult} if prefecture's cities array is populated/unpopulated`, () => {
+    test(`arrayIsEmpty should return ${params.expectedResult} if prefecture's cities array is populated/unpopulated`, () => {
       // Act
-      const result = ArrayIsEmpty(params.prefecture.cities);
+      const result = arrayIsEmpty(params.prefecture.cities);
 
       //Assert
       expect(result).toEqual(params.expectedResult);
@@ -31,9 +31,9 @@ describe("Select city form", () => {
       expectedResult: false,
     },
   ].forEach((params) => {
-    test(`ArrayIsEmpty should return ${params.expectedResult} if city's rules array is populated/unpopulated`, () => {
+    test(`arrayIsEmpty should return ${params.expectedResult} if city's rules array is populated/unpopulated`, () => {
       // Act
-      const result = ArrayIsEmpty(params.city.rules);
+      const result = arrayIsEmpty(params.city.rules);
 
       //Assert
       expect(result).toEqual(params.expectedResult);
