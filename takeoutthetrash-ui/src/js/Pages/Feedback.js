@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SelectCityForm from "../Components/SelectCityForm";
 import FeedbackForm from "../Components/FeedbackForm";
 import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import FeedbackPageLegend from "../Components/FeedbackPageLegend";
 import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
+import * as feedbackActions from "../Actions/Feedback";
+
+const COMMENT_MAX = 150;
 
 const Feedback = ({
   postingFeedbackFormSucceeded,
@@ -18,7 +21,39 @@ const Feedback = ({
   openHomePageButtonClicked,
   isFetchingCities,
   isFetchingCity,
+  feedbackFormValuesUpdated,
+  postFeedbackForm,
 }) => {
+  let [formValues, setFormValues] = useState({ comment: "", email: "" });
+  let [errors, setErrors] = useState({});
+
+  const validateOnChange = () => {
+    const _errors = {};
+
+    if (formValues.comment.length >= COMMENT_MAX)
+      _errors.comment = `Maximum ${COMMENT_MAX} characters`;
+    //regex validation for email address
+    setErrors(_errors);
+
+    return Object.keys(_errors).length === 0;
+  };
+
+  const handleInputChange = ({ target }) => {
+    console.log(target.value);
+    const updatedFormValues = {
+      ...formValues,
+      [target.name]: target.value,
+    };
+    setFormValues(updatedFormValues);
+    feedbackFormValuesUpdated(updatedFormValues);
+    validateOnChange();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postFeedbackForm();
+  };
+
   if (postingFeedbackFormSucceeded || displayRetryFailureMessage) {
     return (
       <div className="container">
@@ -44,7 +79,12 @@ const Feedback = ({
       <div className="landing-page">
         <h2>Feedback Form</h2>
         <SelectCityForm />
-        <FeedbackForm />
+        <FeedbackForm
+          onChange={handleInputChange}
+          onSubmit={handleSubmit}
+          formValues={formValues}
+          errors={errors}
+        />
         <FetchingStateSpinner
           isVisible={
             isPostingFeedbackForm ||
@@ -65,10 +105,13 @@ Feedback.propTypes = {
   openHomePageButtonClicked: PropTypes.func.isRequired,
   isFetchingCities: PropTypes.bool,
   isFetchingCity: PropTypes.bool,
+  postFeedbackForm: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   openHomePageButtonClicked: homeActions.openHomePageButtonClicked,
+  feedbackFormValuesUpdated: feedbackActions.feedbackFormValuesUpdated,
+  postFeedbackForm: feedbackActions.postFeedbackForm,
 };
 
 const mapStateToProps = (state) => ({
