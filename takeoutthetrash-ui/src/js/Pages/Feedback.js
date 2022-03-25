@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import SelectCityForm from "../Components/SelectCityForm";
-import FeedbackForm from "../Components/FeedbackForm";
-import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import * as feedbackSelectors from "../Selectors/Feedback";
 import { Link } from "react-router-dom";
+import FeedbackForm from "../Components/FeedbackForm";
 import FeedbackPageLegend from "../Components/FeedbackPageLegend";
+import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
+import SelectCityForm from "../Components/SelectCityForm";
+import * as feedbackActions from "../Actions/Feedback";
 import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
-import * as feedbackActions from "../Actions/Feedback";
+import * as feedbackSelectors from "../Selectors/Feedback";
 
 const emailRegex =
   // eslint-disable-next-line

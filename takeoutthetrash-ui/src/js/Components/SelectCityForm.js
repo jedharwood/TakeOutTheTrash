@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as prefecturesSelectors from "../Selectors/Prefectures/index";
-import * as citiesSelectors from "../Selectors/Cities/index";
-import * as prefecturesActions from "../Actions/Prefectures/index";
-import * as citiesActions from "../Actions/Cities/index";
 import { connect } from "react-redux";
 import { SelectInput } from "./Common/SelectInput";
+import * as citiesActions from "../Actions/Cities/index";
+import * as prefecturesActions from "../Actions/Prefectures/index";
+import * as citiesSelectors from "../Selectors/Cities/index";
+import * as prefecturesSelectors from "../Selectors/Prefectures/index";
 
 export const arrayIsEmpty = (array) => {
   return array.length > 0 ? false : true;
 };
 
-const getChildren = (values, disableOptionIfEmpty) => {
+const mapOptions = (values, disableOptionIfEmpty) => {
   const children = values.map((child) => (
     <option
       key={child.id}
@@ -42,7 +42,7 @@ const SelectCity = ({
       }}
       required={true}
       placeholder="Select City"
-      children={getChildren(cities, "rules")}
+      children={mapOptions(cities, "rules")}
     />
   );
 };
@@ -65,7 +65,7 @@ const SelectCityForm = ({
         }}
         required={true}
         placeholder="Select Prefecture"
-        children={getChildren(prefectures, "cities")}
+        children={mapOptions(prefectures, "cities")}
       />
       <SelectCity
         fetchingCitiesSucceeded={fetchingCitiesSucceeded}
