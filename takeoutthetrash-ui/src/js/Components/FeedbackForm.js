@@ -16,7 +16,7 @@ export const preventFormSubmission = (formValues, city, errors) => {
     : false;
 };
 
-const EmailFormField = ({ visible, formValues, handleInputChange }) => {
+const EmailFormField = ({ visible, formValues, handleInputChange, errors }) => {
   if (!visible) {
     return null;
   }
@@ -27,6 +27,7 @@ const EmailFormField = ({ visible, formValues, handleInputChange }) => {
       onChange={handleInputChange}
       required={false}
       placeholder="Email"
+      error={errors.email}
     />
   );
 };
@@ -67,6 +68,7 @@ const FeedbackForm = ({
           visible={emailFormFieldEnabled}
           formValues={formValues}
           handleInputChange={onChange}
+          errors={errors}
         />
         <div className="feedback-submit-button">
           <button

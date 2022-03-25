@@ -11,6 +11,9 @@ import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
 import * as feedbackActions from "../Actions/Feedback";
 
+const emailRegex =
+  // eslint-disable-next-line
+  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const COMMENT_MAX = 150;
 
 const Feedback = ({
@@ -25,17 +28,23 @@ const Feedback = ({
   postFeedbackForm,
 }) => {
   let [formValues, setFormValues] = useState({ comment: "", email: "" });
-  let [errors, setErrors] = useState({});
+  let [errors, setErrors] = useState({ comment: "" });
 
   const validateOnChange = () => {
-    const _errors = {};
+    if (formValues.comment.length >= COMMENT_MAX) {
+      errors.comment = `Maximum ${COMMENT_MAX} characters`;
+    } else {
+      errors.comment = "";
+    }
 
-    if (formValues.comment.length >= COMMENT_MAX)
-      _errors.comment = `Maximum ${COMMENT_MAX} characters`;
-    //regex validation for email address
-    setErrors(_errors);
+    if (formValues.email && emailRegex.test(formValues.email) === false) {
+      errors.email = "Input valid email address";
+    } else {
+      errors.email = "";
+    }
 
-    return Object.keys(_errors).length === 0;
+    setErrors(errors);
+    console.log(errors);
   };
 
   const handleInputChange = ({ target }) => {
