@@ -17,7 +17,7 @@ describe("getFeedbackPageLegend", () => {
     // Will move these strings into resource file for readability's sake
     //Assert
     expect(result).toEqual(
-      "Thankyou for submitting your feedback. If you checked the radio button on the form (that I haven't made yet) to request email notification then we will be in contact to let you know when your request has been actioned."
+      "Thankyou for submitting your feedback. If you checked the radio button on the form to request email notification then we will be in contact to let you know when your request has been actioned."
     );
   });
 
