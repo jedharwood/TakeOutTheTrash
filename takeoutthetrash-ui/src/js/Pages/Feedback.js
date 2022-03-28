@@ -79,7 +79,6 @@ const Feedback = ({
   // };
 
   const handleInputChange = ({ target }) => {
-    console.log(target.value);
     const updatedFormValues = {
       ...formValues,
       [target.name]: target.value,
@@ -115,7 +114,6 @@ const Feedback = ({
       </div>
     );
   }
-  console.log("feedbackpage", errors);
   return (
     <div className="container">
       <div className="landing-page">
