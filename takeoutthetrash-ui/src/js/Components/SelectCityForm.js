@@ -29,6 +29,7 @@ const SelectCity = ({
   cities,
   selectCity,
   getCityById,
+  error,
 }) => {
   if (!fetchingCitiesSucceeded) {
     return null;
@@ -43,6 +44,7 @@ const SelectCity = ({
       required={true}
       placeholder="Select City"
       children={mapOptions(cities, "rules")}
+      error={error}
     />
   );
 };
@@ -55,6 +57,7 @@ const SelectCityForm = ({
   cities,
   selectCity,
   getCityById,
+  errors,
 }) => {
   return (
     <div className="select-city-form">
@@ -66,12 +69,14 @@ const SelectCityForm = ({
         required={true}
         placeholder="Select Prefecture"
         children={mapOptions(prefectures, "cities")}
+        error={errors.prefecture}
       />
       <SelectCity
         fetchingCitiesSucceeded={fetchingCitiesSucceeded}
         cities={cities}
         selectCity={selectCity}
         getCityById={getCityById}
+        error={errors.city}
       />
     </div>
   );
@@ -117,6 +122,10 @@ SelectCityForm.propTypes = {
   ),
   selectCity: PropTypes.func.isRequired,
   getCityById: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    city: PropTypes.string,
+    prefecture: PropTypes.string,
+  }),
 };
 
 const mapStateToProps = (state) => ({

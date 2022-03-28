@@ -145,3 +145,31 @@ export const emptyFeedbackFormValues = {
   comment: "",
   email: "",
 };
+
+export const whitespaceFeedbackFormValues = {
+  comment: " ",
+  email: " ",
+};
+
+export const commentWith149Characters = {
+  comment:
+    "A comment with one hundred and fourty nine characters. A comment with one hundred and fourty nine characters. A comment with one hundred and fourt...",
+  email: "",
+};
+
+export const commentWith150Characters = {
+  comment:
+    "A comment with one hundred and fifty characters. A comment with one hundred and fifty characters. A comment with one hundred and fifty characters.....",
+  email: "",
+};
+
+export const commentWith151Characters = {
+  comment:
+    "A comment with one hundred and fifty one characters. A comment with one hundred and fifty one characters. A comment with one hundred and fifty one c...",
+  email: "",
+};
+
+export const invalidEmailAddressFormValues = {
+  comment: "A comment with an...",
+  email: "...invalid email address",
+};

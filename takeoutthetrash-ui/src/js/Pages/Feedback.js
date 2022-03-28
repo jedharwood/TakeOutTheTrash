@@ -10,11 +10,30 @@ import * as feedbackActions from "../Actions/Feedback";
 import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
 import * as feedbackSelectors from "../Selectors/Feedback";
+import { isNilOrEmpty } from "../Utilities/RamdaUtilities";
 
-const emailRegex =
-  // eslint-disable-next-line
-  /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const COMMENT_MAX = 150;
+
+export const disableFormSubmit = (formValues) => {
+  return isNilOrEmpty(formValues.comment) ||
+    commentExceedsMaxLength(formValues) ||
+    (formValues.email && !emailAddressIsValid(formValues))
+    ? //|| !Object.keys(city).length //disable if no city OR add error on submit?
+      //|| Object.keys(errors).length
+      true
+    : false;
+};
+
+export const commentExceedsMaxLength = (formValues) => {
+  return formValues.comment.length > COMMENT_MAX ? true : false;
+};
+
+export const emailAddressIsValid = (formValues) => {
+  const emailRegex =
+    // eslint-disable-next-line
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  return emailRegex.test(formValues.email);
+};
 
 const Feedback = ({
   postingFeedbackFormSucceeded,
@@ -23,29 +42,41 @@ const Feedback = ({
   displayRetryFailureMessage,
   openHomePageButtonClicked,
   isFetchingCities,
-  isFetchingCity,
   feedbackFormValuesUpdated,
   postFeedbackForm,
+  city,
 }) => {
   let [formValues, setFormValues] = useState({ comment: "", email: "" });
-  let [errors, setErrors] = useState({ comment: "" });
+  let [errors, setErrors] = useState({});
 
   const validateOnChange = () => {
-    if (formValues.comment.length >= COMMENT_MAX) {
+    if (commentExceedsMaxLength(formValues)) {
       errors.comment = `Maximum ${COMMENT_MAX} characters`;
     } else {
       errors.comment = "";
     }
 
-    if (formValues.email && emailRegex.test(formValues.email) === false) {
+    if (formValues.email && !emailAddressIsValid(formValues)) {
       errors.email = "Input valid email address";
     } else {
       errors.email = "";
     }
 
     setErrors(errors);
-    console.log(errors);
   };
+
+  // const validateOnSubmit = () => {
+  //   let valid = true;
+  //   if (!Object.keys(city).length) {
+  //     errors.city = "Select a city";
+  //     valid = false;
+  //   } else {
+  //     errors.city = "";
+  //   }
+
+  //   setErrors(errors);
+  //   return valid;
+  // };
 
   const handleInputChange = ({ target }) => {
     console.log(target.value);
@@ -60,6 +91,7 @@ const Feedback = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //if (!validateOnSubmit()) return;
     postFeedbackForm();
   };
 
@@ -83,23 +115,24 @@ const Feedback = ({
       </div>
     );
   }
+  console.log("feedbackpage", errors);
   return (
     <div className="container">
       <div className="landing-page">
         <h2>Feedback Form</h2>
-        <SelectCityForm />
+        <SelectCityForm errors={errors} />
         <FeedbackForm
           onChange={handleInputChange}
           onSubmit={handleSubmit}
           formValues={formValues}
           errors={errors}
+          disableSubmit={disableFormSubmit(formValues, city)}
         />
         <FetchingStateSpinner
           isVisible={
             isPostingFeedbackForm ||
             postingFeedbackFormFailed ||
-            isFetchingCities ||
-            isFetchingCity
+            isFetchingCities
           }
         />
       </div>
@@ -113,8 +146,12 @@ Feedback.propTypes = {
   displayRetryFailureMessage: PropTypes.bool,
   openHomePageButtonClicked: PropTypes.func.isRequired,
   isFetchingCities: PropTypes.bool,
-  isFetchingCity: PropTypes.bool,
   postFeedbackForm: PropTypes.func.isRequired,
+  city: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    rules: PropTypes.arrayOf(PropTypes.object),
+  }),
 };
 
 const mapDispatchToProps = {
@@ -131,7 +168,7 @@ const mapStateToProps = (state) => ({
   displayRetryFailureMessage:
     feedbackSelectors.displayRetryFailureMessage(state),
   isFetchingCities: citiesSelectors.isFetchingCities(state),
-  isFetchingCity: citiesSelectors.isFetchingCity(state),
+  city: citiesSelectors.getCity(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

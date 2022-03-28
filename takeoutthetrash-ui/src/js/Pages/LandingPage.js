@@ -15,7 +15,7 @@ const LandingPage = ({ isFetchingCities, isFetchingCity }) => {
         </p>
         <p>Do you know which bag to put your aluminium cans in?</p>
         <h2>Do you know where you live???</h2>
-        <SelectCityForm />
+        <SelectCityForm errors={{ city: "", prefecture: "" }} />
         <RulesDisplay />
         <FetchingStateSpinner isVisible={isFetchingCities || isFetchingCity} />
       </div>
