@@ -1,5 +1,5 @@
 .title {
-  background-color: $colour-dark-grey;
+  background-color: $colour-slate-800;
   height: 100px;
   color: $colour-white;
   padding: $spacing-l;
@@ -10,14 +10,14 @@
 }
 
 nav {
-  color: $colour-dark-grey;
+  color: $colour-slate-800;
   display: flex;
   justify-content: center;
   padding: $spacing-l;
 }
 
 .nav-link {
-  color: $colour-dark-grey;
+  color: $colour-slate-800;
   text-decoration: none;
   padding-left: $spacing-m;
   padding-right: $spacing-m;
