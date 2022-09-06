@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import App from "./js/App";
 import store from "./js/configureStore";
 import { fetchPrefecturesList } from "./js/Actions/Prefectures/index";
+import "./index.css";
 
 store.dispatch(fetchPrefecturesList());
 
