@@ -1,4 +1,4 @@
-#footer {
+.footer {
   background-color: $colour-dark-grey;
   height: 50px;
   color: $colour-white;
@@ -8,9 +8,10 @@
   padding: $spacing-l;
   display: flex;
   justify-content: right;
+  margin: 0 -30px;
 }
 
-#github-link {
+.github-link {
   font-size: 1.17em;
   font-weight: bold;
   text-decoration: none;

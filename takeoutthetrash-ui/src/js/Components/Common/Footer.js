@@ -3,8 +3,8 @@ import { gitHubUrl } from "../../Utilities/ResourceUtilities";
 
 const Footer = () => {
   return (
-    <div id="footer">
-      <a href={gitHubUrl} id="github-link">
+    <div className="footer">
+      <a href={gitHubUrl} className="github-link">
         github.com/jedharwood
       </a>
     </div>

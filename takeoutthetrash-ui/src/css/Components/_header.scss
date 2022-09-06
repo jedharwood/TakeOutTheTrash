@@ -1,11 +1,8 @@
 .title {
   background-color: $colour-dark-grey;
-  width: 100%;
   height: 100px;
   color: $colour-white;
   padding: $spacing-l;
-  display: flex;
-  justify-content: left;
 
   h1 {
     margin: 0px;
@@ -14,8 +11,6 @@
 
 nav {
   color: $colour-dark-grey;
-  background-color: $colour-white;
-  width: 100%;
   display: flex;
   justify-content: center;
   padding: $spacing-l;
