@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import FeedbackForm from "../Components/FeedbackForm";
 import FeedbackPageLegend from "../Components/FeedbackPageLegend";
 import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 import SelectCityForm from "../Components/SelectCityForm";
+import { WideButton, LINK } from "../Components/Common/WideButton";
 import * as feedbackActions from "../Actions/Feedback";
 import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { isNilOrEmpty } from "../Utilities/RamdaUtilities";
 
-// const COMMENT_MAX = 150;
-const COMMENT_MAX = 5;
+const COMMENT_MAX = 150;
 
 export const disableFormSubmit = (formValues) => {
-  return isNilOrEmpty(formValues.comment) || commentExceedsMaxLength(formValues) || (formValues.email && !emailAddressIsValid(formValues))
-    ? //|| !Object.keys(city).length //disable if no city OR add error on submit?
-      //|| Object.keys(errors).length
-      true
-    : false;
+  return isNilOrEmpty(formValues.comment) || commentExceedsMaxLength(formValues) || (formValues.email && !emailAddressIsValid(formValues)) ? true : false;
 };
 
 export const commentExceedsMaxLength = (formValues) => {
@@ -54,19 +49,6 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
     setErrors(errors);
   };
 
-  // const validateOnSubmit = () => {
-  //   let valid = true;
-  //   if (!Object.keys(city).length) {
-  //     errors.city = "Select a city";
-  //     valid = false;
-  //   } else {
-  //     errors.city = "";
-  //   }
-
-  //   setErrors(errors);
-  //   return valid;
-  // };
-
   const handleInputChange = ({ target }) => {
     const updatedFormValues = {
       ...formValues,
@@ -79,21 +61,18 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //if (!validateOnSubmit()) return;
     postFeedbackForm();
   };
 
   if (postingFeedbackFormSucceeded || displayRetryFailureMessage) {
     return (
-      <div className="container">
-        <div className="landing-page">
-          <h2>Feedback Form</h2>
-          <FeedbackPageLegend />
-          <p>Thanks</p>
-          <div>
-            <Link to="/" className="btn btn-primary" onClick={openHomePageButtonClicked}>
-              Home
-            </Link>
+      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-6 my-6">
+          <div className="text-dark-gray text-center">
+            <h2 className="text-3xl font-extrabold mb-2">Feedback Form</h2>
+            <FeedbackPageLegend />
+            <p className="mt-3 mb-6 text-xl font-extrabold">Thanks</p>
+            <WideButton buttonText="Home" type={LINK} route="" />
           </div>
         </div>
       </div>
