@@ -10,18 +10,17 @@ const LandingPage = ({ isFetchingCities, isFetchingCity }) => {
   return (
     <div>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold landing-page">Do you know...</h2>
-            <p className="mt-2 text-center landing-page">...if that bottle goes out on PET bottle day or plastic day?</p>
-            <p className="text-center landing-page">Do you know which bag to put your aluminium cans in?</p>
-            <h2 className="mt-3 text-center text-xl font-extrabold landing-page">Do you even know where you live???</h2>
+        <div className="max-w-md w-full space-y-6 my-6">
+          <div className="text-dark-gray text-center ">
+            <h2 className="text-3xl font-extrabold">Do you know...</h2>
+            <p className="mt-2">...if that bottle goes out on PET bottle day or plastic day?</p>
+            <p>Do you know which bag to put your aluminium cans in?</p>
+            <h2 className="mt-3 text-xl font-extrabold">Do you even know where you live???</h2>
           </div>
           <SelectCityForm errors={{ city: "", prefecture: "" }} />
+          <RulesDisplay />
         </div>
       </div>
-
-      <RulesDisplay />
       <FetchingStateSpinner isVisible={isFetchingCities || isFetchingCity} />
     </div>
   );
