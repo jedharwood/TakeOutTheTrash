@@ -10,6 +10,7 @@ export const WideButton = (props) => {
   return props.type === LINK ? (
     <button className={classes}>
       <Link to={`/${props.route}`}>{props.buttonText}</Link>
+      {/* Need to sort this out - currently only redirecting if text is clicked */}
     </button>
   ) : (
     <button onClick={props.onClick} className={classes}>
