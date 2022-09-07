@@ -10,60 +10,21 @@ const EmailFormField = ({ visible, formValues, handleInputChange, errors }) => {
   if (!visible) {
     return null;
   }
-  return (
-    <TextInput
-      name="email"
-      value={formValues.email}
-      onChange={handleInputChange}
-      required={false}
-      placeholder="Email"
-      error={errors.email}
-    />
-  );
+  return <TextInput name="email" value={formValues.email} onChange={handleInputChange} required={false} placeholder="Email" error={errors.email} />;
 };
 
-const FeedbackForm = ({
-  toggledEnableEmailFormField,
-  emailFormFieldEnabled,
-  onChange,
-  formValues,
-  onSubmit,
-  errors,
-  disableSubmit,
-}) => {
+const FeedbackForm = ({ toggledEnableEmailFormField, emailFormFieldEnabled, onChange, formValues, onSubmit, errors, disableSubmit }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <TextInput
-          name={"comment"}
-          value={formValues.comment}
-          onChange={onChange}
-          required={true}
-          placeholder="Comment"
-          error={errors.comment}
-          inputType={TEXT_AREA}
-        />
-        {/* validation client side*/}
-        {/* handle server side errors */}
-        <div className="info-minor">
-          <RadioButton
-            checked={emailFormFieldEnabled}
-            onClick={toggledEnableEmailFormField}
-          />
-          Receive email confirmation?
+        <TextInput name={"comment"} value={formValues.comment} onChange={onChange} required={true} placeholder="Comment" error={errors.comment} inputType={TEXT_AREA} />
+        <div className="my-3 flex">
+          <RadioButton checked={emailFormFieldEnabled} onClick={toggledEnableEmailFormField} />
+          <p className="info-minor ml-1">Receive email confirmation?</p>
         </div>
-        <EmailFormField
-          visible={emailFormFieldEnabled}
-          formValues={formValues}
-          handleInputChange={onChange}
-          errors={errors}
-        />
-        <div className="feedback-submit-button">
-          <button
-            type="submit"
-            className="submit-button"
-            disabled={disableSubmit}
-          >
+        <EmailFormField visible={emailFormFieldEnabled} formValues={formValues} handleInputChange={onChange} errors={errors} />
+        <div className="mt-6">
+          <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide" disabled={disableSubmit}>
             Submit
           </button>
         </div>

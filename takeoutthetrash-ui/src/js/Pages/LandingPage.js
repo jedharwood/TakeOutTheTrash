@@ -11,7 +11,7 @@ const LandingPage = ({ isFetchingCities, isFetchingCity }) => {
     <div>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-6 my-6">
-          <div className="text-dark-gray text-center ">
+          <div className="text-dark-gray text-center">
             <h2 className="text-3xl font-extrabold">Do you know...</h2>
             <p className="mt-2">...if that bottle goes out on PET bottle day or plastic day?</p>
             <p>Do you know which bag to put your aluminium cans in?</p>
