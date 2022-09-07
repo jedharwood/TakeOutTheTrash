@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { WideButton, LINK } from "../Components/Common/WideButton";
 
 const CalendarDisplay = ({ fetchingCitySucceeded, city }) => {
   if (!fetchingCitySucceeded) {
@@ -10,24 +10,15 @@ const CalendarDisplay = ({ fetchingCitySucceeded, city }) => {
   }
 
   return (
-    <Fragment>
-      <div>
-        <h1>
-          There's a plan to display the weekly/monthly garbage commitments for a
-          resident of {city.name} as a handy calendar here...
-        </h1>
-        <p>
-          ...but that will likely take place after I've wired up the back end as
-          I'd like to assemble that logic in the api and serve it up as a
-          response object.
-        </p>
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 my-6">
+        <div className="text-dark-gray text-center ">
+          <h2 className="text-2xl font-extrabold">There's a plan to display the weekly/monthly garbage commitments for a resident of {city.name} as a handy calendar here...</h2>
+          <p className="mt-2">...but that will likely take place after I've wired up the back end as I'd like to assemble that logic in the api and serve it up as a response object.</p>
+        </div>
+        <WideButton buttonText="Back" type={LINK} route="" />
       </div>
-      <div>
-        <Link to="/" className="btn btn-primary">
-          Back
-        </Link>
-      </div>
-    </Fragment>
+    </div>
   );
 };
 
