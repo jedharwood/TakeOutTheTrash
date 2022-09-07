@@ -7,11 +7,7 @@ import * as feedbackActions from "../Actions/Feedback/index";
 import * as rulesModalActions from "../Actions/RulesModal/index";
 import * as citiesSelectors from "../Selectors/Cities/index";
 
-const RulesDisplay = ({
-  fetchingCitySucceeded,
-  openRulesModal,
-  openFeedbackFormButtonClicked,
-}) => {
+const RulesDisplay = ({ fetchingCitySucceeded, openRulesModal, openFeedbackFormButtonClicked }) => {
   if (!fetchingCitySucceeded) {
     return null;
   }
@@ -19,30 +15,18 @@ const RulesDisplay = ({
   return (
     <Fragment>
       <div>
-        <button onClick={() => openRulesModal()}>Show Rules Modal</button>
+        <button onClick={() => openRulesModal()} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide">
+          Show Rules Modal
+        </button>
         <RulesModal />
       </div>
-      <div>
-        <Link to="/calendarDisplay" className="btn btn-primary">
-          View Calendar
-        </Link>
-      </div>
-      <div>
-        <p>
-          Please take a moment to rate the accuracy of the information provided
-          here using the star ratings (coming soon...). If you've noticed any
-          glaring inaccuracies please let us know via the...
-        </p>
-      </div>
-      <div>
-        <Link
-          to="/feedback"
-          className="btn btn-primary"
-          onClick={openFeedbackFormButtonClicked}
-        >
-          Feedback Form
-        </Link>
-      </div>
+      <button className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide">
+        <Link to="/calendarDisplay">View Calendar</Link>
+      </button>
+      <p className="text-dark-gray">Please take a moment to rate the accuracy of the information provided here using the star ratings (coming soon...). If you've noticed any glaring inaccuracies please let us know via the...</p>
+      <button onClick={openFeedbackFormButtonClicked} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide">
+        <Link to="/feedback">Feedback Form</Link>
+      </button>
     </Fragment>
   );
 };
