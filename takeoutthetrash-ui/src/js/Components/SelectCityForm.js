@@ -10,25 +10,14 @@ import * as prefecturesSelectors from "../Selectors/Prefectures/index";
 
 const mapOptions = (values, disableOptionIfEmpty) => {
   const children = values.map((child) => (
-    <option
-      key={child.id}
-      value={child.id}
-      disabled={R.isEmpty(child[disableOptionIfEmpty])}
-    >
+    <option key={child.id} value={child.id} disabled={R.isEmpty(child[disableOptionIfEmpty])}>
       {child.name}
     </option>
   ));
   return children;
 };
 
-const SelectCity = ({
-  fetchingCitiesSucceeded,
-  cities,
-  selectCity,
-  getCityById,
-  error,
-  city,
-}) => {
+const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, error, city }) => {
   if (!fetchingCitiesSucceeded) {
     return null;
   }
@@ -40,25 +29,14 @@ const SelectCity = ({
         getCityById();
       }}
       required={true}
-      placeholder={city.name || "Select City"}
+      placeholder={city.name || "Select City..."}
       children={mapOptions(cities, "rules")}
       error={error}
     />
   );
 };
 
-const SelectCityForm = ({
-  prefectures,
-  selectPrefecture,
-  getCitiesByPrefectureId,
-  fetchingCitiesSucceeded,
-  cities,
-  selectCity,
-  getCityById,
-  errors,
-  prefecture,
-  city,
-}) => {
+const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId, fetchingCitiesSucceeded, cities, selectCity, getCityById, errors, prefecture, city }) => {
   return (
     <div className="select-city-form">
       <SelectInput
@@ -67,18 +45,11 @@ const SelectCityForm = ({
           getCitiesByPrefectureId();
         }}
         required={true}
-        placeholder={prefecture.name || "Select Prefecture"}
+        placeholder={prefecture.name || "Select Prefecture..."}
         children={mapOptions(prefectures, "cities")}
         error={errors.prefecture}
       />
-      <SelectCity
-        fetchingCitiesSucceeded={fetchingCitiesSucceeded}
-        cities={cities}
-        selectCity={selectCity}
-        getCityById={getCityById}
-        error={errors.city}
-        city={city}
-      />
+      <SelectCity fetchingCitiesSucceeded={fetchingCitiesSucceeded} cities={cities} selectCity={selectCity} getCityById={getCityById} error={errors.city} city={city} />
     </div>
   );
 };
