@@ -12,12 +12,11 @@ import * as citiesSelectors from "../Selectors/Cities";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { isNilOrEmpty } from "../Utilities/RamdaUtilities";
 
-const COMMENT_MAX = 150;
+// const COMMENT_MAX = 150;
+const COMMENT_MAX = 5;
 
 export const disableFormSubmit = (formValues) => {
-  return isNilOrEmpty(formValues.comment) ||
-    commentExceedsMaxLength(formValues) ||
-    (formValues.email && !emailAddressIsValid(formValues))
+  return isNilOrEmpty(formValues.comment) || commentExceedsMaxLength(formValues) || (formValues.email && !emailAddressIsValid(formValues))
     ? //|| !Object.keys(city).length //disable if no city OR add error on submit?
       //|| Object.keys(errors).length
       true
@@ -35,17 +34,7 @@ export const emailAddressIsValid = (formValues) => {
   return emailRegex.test(formValues.email);
 };
 
-const Feedback = ({
-  postingFeedbackFormSucceeded,
-  isPostingFeedbackForm,
-  postingFeedbackFormFailed,
-  displayRetryFailureMessage,
-  openHomePageButtonClicked,
-  isFetchingCities,
-  feedbackFormValuesUpdated,
-  postFeedbackForm,
-  city,
-}) => {
+const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, postingFeedbackFormFailed, displayRetryFailureMessage, openHomePageButtonClicked, isFetchingCities, feedbackFormValuesUpdated, postFeedbackForm, city }) => {
   let [formValues, setFormValues] = useState({ comment: "", email: "" });
   let [errors, setErrors] = useState({});
 
@@ -102,11 +91,7 @@ const Feedback = ({
           <FeedbackPageLegend />
           <p>Thanks</p>
           <div>
-            <Link
-              to="/"
-              className="btn btn-primary"
-              onClick={openHomePageButtonClicked}
-            >
+            <Link to="/" className="btn btn-primary" onClick={openHomePageButtonClicked}>
               Home
             </Link>
           </div>
@@ -115,24 +100,12 @@ const Feedback = ({
     );
   }
   return (
-    <div className="container">
-      <div className="landing-page">
-        <h2>Feedback Form</h2>
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-6 my-6">
+        <h2 className="text-dark-gray text-center text-3xl font-extrabold">Feedback Form</h2>
         <SelectCityForm errors={errors} />
-        <FeedbackForm
-          onChange={handleInputChange}
-          onSubmit={handleSubmit}
-          formValues={formValues}
-          errors={errors}
-          disableSubmit={disableFormSubmit(formValues, city)}
-        />
-        <FetchingStateSpinner
-          isVisible={
-            isPostingFeedbackForm ||
-            postingFeedbackFormFailed ||
-            isFetchingCities
-          }
-        />
+        <FeedbackForm onChange={handleInputChange} onSubmit={handleSubmit} formValues={formValues} errors={errors} disableSubmit={disableFormSubmit(formValues, city)} />
+        <FetchingStateSpinner isVisible={isPostingFeedbackForm || postingFeedbackFormFailed || isFetchingCities} />
       </div>
     </div>
   );
@@ -159,12 +132,10 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state) => ({
-  postingFeedbackFormSucceeded:
-    feedbackSelectors.postingFeedbackFormSucceeded(state),
+  postingFeedbackFormSucceeded: feedbackSelectors.postingFeedbackFormSucceeded(state),
   isPostingFeedbackForm: feedbackSelectors.isPostingFeedbackForm(state),
   postingFeedbackFormFailed: feedbackSelectors.postingFeedbackFormFailed(state),
-  displayRetryFailureMessage:
-    feedbackSelectors.displayRetryFailureMessage(state),
+  displayRetryFailureMessage: feedbackSelectors.displayRetryFailureMessage(state),
   isFetchingCities: citiesSelectors.isFetchingCities(state),
   city: citiesSelectors.getCity(state),
 });

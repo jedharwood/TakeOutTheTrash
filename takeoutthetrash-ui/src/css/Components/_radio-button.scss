@@ -2,14 +2,12 @@
   width: 17px;
   min-width: 17px;
   height: 17px;
-  border: 1px solid;
-  border-color: $colour-border-grey;
+  border: 1px solid $gray-500;
   border-radius: 50%;
   background-color: $white;
   position: relative;
   vertical-align: middle;
   display: inline-block;
-  margin-right: $spacing-s;
 
   &.checked::after {
     content: "";
@@ -17,8 +15,8 @@
     border-radius: 50%;
     width: 11px;
     height: 11px;
-    left: 3px;
-    top: 3px;
-    background-color: $colour-verde-gris;
+    left: 2px;
+    top: 2px;
+    background-color: $teal-500;
   }
 }

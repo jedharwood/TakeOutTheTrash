@@ -8,7 +8,7 @@
     outline-color: $slate-800;
   }
   &.has-error {
-    outline-color: $colour-red-alert;
+    outline-color: $rose-500;
   }
 }
 
@@ -20,35 +20,19 @@
 }
 
 input {
-  min-height: 30px;
-  border-width: 1px;
   box-sizing: border-box;
-  padding-left: $spacing-xs;
-  border-color: $colour-border-grey;
-  border-style: solid;
 }
 
 textarea {
   resize: none;
   box-sizing: border-box;
   min-height: 100px;
-  font-family: "Segoe UI", Arial, "Helvetica Neue", Helvetica, sans-serif;
-  padding-left: $spacing-xs;
-  padding-top: 7px;
-}
-
-.feedback-submit-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .info-minor {
   font-size: 12px;
-  color: $colour-main;
-  margin-bottom: $spacing-l;
-
+  color: $gray-900;
   &.alert {
-    color: $colour-red-alert;
+    color: $rose-500;
   }
 }
