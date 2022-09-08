@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import RulesModal from "./RulesModal";
-import { WideButton, LINK } from "./Common/WideButton";
+import { WideButton } from "./Common/WideButton";
 import * as feedbackActions from "../Actions/Feedback/index";
 import * as rulesModalActions from "../Actions/RulesModal/index";
 import * as citiesSelectors from "../Selectors/Cities/index";
@@ -15,9 +15,9 @@ const RulesDisplay = ({ fetchingCitySucceeded, openRulesModal, openFeedbackFormB
   return (
     <Fragment>
       <WideButton buttonText="Show Rules Modal" onClick={() => openRulesModal()} />
-      <WideButton buttonText="View Calendar" type={LINK} route="calendarDisplay" disabled={true} />
+      <WideButton buttonText="View Calendar" route="/calendarDisplay" disabled={true} />
       <p className="text-dark-gray">Please take a moment to rate the accuracy of the information provided here using the star ratings (coming soon...). If you've noticed any glaring inaccuracies please let us know via the...</p>
-      <WideButton buttonText="Feedback Form" type={LINK} route="feedback" />
+      <WideButton buttonText="Feedback Form" onClick={() => openFeedbackFormButtonClicked()} route="/feedback" />
       <RulesModal />
     </Fragment>
   );
