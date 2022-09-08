@@ -9,6 +9,11 @@
   vertical-align: middle;
   display: inline-block;
 
+  &:focus {
+    outline: 2px solid $slate-800 !important;
+    outline-offset: -2px;
+  }
+
   &.checked::after {
     content: "";
     position: absolute;

@@ -3,6 +3,7 @@
   border-color: $gray-300;
   &:focus {
     outline: 2px solid $slate-800;
+    outline-offset: -1px;
   }
   &:focus-visible {
     outline-color: $slate-800;
