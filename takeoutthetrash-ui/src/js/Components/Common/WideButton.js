@@ -1,20 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { isNilOrEmpty } from "../../Utilities/RamdaUtilities";
 
-export const LINK = "LINK";
+export const getButtonType = (type) => {
+  return !isNilOrEmpty(type) ? type : "button";
+};
 
-export const WideButton = (props) => {
-  const classes = "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide";
+export const WideButton = ({ type, route, onClick, disabled, buttonText }) => {
+  const classes = "relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide";
 
-  return props.type === LINK ? (
-    <button type="button" className={classes} disabled={props.disabled}>
-      <Link to={`/${props.route}`}>{props.buttonText}</Link>
-      {/* Need to sort this out - currently only redirecting if text is clicked */}
-    </button>
+  return route ? (
+    <Link to={route}>
+      <button type={getButtonType(type)} onClick={onClick} className={`${classes} mt-6`} disabled={disabled}>
+        {buttonText}
+      </button>
+    </Link>
   ) : (
-    <button type="button" onClick={props.onClick} className={classes}>
-      {props.buttonText}
+    <button type={getButtonType(type)} onClick={onClick} className={classes} disabled={disabled}>
+      {buttonText}
     </button>
   );
 };

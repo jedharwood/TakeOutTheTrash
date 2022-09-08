@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import RadioButton from "./Common/RadioButton";
 import * as feedbackSelectors from "../Selectors/Feedback";
 import { TextInput, TEXT_AREA } from "../Components/Common/TextInput";
+import { WideButton } from "./Common/WideButton";
 
 const EmailFormField = ({ visible, formValues, handleInputChange, errors }) => {
   if (!visible) {
@@ -24,9 +25,7 @@ const FeedbackForm = ({ toggledEnableEmailFormField, emailFormFieldEnabled, onCh
         </div>
         <EmailFormField visible={emailFormFieldEnabled} formValues={formValues} handleInputChange={onChange} errors={errors} />
         <div className="mt-6">
-          <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 button-wide" disabled={disableSubmit}>
-            Submit
-          </button>
+          <WideButton buttonText="Submit" type="submit" disabled={disableSubmit} />
         </div>
       </form>
     </div>

@@ -5,7 +5,7 @@ import FeedbackForm from "../Components/FeedbackForm";
 import FeedbackPageLegend from "../Components/FeedbackPageLegend";
 import FetchingStateSpinner from "../Components/Common/FetchingStateSpinner";
 import SelectCityForm from "../Components/SelectCityForm";
-import { WideButton, LINK } from "../Components/Common/WideButton";
+import { WideButton } from "../Components/Common/WideButton";
 import * as feedbackActions from "../Actions/Feedback";
 import * as homeActions from "../Actions/Home";
 import * as citiesSelectors from "../Selectors/Cities";
@@ -72,7 +72,8 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
             <h2 className="text-3xl font-extrabold mb-2">Feedback Form</h2>
             <FeedbackPageLegend />
             <p className="mt-3 mb-6 text-xl font-extrabold">Thanks</p>
-            <WideButton buttonText="Home" type={LINK} route="" />
+            <WideButton buttonText="Home" route="/" />
+            {/* DIspatch an action from this form to  reset props */}
           </div>
         </div>
       </div>
