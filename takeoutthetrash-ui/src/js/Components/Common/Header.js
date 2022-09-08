@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 import * as feedbackActions from "../../Actions/Feedback";
 import * as homeActions from "../../Actions/Home";
 import { isMobile } from "react-device-detect";
-import { RecycleSvg } from "./RecycleSvg";
-import { BurgerMenuSvg } from "./BurgerMenuSvg";
+import { RecycleSvg } from "../SVGs/RecycleSvg";
+import { BurgerMenuSvg } from "../SVGs/BurgerMenuSvg";
 import { gitHubUrl } from "../../Utilities/ResourceUtilities";
 
 const Header = ({ openFeedbackFormButtonClicked, openHomePageButtonClicked }) => {

@@ -1,60 +1,60 @@
-.modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: $colour-overlay-transparency;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// .modal {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   background-color: $colour-overlay-transparency;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
 
-  .enter-done {
-    opacity: 1;
-    pointer-events: visible;
-  }
+//   .enter-done {
+//     opacity: 1;
+//     pointer-events: visible;
+//   }
 
-  .exit {
-    opacity: 0;
-  }
-}
+//   .exit {
+//     opacity: 0;
+//   }
+// }
 
-.modal.enter-done .modal-content {
-  transform: translateY(0);
-}
+// .modal.enter-done .modal-content {
+//   transform: translateY(0);
+// }
 
-.modal.exit .modal-content {
-  transform: translateY(-200px);
-}
+// .modal.exit .modal-content {
+//   transform: translateY(-200px);
+// }
 
-.modal-header {
-  padding: $spacing-s $spacing-m;
-}
+// .modal-header {
+//   padding: $spacing-s $spacing-m;
+// }
 
-.modal-content {
-  width: 500px;
-  background-color: $white;
-  border: 1px solid $colour-verde-gris;
-  border-radius: $radius-m;
-}
+// .modal-content {
+//   width: 500px;
+//   background-color: $white;
+//   border: 1px solid $colour-verde-gris;
+//   border-radius: $radius-m;
+// }
 
-.modal-footer {
-  padding: $spacing-m;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// .modal-footer {
+//   padding: $spacing-m;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
 
-.modal-title {
-  margin: 0;
-}
+// .modal-title {
+//   margin: 0;
+// }
 
-.modal-body {
-  padding: $spacing-m;
-  border-top: 1px solid $colour-verde-gris;
-  border-bottom: 1px solid $colour-verde-gris;
-  min-height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+// .modal-body {
+//   padding: $spacing-m;
+//   border-top: 1px solid $colour-verde-gris;
+//   border-bottom: 1px solid $colour-verde-gris;
+//   min-height: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
