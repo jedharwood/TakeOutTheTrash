@@ -1,38 +1,11 @@
 import React from "react";
-import { CSSTransition } from "react-transition-group";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import * as rulesModalSelectors from "../Selectors/RulesModal/index";
 import * as rulesModalActions from "../Actions/RulesModal/index";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
-const buildRubbishTypes = (types) => {
-  if (types.length < 1) {
-    return null;
-  }
-
-  return types.map((type) => <li key={type.name}>{type.name}</li>);
-};
-
-const buildIrregularFrequencies = (types) => {
-  if (types.length < 1) {
-    return null;
-  }
-
-  return types.map((type) => (
-    <li key={type.name}>{type.irregularFrequency}</li>
-  ));
-};
-
-const buildTableRows = (city) => {
-  return city.rules.map((day) => (
-    <tr key={day.id}>
-      <td>{day.name}</td>
-      <td>{buildRubbishTypes(day.types)}</td>
-      <td>{buildIrregularFrequencies(day.types)}</td>
-    </tr>
-  ));
-};
+import { WideButton } from "./Common/WideButton";
+import RulesTable from "../Components/RulesTable";
 
 const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
   if (!showRulesModal) {
@@ -40,32 +13,23 @@ const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
   }
 
   return (
-    <CSSTransition
-      in={showRulesModal}
-      unmountOnExit
-      timeout={{ enter: 0, exit: 300 }}
-    >
-      <div className="modal" onClick={() => closeRulesModal()}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-header">
-            <h4 className="modal-title">{city.name} Recycling Rules</h4>
-          </div>
-          <div className="modal-body">
-            <table className="table">
-              <tbody>{buildTableRows(city)}</tbody>
-            </table>
-          </div>
-          <div className="modal-footer">
-            <button
-              onClick={() => closeRulesModal()}
-              className="button close-button"
-            >
-              Close
-            </button>
+    <div id="modal-wrapper" className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div id="modal-backdrop" className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+      {/* Close on backdrop click */}
+      <div className="fixed z-10 inset-0 overflow-y-auto">
+        <div className="flex sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+          <div id="modal-panel" className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-xl sm:w-full w-full sm:p-6">
+            <div className="w-full space-y-6 text-dark-gray">
+              <div>
+                <h2 class="text-center text-3xl font-extrabold">{city.name} Recycling Rules</h2>
+              </div>
+              <RulesTable />
+              <WideButton buttonText="Close" onClick={closeRulesModal} />
+            </div>
           </div>
         </div>
       </div>
-    </CSSTransition>
+    </div>
   );
 };
 
@@ -75,10 +39,6 @@ RulesModal.propTypes = {
   city: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    prefecture: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired, // update this proptype
-    }).isRequired,
   }),
 };
 
