@@ -14,10 +14,10 @@ const RulesDisplay = ({ fetchingCitySucceeded, openRulesModal, openFeedbackFormB
 
   return (
     <Fragment>
-      <WideButton buttonText="Show Rules Modal" onClick={() => openRulesModal()} />
+      <WideButton buttonText="Show Rules Modal" onClick={openRulesModal} />
       <WideButton buttonText="View Calendar" route="/calendarDisplay" disabled={true} />
       <p className="text-dark-gray">Please take a moment to rate the accuracy of the information provided here using the star ratings (coming soon...). If you've noticed any glaring inaccuracies please let us know via the...</p>
-      <WideButton buttonText="Feedback Form" onClick={() => openFeedbackFormButtonClicked()} route="/feedback" />
+      <WideButton buttonText="Feedback Form" onClick={openFeedbackFormButtonClicked} route="/feedback" />
       <RulesModal />
     </Fragment>
   );

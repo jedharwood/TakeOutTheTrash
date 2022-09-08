@@ -9,9 +9,7 @@ const handleOnClick = (onClick) => {
   return () => onClick();
 };
 
-const RadioButton = ({ checked, onClick }) => (
-  <span className={getClassnames(checked)} onClick={handleOnClick(onClick)} />
-);
+const RadioButton = ({ checked, onClick }) => <button className={getClassnames(checked)} onClick={handleOnClick(onClick)} />;
 
 RadioButton.propTypes = {
   checked: PropTypes.bool.isRequired,
