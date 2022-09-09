@@ -23,7 +23,7 @@ const buildInnerTableRows = (types) => {
   return types.length < 1
     ? null
     : types.map((type) => (
-        <tr>
+        <tr key={type.name}>
           <td className="pl-2 table-icon w-8">
             <QuestionSvg />
           </td>
