@@ -21,7 +21,7 @@ const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
           <div id="modal-panel" className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-xl sm:w-full w-full sm:p-6">
             <div className="w-full space-y-6 text-dark-gray">
               <div>
-                <h2 class="text-center text-3xl font-extrabold">{city.name} Recycling Rules</h2>
+                <h2 className="text-center text-3xl font-extrabold">{city.name} Recycling Rules</h2>
               </div>
               <RulesTable />
               <WideButton buttonText="Close" onClick={closeRulesModal} />
