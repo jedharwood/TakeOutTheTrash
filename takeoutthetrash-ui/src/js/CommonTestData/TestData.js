@@ -152,24 +152,39 @@ export const whitespaceFeedbackFormValues = {
 };
 
 export const commentWith149Characters = {
-  comment:
-    "A comment with one hundred and fourty nine characters. A comment with one hundred and fourty nine characters. A comment with one hundred and fourt...",
+  comment: "A comment with one hundred and fourty nine characters. A comment with one hundred and fourty nine characters. A comment with one hundred and fourt...",
   email: "",
 };
 
 export const commentWith150Characters = {
-  comment:
-    "A comment with one hundred and fifty characters. A comment with one hundred and fifty characters. A comment with one hundred and fifty characters.....",
+  comment: "A comment with one hundred and fifty characters. A comment with one hundred and fifty characters. A comment with one hundred and fifty characters.....",
   email: "",
 };
 
 export const commentWith151Characters = {
-  comment:
-    "A comment with one hundred and fifty one characters. A comment with one hundred and fifty one characters. A comment with one hundred and fifty one c...",
+  comment: "A comment with one hundred and fifty one characters. A comment with one hundred and fifty one characters. A comment with one hundred and fifty one c...",
   email: "",
 };
 
 export const invalidEmailAddressFormValues = {
   comment: "A comment with an...",
   email: "...invalid email address",
+};
+
+export const tooltipTypeDefault = {
+  description: "A description.",
+  instructions: "",
+  irregularFrequency: "Sometimes do a thing but not always, y'know?",
+};
+
+export const tooltipTypeWithDescriptionAndInstructions = {
+  description: "A description.",
+  instructions: "Some instructions.",
+  irregularFrequency: "Sometimes do a thing but not always, y'know?",
+};
+
+export const tooltipTypeWithNoDescriptionButInstructions = {
+  description: "",
+  instructions: "Some instructions.",
+  irregularFrequency: "Sometimes do a thing but not always, y'know?",
 };
