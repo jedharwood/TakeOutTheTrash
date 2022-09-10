@@ -2,9 +2,8 @@ import React from "react";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { QuestionSvg } from "../Components/SVGs/QuestionSvg";
-import { CalendarSvg } from "../Components/SVGs/CalendarSvg";
 import { isNilOrEmpty } from "../Utilities/RamdaUtilities";
+import { SvgWithTooltip, CALENDAR } from "../Components/Common/SvgWithTooltip";
 
 const buildTableRows = (city) => {
   return city.rules.map((day) => (
@@ -25,7 +24,7 @@ const buildInnerTableRows = (types) => {
     : types.map((type) => (
         <tr key={type.name}>
           <td className="pl-2 table-icon w-8">
-            <QuestionSvg />
+            <SvgWithTooltip position="top left" type={type} />
           </td>
           <td className="pl-2">{type.name}</td>
           <td className="pr-2 w-8 table-icon">{showIrregularFrequency(type)}</td>
@@ -34,7 +33,7 @@ const buildInnerTableRows = (types) => {
 };
 
 const showIrregularFrequency = (type) => {
-  return isNilOrEmpty(type.irregularFrequency) ? null : <CalendarSvg />;
+  return isNilOrEmpty(type.irregularFrequency) ? null : <SvgWithTooltip svgName={CALENDAR} position="top right" type={type} />;
 };
 
 const RulesTable = ({ city }) => {
