@@ -1,12 +1,6 @@
 import * as sut from "../SvgWithTooltip";
 import * as testData from "../../../CommonTestData/TestData";
 
-// const defaultType = {
-//   description: "A description.",
-//   instructions: "",
-//   irregularFrequency: "Sometimes do a thing but not always, y'know?",
-// };
-
 describe("getContent", () => {
   [
     {
