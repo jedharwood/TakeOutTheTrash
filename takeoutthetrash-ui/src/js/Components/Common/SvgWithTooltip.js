@@ -32,8 +32,7 @@ export const getContent = (svgName, type) => {
   return type.description && type.instructions ? (
     <div>
       {type.description}
-      <br />
-      {type.instructions}
+      <div className="mt-2">{type.instructions}</div>
     </div>
   ) : (
     type.description || type.instructions
