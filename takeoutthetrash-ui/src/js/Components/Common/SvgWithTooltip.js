@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
 
 export const CALENDAR = "CALENDAR";
+export const POSITION = { rightCenter: "right center", leftCenter: "left center", bottomCenter: "bottom center" };
 
 const calendarSvg = (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

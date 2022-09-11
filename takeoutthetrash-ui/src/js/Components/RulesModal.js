@@ -6,6 +6,26 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { WideButton } from "./Common/WideButton";
 import RulesTable from "../Components/RulesTable";
+import { SvgWithTooltip, CALENDAR, POSITION } from "../Components/Common/SvgWithTooltip";
+import { isMobile } from "react-device-detect";
+
+const subTitle = () => {
+  const hoverOrClick = isMobile ? "Click on the " : "Hover over the ";
+
+  return (
+    <div className="flex justify-center mt-1 pre-wrap">
+      {hoverOrClick}
+      <div className="table-icon">
+        <SvgWithTooltip position={POSITION.bottomCenter} type={{ description: "Description and instructions." }} />
+      </div>
+      <div> and </div>
+      <div className="table-icon">
+        <SvgWithTooltip position={POSITION.bottomCenter} svgName={CALENDAR} type={{ irregularFrequency: "Collection schedule irregularities." }} />
+      </div>
+      <div> icons for more information.</div>
+    </div>
+  );
+};
 
 const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
   if (!showRulesModal) {
@@ -22,6 +42,7 @@ const RulesModal = ({ showRulesModal, closeRulesModal, city }) => {
             <div className="w-full space-y-6 text-dark-gray">
               <div>
                 <h2 className="text-center text-3xl font-extrabold">{city.name} Recycling Rules</h2>
+                {subTitle()}
               </div>
               <RulesTable />
               <WideButton buttonText="Close" onClick={closeRulesModal} />
