@@ -34,8 +34,7 @@ describe("getContent", () => {
       expectedResult: (
         <div>
           A description.
-          <br />
-          Some instructions.
+          <div className="mt-2">Some instructions.</div>
         </div>
       ),
     },
