@@ -72,8 +72,7 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
             <h2 className="text-3xl font-extrabold mb-2">Feedback Form</h2>
             <FeedbackPageLegend />
             <p className="mt-3 mb-6 text-xl font-extrabold">Thanks</p>
-            <WideButton buttonText="Home" route="/" />
-            {/* DIspatch an action from this form to  reset props */}
+            <WideButton buttonText="Home" route="/" onClick={openHomePageButtonClicked} />
           </div>
         </div>
       </div>
@@ -101,7 +100,6 @@ Feedback.propTypes = {
   city: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    rules: PropTypes.arrayOf(PropTypes.object),
   }),
 };
 
