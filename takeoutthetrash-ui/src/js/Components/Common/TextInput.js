@@ -11,7 +11,8 @@ const renderInput = (props, wrapperClass) => {
 };
 
 export const TextInput = (props) => {
-  let wrapperClass = "appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus-within:ring-1 focus-within:ring-slate-800 focus-within:border-slate-800 focus:z-10 sm:text-sm form-input";
+  const tailwindClasses = "appearance-none relative block w-full px-3 py-2 border rounded-md focus-within:ring-1 focus:z-10";
+  let wrapperClass = tailwindClasses + " form-input";
   if (props.error.length > 0) wrapperClass += " has-error";
 
   return (

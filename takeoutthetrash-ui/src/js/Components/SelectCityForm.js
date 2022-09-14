@@ -12,13 +12,26 @@ const customTheme = (theme) => {
   return {
     ...theme,
     borderRadius: 6,
-    borderColor: "#d1d5db",
+    borderColor: "#d1d5db", //$gray-300
     colors: {
       ...theme.colors,
-      primary25: "#f3f4f6",
-      primary: "#1e293b",
+      primary25: "#f3f4f6", //$gray-100
+      primary: "#1e293b", // $slate-800
+      neutral80: "#111827", // $gray-900
     },
   };
+};
+
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: state.isDisabled ? "#94a3b8" : "#111827", // $gray-400:900,
+    cursor: state.isDisabled ? "default" : "pointer",
+  }),
+  placeholder: (defaultStyles) => ({
+    ...defaultStyles,
+    color: "#6b7280", //$gray-500
+  }),
 };
 
 const mapOptions = (values, disableOptionIfEmpty) => {
@@ -41,6 +54,8 @@ const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, 
         selectCity(e.value);
         getCityById();
       }}
+      theme={customTheme}
+      styles={customStyles}
     />
   );
 };
@@ -63,6 +78,7 @@ const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId
           }}
           isLoading={isFetchingPrefectures}
           theme={customTheme}
+          styles={customStyles}
         />
       </div>
 

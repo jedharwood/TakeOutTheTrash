@@ -1,5 +1,5 @@
 .form-input {
-  color: $gray-500;
+  color: $gray-900;
   border-color: $gray-300;
   &:focus {
     outline: 2px solid $slate-800;
@@ -11,6 +11,10 @@
   &.has-error {
     outline-color: $rose-500;
   }
+}
+
+.form-input::placeholder {
+  color: $gray-500;
 }
 
 .burger-menu {
