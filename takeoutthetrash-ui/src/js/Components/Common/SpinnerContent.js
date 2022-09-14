@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as feedbackSelectors from "../../Selectors/Feedback";
 import { connect } from "react-redux";
 import * as feedbackActions from "../../Actions/Feedback";
+import { WideButton } from "./WideButton";
 
 const Spinner = () => (
   <div className="spinner">
@@ -15,32 +16,29 @@ const Spinner = () => (
   </div>
 );
 
-const SpinnerContent = ({
-  postingFeedbackFormFailed,
-  postFeedbackForm,
-  cancelRetries,
-  postFailureCount,
-}) => {
+const SpinnerContent = ({ postingFeedbackFormFailed, postFeedbackForm, cancelRetries, postFailureCount }) => {
   if (!postingFeedbackFormFailed) {
-    return <Spinner />;
+    return (
+      <div className="mt-4 mb-1">
+        <Spinner />
+      </div>
+    );
   }
   if (postFailureCount > 3) {
     return (
-      <div>
-        <button type="button" onClick={cancelRetries}>
-          Cancel
-        </button>
+      <div className="mt-8">
+        <WideButton buttonText="Cancel" onClick={cancelRetries} />
       </div>
     );
   }
   return (
-    <div>
-      <button type="button" onClick={postFeedbackForm}>
-        Retry
-      </button>
-      <button type="button" onClick={cancelRetries}>
-        Cancel
-      </button>
+    <div className="flex mt-8">
+      <div className="w-full mr-4">
+        <WideButton buttonText="Retry" onClick={postFeedbackForm} />
+      </div>
+      <div className="w-full">
+        <WideButton buttonText="Cancel" onClick={cancelRetries} />
+      </div>
     </div>
   );
 };
