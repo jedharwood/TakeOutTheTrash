@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import "../css/App.scss";
 import Header from "./Components/Common/Header";
@@ -9,7 +9,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 
 const App = () => {
   return (
-    <div className="container-fluid">
+    <Fragment>
       <Header />
       <Switch>
         <Route path="/" exact component={LandingPage} />
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/feedback" exact component={Feedback} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </Fragment>
   );
 };
 
