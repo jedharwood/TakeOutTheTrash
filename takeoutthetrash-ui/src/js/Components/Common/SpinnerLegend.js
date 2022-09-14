@@ -5,26 +5,15 @@ import * as prefecturesSelectors from "../../Selectors/Prefectures";
 import * as feedbackSelectors from "../../Selectors/Feedback";
 
 const getPrefectureName = (prefecture) => {
-  return prefecture.name === undefined
-    ? "selected prefecture"
-    : prefecture.name;
+  return prefecture.name === undefined ? "selected prefecture" : prefecture.name;
 };
 
 const getCityName = (prefecture, selectedCityId) => {
-  // selectedCityId should be a number, not a string. Think of a way to fix..
-  const city = prefecture.cities.find((x) => x.id === parseInt(selectedCityId));
+  const city = prefecture.cities.find((c) => c.id === selectedCityId);
   return city === undefined ? "selected city" : city.name;
 };
 
-export const getSpinnerLegend = (
-  isFetchingCities,
-  prefecture,
-  isPostingFeedbackForm,
-  isFetchingCity,
-  selectedCityId,
-  postingFeedbackFormFailed,
-  postFailureCount
-) => {
+export const getSpinnerLegend = (isFetchingCities, prefecture, isPostingFeedbackForm, isFetchingCity, selectedCityId, postingFeedbackFormFailed, postFailureCount) => {
   if (isFetchingCities && prefecture) {
     return `Retrieving cities for ${getPrefectureName(prefecture)}`;
   }
@@ -43,24 +32,8 @@ export const getSpinnerLegend = (
   return null;
 };
 
-const SpinnerLegend = ({
-  isFetchingCities,
-  prefecture,
-  isPostingFeedbackForm,
-  isFetchingCity,
-  selectedCityId,
-  postingFeedbackFormFailed,
-  postFailureCount,
-}) => {
-  return getSpinnerLegend(
-    isFetchingCities,
-    prefecture,
-    isPostingFeedbackForm,
-    isFetchingCity,
-    selectedCityId,
-    postingFeedbackFormFailed,
-    postFailureCount
-  );
+const SpinnerLegend = ({ isFetchingCities, prefecture, isPostingFeedbackForm, isFetchingCity, selectedCityId, postingFeedbackFormFailed, postFailureCount }) => {
+  return getSpinnerLegend(isFetchingCities, prefecture, isPostingFeedbackForm, isFetchingCity, selectedCityId, postingFeedbackFormFailed, postFailureCount);
 };
 
 SpinnerLegend.propTypes = {
@@ -72,14 +45,6 @@ SpinnerLegend.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        rules: PropTypes.arrayOf(
-          PropTypes.shape({
-            name: PropTypes.string,
-            description: PropTypes.string,
-            instructions: PropTypes.string,
-            irregularFrequency: PropTypes.string,
-          })
-        ),
       })
     ),
   }),

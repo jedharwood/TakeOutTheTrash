@@ -25,7 +25,7 @@ const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, 
   return (
     <SelectInput
       onChange={(e) => {
-        selectCity(e.target.value);
+        selectCity(parseInt(e.target.value));
         getCityById();
       }}
       required={true}

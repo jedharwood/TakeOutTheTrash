@@ -1,12 +1,12 @@
+@import "Variables/colours";
+
+@import "Partials/global";
+@import "Partials/modal";
+@import "Partials/tables";
+
 @import "Components/buttons";
 @import "Components/forms";
 @import "Components/header";
 @import "Components/radio-button";
 @import "Components/spinner";
 @import "Components/tool-tip";
-
-@import "Partials/global";
-@import "Partials/modal";
-@import "Partials/tables";
-
-@import "Variables/colours";
