@@ -98,8 +98,8 @@ Feedback.propTypes = {
   isFetchingCities: PropTypes.bool,
   postFeedbackForm: PropTypes.func.isRequired,
   city: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
   }),
 };
 
