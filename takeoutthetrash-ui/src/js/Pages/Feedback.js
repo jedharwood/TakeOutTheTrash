@@ -29,9 +29,10 @@ export const emailAddressIsValid = (formValues) => {
   return emailRegex.test(formValues.email);
 };
 
-const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, postingFeedbackFormFailed, displayRetryFailureMessage, openHomePageButtonClicked, isFetchingCities, feedbackFormValuesUpdated, postFeedbackForm, city }) => {
+const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, postingFeedbackFormFailed, displayRetryFailureMessage, openHomePageButtonClicked, isFetchingCities, feedbackFormValuesUpdated, postFeedbackForm, city, selectedCityId }) => {
   let [formValues, setFormValues] = useState({ comment: "", email: "" });
   let [errors, setErrors] = useState({});
+  let [selectedCityError, setSelectedCityError] = useState("");
 
   const validateOnChange = () => {
     if (commentExceedsMaxLength(formValues)) {
@@ -61,6 +62,10 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!selectedCityId) {
+      setSelectedCityError("Please select a city");
+      return;
+    }
     postFeedbackForm();
   };
 
@@ -82,7 +87,7 @@ const Feedback = ({ postingFeedbackFormSucceeded, isPostingFeedbackForm, posting
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-6 my-6">
         <h2 className="text-dark-gray text-center text-3xl font-extrabold">Feedback Form</h2>
-        <SelectCityForm errors={errors} />
+        <SelectCityForm error={selectedCityError} />
         <FeedbackForm onChange={handleInputChange} onSubmit={handleSubmit} formValues={formValues} errors={errors} disableSubmit={disableFormSubmit(formValues, city)} />
         <FetchingStateSpinner isVisible={isPostingFeedbackForm || postingFeedbackFormFailed || isFetchingCities} />
       </div>
@@ -101,6 +106,7 @@ Feedback.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
   }),
+  selectedCityId: PropTypes.number,
 };
 
 const mapDispatchToProps = {
@@ -116,6 +122,7 @@ const mapStateToProps = (state) => ({
   displayRetryFailureMessage: feedbackSelectors.displayRetryFailureMessage(state),
   isFetchingCities: citiesSelectors.isFetchingCities(state),
   city: citiesSelectors.getCity(state),
+  selectedCityId: citiesSelectors.getSelectedCityId(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);

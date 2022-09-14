@@ -17,7 +17,7 @@ const mapOptions = (values, disableOptionIfEmpty) => {
   return children;
 };
 
-const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, error, city }) => {
+const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, city }) => {
   if (!fetchingCitiesSucceeded) {
     return null;
   }
@@ -31,25 +31,30 @@ const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, 
       required={true}
       placeholder={city.name || "Select City..."}
       children={mapOptions(cities, "rules")}
-      error={error}
     />
   );
 };
 
-const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId, fetchingCitiesSucceeded, cities, selectCity, getCityById, errors, prefecture, city }) => {
+const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId, fetchingCitiesSucceeded, cities, selectCity, getCityById, error, prefecture, city }) => {
+  let wrapperClass = "";
+  if (prefecture.name) wrapperClass += "mb-4";
+
   return (
-    <div className="select-city-form">
-      <SelectInput
-        onChange={(e) => {
-          selectPrefecture(e.target.value);
-          getCitiesByPrefectureId();
-        }}
-        required={true}
-        placeholder={prefecture.name || "Select Prefecture..."}
-        children={mapOptions(prefectures, "cities")}
-        error={errors.prefecture}
-      />
-      <SelectCity fetchingCitiesSucceeded={fetchingCitiesSucceeded} cities={cities} selectCity={selectCity} getCityById={getCityById} error={errors.city} city={city} />
+    <div>
+      <div className={wrapperClass}>
+        <SelectInput
+          onChange={(e) => {
+            selectPrefecture(e.target.value);
+            getCitiesByPrefectureId();
+          }}
+          required={true}
+          placeholder={prefecture.name || "Select Prefecture..."}
+          children={mapOptions(prefectures, "cities")}
+        />
+      </div>
+
+      <SelectCity fetchingCitiesSucceeded={fetchingCitiesSucceeded} cities={cities} selectCity={selectCity} getCityById={getCityById} city={city} />
+      {error && <div className="info-minor alert">{error}</div>}
     </div>
   );
 };
@@ -80,10 +85,7 @@ SelectCityForm.propTypes = {
   getCitiesByPrefectureId: PropTypes.func.isRequired,
   selectCity: PropTypes.func.isRequired,
   selectPrefecture: PropTypes.func.isRequired,
-  errors: PropTypes.shape({
-    city: PropTypes.string,
-    prefecture: PropTypes.string,
-  }),
+  error: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
