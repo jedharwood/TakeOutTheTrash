@@ -2,29 +2,43 @@ import React from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
+const colours = {
+  gray100: "#f3f4f6",
+  gray300: "#d1d5db",
+  gray400: "#94a3b8",
+  gray500: "#6b7280",
+  gray900: "#111827",
+  slate800: "#1e293b",
+};
+
 const customTheme = (theme) => {
   return {
     ...theme,
     borderRadius: 6,
-    borderColor: "#d1d5db", //$gray-300
+    borderColor: colours.gray300,
     colors: {
       ...theme.colors,
-      primary25: "#f3f4f6", //$gray-100
-      primary: "#1e293b", // $slate-800
-      neutral80: "#111827", // $gray-900
+      primary25: colours.gray100,
+      primary: colours.slate800,
+      neutral80: colours.gray900,
     },
   };
+};
+
+const setOptionColour = (state) => {
+  if (state.isDisabled) return colours.gray400;
+  return state.isSelected ? colours.gray100 : colours.gray900;
 };
 
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
-    color: state.isDisabled ? "#94a3b8" : "#111827", // $gray-400:900,
+    color: setOptionColour(state),
     cursor: state.isDisabled ? "default" : "pointer",
   }),
   placeholder: (defaultStyles) => ({
     ...defaultStyles,
-    color: "#6b7280", //$gray-500
+    color: colours.gray500,
   }),
 };
 
