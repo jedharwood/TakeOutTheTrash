@@ -2,18 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as R from "ramda";
-import { SelectInput } from "./Common/SelectInput";
 import * as citiesActions from "../Actions/Cities/index";
 import * as prefecturesActions from "../Actions/Prefectures/index";
 import * as citiesSelectors from "../Selectors/Cities/index";
 import * as prefecturesSelectors from "../Selectors/Prefectures/index";
+import { SearchSelectInput } from "./Common/SearchSelectInput";
 
 const mapOptions = (values, disableOptionIfEmpty) => {
-  const children = values.map((child) => (
-    <option key={child.id} value={child.id} disabled={R.isEmpty(child[disableOptionIfEmpty])}>
-      {child.name}
-    </option>
-  ));
+  const children = values.map((child) => ({ value: child.id, label: child.name, isDisabled: R.isEmpty(child[disableOptionIfEmpty]) }));
   return children;
 };
 
@@ -23,33 +19,32 @@ const SelectCity = ({ fetchingCitiesSucceeded, cities, selectCity, getCityById, 
   }
 
   return (
-    <SelectInput
+    <SearchSelectInput
+      options={mapOptions(cities, "rules")}
+      placeholder={city.name || "Select City..."}
       onChange={(e) => {
-        selectCity(parseInt(e.target.value));
+        selectCity(e.value);
         getCityById();
       }}
-      required={true}
-      placeholder={city.name || "Select City..."}
-      children={mapOptions(cities, "rules")}
     />
   );
 };
 
-const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId, fetchingCitiesSucceeded, cities, selectCity, getCityById, error, prefecture, city }) => {
+const SelectCityForm = ({ prefectures, selectPrefecture, getCitiesByPrefectureId, fetchingCitiesSucceeded, cities, selectCity, getCityById, error, prefecture, city, isFetchingPrefectures }) => {
   let wrapperClass = "";
   if (prefecture.name) wrapperClass += "mb-4";
 
   return (
     <div>
       <div className={wrapperClass}>
-        <SelectInput
+        <SearchSelectInput
+          options={mapOptions(prefectures, "cities")}
+          placeholder={prefecture.name || "Select Prefecture..."}
           onChange={(e) => {
-            selectPrefecture(e.target.value);
+            selectPrefecture(e.value);
             getCitiesByPrefectureId();
           }}
-          required={true}
-          placeholder={prefecture.name || "Select Prefecture..."}
-          children={mapOptions(prefectures, "cities")}
+          isLoading={isFetchingPrefectures}
         />
       </div>
 
@@ -86,6 +81,7 @@ SelectCityForm.propTypes = {
   selectCity: PropTypes.func.isRequired,
   selectPrefecture: PropTypes.func.isRequired,
   error: PropTypes.string,
+  isFetchingPrefectures: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
@@ -94,6 +90,7 @@ const mapStateToProps = (state) => ({
   fetchingCitiesSucceeded: citiesSelectors.fetchingCitiesSucceeded(state),
   prefecture: prefecturesSelectors.getPrefecture(state),
   prefectures: prefecturesSelectors.getPrefectures(state),
+  isFetchingPrefectures: prefecturesSelectors.isFetchingPrefectures(state),
 });
 
 const mapDispatchToProps = {
