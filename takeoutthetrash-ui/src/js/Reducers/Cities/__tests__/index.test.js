@@ -218,6 +218,7 @@ describe("cities reducer", () => {
     const state = {
       foo: "bar",
       fetchingCitySucceeded: true,
+      fetchingCitiesSucceeded: true,
       city: testData.cityWithRules,
       selectedCityId: testData.cityWithRules.id,
     };
@@ -227,6 +228,7 @@ describe("cities reducer", () => {
     const expectedState = {
       foo: "bar",
       fetchingCitySucceeded: false,
+      fetchingCitiesSucceeded: false,
       city: {},
       selectedCityId: null,
     };

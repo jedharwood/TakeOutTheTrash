@@ -57,6 +57,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingCitySucceeded: false,
+        fetchingCitiesSucceeded: false,
         city: {},
         selectedCityId: null,
       };
